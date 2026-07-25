@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sh /c/Users/HP/AppData/Local/Temp/claude/D--zahdi/98a86e69-9e33-4161-9e1d-05d4674faeaf/scratchpad/gen-videos-retry.sh)",
+      "Bash(python -c ' *)",
+      "Read(//c/Users/HP/AppData/Local/Temp/claude/D--zahdi/98a86e69-9e33-4161-9e1d-05d4674faeaf/tasks/**)",
+      "Bash(python /c/Users/HP/AppData/Local/Temp/claude/D--zahdi/98a86e69-9e33-4161-9e1d-05d4674faeaf/scratchpad/extract.py)"
+    ]
+  }
+}
