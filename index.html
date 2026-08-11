@@ -267,6 +267,15 @@
   #rfq .submit-row button{border:none}
   #rfq .contact-note{grid-column:1/-1;text-align:center;color:var(--ivory-faint);font-size:13px;margin-top:8px}
   #rfq .contact-note a{color:var(--gold-bright);text-decoration:none}
+  #rfq .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  #rfq .form-status{grid-column:1/-1;text-align:center;font-size:14.5px;margin:4px 0 0;padding:14px 18px;
+    border:1px solid var(--line-soft);border-radius:8px;background:rgba(11,8,5,.45);display:none;line-height:1.8}
+  #rfq .form-status.show{display:block}
+  #rfq .form-status.ok{border-color:rgba(217,164,65,.5);color:var(--gold-bright)}
+  #rfq .form-status.err{border-color:rgba(194,85,59,.55);color:#E3A08C}
+  #rfq .form-status .ref{font-family:"Cormorant Garamond",serif;letter-spacing:.16em;color:var(--ivory)}
+  #rfq .form-status a{color:var(--gold-bright)}
+  #rfq .submit-row button[disabled]{opacity:.6;cursor:progress}
 
   footer{padding:9vh 0 5vh;text-align:center;border-top:1px solid var(--line-soft)}
   footer .wm{font-family:"El Messiri",serif;font-size:38px;font-weight:700}
@@ -605,8 +614,10 @@
           </select></div>
         <div><label for="f-email" data-i18n="rfq.lContact">البريد / واتساب *</label><input id="f-email" name="contact" type="text" required placeholder="email@company.com أو رقم واتساب" data-i18n-ph="rfq.phContact" /></div>
         <div class="full"><label for="f-notes" data-i18n="rfq.lNotes">ملاحظات</label><textarea id="f-notes" name="notes" placeholder="مواصفات خاصة، ميناء الوصول، توقيت الشحنة…" data-i18n-ph="rfq.phNotes"></textarea></div>
+        <div class="hp" aria-hidden="true"><label for="f-website">Website</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off" /></div>
         <div class="submit-row"><button class="btn btn-primary" type="submit" data-i18n="rfq.submit">أرسل الطلب</button></div>
-        <p class="contact-note" data-i18n="rfq.contactNote">أو راسلنا مباشرة: <a href="mailto:sales@alsultan-dates.com">sales@alsultan-dates.com</a></p>
+        <p id="rfqStatus" class="form-status" role="status" aria-live="polite"></p>
+        <p class="contact-note" data-i18n="rfq.contactNote">أو راسلنا مباشرة: <a href="mailto:info@alsultan-dates.com">info@alsultan-dates.com</a></p>
       </form>
     </div></div>
   </section>
@@ -623,6 +634,14 @@
 <script>
 (function(){
   "use strict";
+
+  /* ── إعدادات استقبال الطلبات ─────────────────────────────────────────────
+     RFQ_ENDPOINT: عنوان الـ Worker الذي يستقبل النموذج ويحفظه في قاعدة البيانات
+                   (المشروع في مجلد worker/ — راجع worker/SETUP-AR.md).
+     RFQ_MAIL    : بريد المبيعات، يُستخدم كخطة بديلة إن تعذّر الوصول للـ Worker. */
+  const RFQ_ENDPOINT="https://rfq.alsultan-zahdi-dates.com/api/rfq";
+  const RFQ_MAIL="info@alsultan-dates.com";
+
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hasGSAP=typeof gsap!=="undefined"&&typeof ScrollTrigger!=="undefined";
   if(hasGSAP) gsap.registerPlugin(ScrollTrigger);
@@ -741,7 +760,7 @@
     "rfq.lContact":"Email / WhatsApp *", "rfq.phContact":"email@company.com or a WhatsApp number",
     "rfq.lNotes":"Notes", "rfq.phNotes":"Special specifications, port of arrival, shipment timing…",
     "rfq.submit":"Send request",
-    "rfq.contactNote":"Or email us directly: <a href=\"mailto:sales@alsultan-dates.com\">sales@alsultan-dates.com</a>",
+    "rfq.contactNote":"Or email us directly: <a href=\"mailto:info@alsultan-dates.com\">info@alsultan-dates.com</a>",
 
     "footer.lm":"Karbala · Iraq · Wholesale &amp; Export",
     "footer.role":"The direct trading link between the Karbala supplier and importers worldwide — wholesale and export only.",
@@ -750,7 +769,14 @@
     "mail.subject":"Wholesale quote request — Iraqi Zahdi dates",
     "mail.head":"Quote request — Iraqi Zahdi dates (Alsultan Dates)",
     "mail.company":"Company name", "mail.country":"Country", "mail.qty":"Required volume",
-    "mail.grade":"Quality grade", "mail.pack":"Packing type", "mail.contact":"Contact details", "mail.notes":"Notes"
+    "mail.grade":"Quality grade", "mail.pack":"Packing type", "mail.contact":"Contact details", "mail.notes":"Notes",
+
+    "rfq.sending":"Sending…",
+    "rfq.okTitle":"We received your request.",
+    "rfq.okBody":"Reference <b class=\"ref\">{ref}</b> — our export team is reviewing it now and a formal quotation will reach you within one business day.",
+    "rfq.errRequired":"Please complete the required fields.",
+    "rfq.errRate":"We already received several requests from this device. Please try again shortly, or contact us directly.",
+    "rfq.errNet":"We couldn't send the request right now. Please email <a href=\"mailto:info@alsultan-dates.com\">info@alsultan-dates.com</a> or reach us on WhatsApp."
   };
 
   const I18N=(function(){
@@ -776,7 +802,13 @@
       "mail.subject":"طلب عرض سعر جملة — تمر الزهدي",
       "mail.head":"طلب عرض سعر — تمر الزهدي العراقي (Alsultan Dates)",
       "mail.company":"اسم الشركة","mail.country":"الدولة","mail.qty":"الكمية المطلوبة",
-      "mail.grade":"درجة الجودة","mail.pack":"نوع التعبئة","mail.contact":"بيانات التواصل","mail.notes":"ملاحظات"
+      "mail.grade":"درجة الجودة","mail.pack":"نوع التعبئة","mail.contact":"بيانات التواصل","mail.notes":"ملاحظات",
+      "rfq.sending":"جارٍ الإرسال…",
+      "rfq.okTitle":"وصلنا طلبك.",
+      "rfq.okBody":"الرقم المرجعي <b class=\"ref\">{ref}</b> — يراجعه فريق التصدير الآن، ويصلك عرض سعر رسمي خلال يوم عمل واحد.",
+      "rfq.errRequired":"يرجى إكمال الحقول المطلوبة.",
+      "rfq.errRate":"استلمنا عدة طلبات من هذا الجهاز. يرجى المحاولة بعد قليل أو مراسلتنا مباشرة.",
+      "rfq.errNet":"تعذّر إرسال الطلب الآن. راسلنا مباشرة على <a href=\"mailto:info@alsultan-dates.com\">info@alsultan-dates.com</a> أو عبر واتساب."
     });
     // the authored-English keys, captured before the Arabic fallback merge
     const EN_OWN=Object.assign({},EN);
@@ -930,18 +962,21 @@
     } else {dim.style.opacity=.94;content.style.opacity=1;content.style.transform="none";}
   })();
 
-  // RFQ form → composes a mailto (no backend needed; swap action later if a CRM lands)
+  // RFQ form → posts to the Worker API (stored in D1, notifies sales, auto-acks the buyer).
+  // If the API is unreachable, it falls back to the old mailto compose so nothing is lost.
   (function initRFQ(){
     const form=document.getElementById("rfqForm"); if(!form) return;
-    form.addEventListener("submit",e=>{
-      e.preventDefault();
-      const g=id=>{const el=document.getElementById(id);return el?el.value.trim():"";};
-      const required=["f-company","f-country","f-qty","f-grade","f-pack","f-email"];
-      let ok=true;
-      required.forEach(id=>{const el=document.getElementById(id);
-        if(!el.value.trim()){el.style.borderColor="#B5722F";ok=false;}else el.style.borderColor="";});
-      if(!ok) return;
-      const t=I18N.t;
+    const box=document.getElementById("rfqStatus");
+    const btn=form.querySelector('button[type="submit"]');
+    const g=id=>{const el=document.getElementById(id);return el?el.value.trim():"";};
+    const t=I18N.t;
+
+    function say(kind,msgHTML){
+      if(!box) return;
+      box.className="form-status show "+kind;
+      box.innerHTML=msgHTML;
+    }
+    function mailtoFallback(){
       const body=[
         t("mail.head"),"",
         t("mail.company")+": "+g("f-company"),
@@ -952,7 +987,51 @@
         t("mail.contact")+": "+g("f-email"),
         t("mail.notes")+": "+(g("f-notes")||"—")
       ].join("\n");
-      location.href="mailto:sales@alsultan-dates.com?subject="+encodeURIComponent(t("mail.subject"))+"&body="+encodeURIComponent(body);
+      location.href="mailto:"+RFQ_MAIL+"?subject="+encodeURIComponent(t("mail.subject"))+"&body="+encodeURIComponent(body);
+    }
+
+    form.addEventListener("submit",async e=>{
+      e.preventDefault();
+      const required=["f-company","f-country","f-qty","f-grade","f-pack","f-email"];
+      let ok=true;
+      required.forEach(id=>{const el=document.getElementById(id);
+        if(!el.value.trim()){el.style.borderColor="#B5722F";ok=false;}else el.style.borderColor="";});
+      if(!ok){ say("err",t("rfq.errRequired")); return; }
+
+      const payload={
+        company:g("f-company"), country:g("f-country"), qty:g("f-qty"),
+        grade:g("f-grade"), pack:g("f-pack"), contact:g("f-email"),
+        notes:g("f-notes"), website:g("f-website"), lang:I18N.lang
+      };
+
+      const label=btn?btn.textContent:"";
+      if(btn){btn.disabled=true;btn.textContent=t("rfq.sending");}
+      if(box){box.className="form-status";box.innerHTML="";}
+
+      try{
+        const ctl=new AbortController();
+        const timer=setTimeout(()=>ctl.abort(),12000);
+        const res=await fetch(RFQ_ENDPOINT,{
+          method:"POST", headers:{"content-type":"application/json"},
+          body:JSON.stringify(payload), signal:ctl.signal
+        });
+        clearTimeout(timer);
+        const data=await res.json().catch(()=>({}));
+
+        if(res.ok&&data.ok){
+          say("ok","<b>"+t("rfq.okTitle")+"</b><br/>"+t("rfq.okBody").replace("{ref}",data.ref||"—"));
+          form.querySelectorAll("input,select,textarea").forEach(el=>{el.value="";});
+          if(btn){btn.disabled=true;btn.textContent=label;}
+          box.scrollIntoView({behavior:"smooth",block:"center"});
+          return;
+        }
+        if(res.status===429){ say("err",t("rfq.errRate")); }
+        else { say("err",t("rfq.errNet")); mailtoFallback(); }
+      }catch(err){
+        say("err",t("rfq.errNet"));
+        mailtoFallback();
+      }
+      if(btn){btn.disabled=false;btn.textContent=label;}
     });
   })();
 

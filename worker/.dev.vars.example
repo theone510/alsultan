@@ -1,0 +1,6 @@
+# انسخ هذا الملف باسم .dev.vars للتشغيل المحلي فقط (لا يُرفع إلى git)
+ADMIN_PASSWORD=change-me-locally
+SESSION_SECRET=any-long-random-string-for-local-dev
+# RESEND_API_KEY=
+# TELEGRAM_BOT_TOKEN=
+# TELEGRAM_CHAT_ID=

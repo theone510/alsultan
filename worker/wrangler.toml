@@ -1,0 +1,31 @@
+name = "alsultan-rfq"
+main = "src/index.js"
+compatibility_date = "2025-06-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "alsultan"
+# ← ضع هنا database_id الذي يظهر بعد: wrangler d1 create alsultan
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[vars]
+# النطاقات المسموح لها بإرسال النموذج (مفصولة بفاصلة).
+# النجمة تسمح بالنطاقات الفرعية — لازمة لمعاينات Vercel (preview deployments).
+ALLOWED_ORIGINS = "https://alsultan-zahdi-dates.com,https://www.alsultan-zahdi-dates.com,https://*.vercel.app,http://localhost:8123"
+BRAND_AR = "تمور السلطان"
+BRAND_EN = "ALSULTAN DATES"
+COMPANY_LINE_AR = "كربلاء — العراق · تمر الزهدي · جملة وتصدير"
+COMPANY_LINE_EN = "Karbala, Iraq · Zahdi Dates · Wholesale & Export"
+PUBLIC_BASE_URL = "https://rfq.alsultan-zahdi-dates.com"
+SALES_EMAIL = "info@alsultan-dates.com"
+SALES_WHATSAPP = ""            # مثال: 9647801234567 (بدون + وبدون أصفار)
+MAIL_FROM = "Alsultan Dates <info@alsultan-dates.com>"
+MAIL_TO = "info@alsultan-dates.com"
+DEFAULT_CURRENCY = "USD"
+
+# الأسرار تُضبط بأمر wrangler secret put (لا تُكتب هنا أبداً):
+#   ADMIN_PASSWORD      كلمة مرور لوحة التحكم
+#   SESSION_SECRET      نص عشوائي طويل لتوقيع الجلسة
+#   RESEND_API_KEY      مفتاح Resend لإرسال البريد (اختياري)
+#   TELEGRAM_BOT_TOKEN  توكن بوت تلغرام للإشعار الفوري (اختياري)
+#   TELEGRAM_CHAT_ID    معرّف المحادثة لاستلام الإشعار (اختياري)
