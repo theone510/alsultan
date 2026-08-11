@@ -11,10 +11,14 @@
 <meta property="og:type" content="website" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='32' rx='16' ry='24' fill='%23C89044'/%3E%3Cellipse cx='26' cy='24' rx='5' ry='9' fill='%23E2B264' opacity='.7'/%3E%3C/svg%3E" />
 
+<link rel="alternate" hreflang="ar" href="?lang=ar" />
+<link rel="alternate" hreflang="en" href="?lang=en" />
+<link rel="alternate" hreflang="x-default" href="?lang=ar" />
+
 <link rel="preload" as="image" href="assets/product-cut.webp" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@200;300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@200;300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -45,7 +49,7 @@
     background:radial-gradient(135% 120% at 50% 42%,transparent 52%,rgba(0,0,0,.5) 100%)}
   #grain{position:fixed;inset:-50%;z-index:60;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-  #progress{position:fixed;top:0;right:0;left:0;height:2px;z-index:70;transform-origin:right;transform:scaleX(0);
+  #progress{position:fixed;top:0;right:0;left:0;height:2px;z-index:70;transform-origin:100% 50%;transform:scaleX(0);
     background:linear-gradient(90deg,var(--gold-deep),var(--gold-bright),var(--accent))}
 
   /* header */
@@ -57,11 +61,11 @@
     padding-top:clamp(10px,1.6vw,16px);padding-bottom:clamp(10px,1.6vw,16px)}
   .brand{display:flex;align-items:center;gap:14px;text-decoration:none}
   .brand .wm{font-family:"El Messiri",serif;font-weight:700;font-size:clamp(20px,2.3vw,26px);color:var(--ivory)}
-  .brand .lm{font-family:"Cormorant Garamond",serif;letter-spacing:.3em;font-size:10px;color:var(--gold);text-transform:uppercase;border-right:1px solid var(--line);padding-right:14px}
+  .brand .lm{font-family:"Cormorant Garamond",serif;letter-spacing:.3em;font-size:10px;color:var(--gold);text-transform:uppercase;border-inline-start:1px solid var(--line);padding-inline-start:14px}
   header nav{display:flex;align-items:center;gap:clamp(14px,2.2vw,34px)}
   header nav a{color:var(--ivory-soft);text-decoration:none;font-size:14px;font-weight:500;transition:color .3s}
   header nav a:hover{color:var(--gold-bright)}
-  .nav-cta{border:1px solid var(--gold);border-radius:999px;padding:8px 22px;color:var(--gold-bright)!important}
+  .nav-cta{border:1px solid var(--gold);border-radius:999px;padding:8px 22px;color:var(--gold-bright)!important;white-space:nowrap}
   .nav-cta:hover{background:var(--gold);color:#140D06!important}
   @media(max-width:760px){header nav a:not(.nav-cta){display:none} .brand .lm{display:none}}
   a:focus-visible,.btn:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
@@ -118,17 +122,17 @@
   #film .stage{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--bg0)}
   #film canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
   #film .film-fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:none}
-  #film .caps{position:absolute;right:clamp(20px,6vw,98px);bottom:clamp(74px,13vh,140px);z-index:4;width:min(80vw,470px);text-align:right;pointer-events:none}
-  #film .cap{position:absolute;right:0;bottom:0;opacity:0;transform:translateY(14px);font-family:"El Messiri",serif;
+  #film .caps{position:absolute;inset-inline-start:clamp(20px,6vw,98px);bottom:clamp(74px,13vh,140px);z-index:4;width:min(80vw,470px);text-align:start;pointer-events:none}
+  #film .cap{position:absolute;inset-inline-start:0;bottom:0;opacity:0;transform:translateY(14px);font-family:"El Messiri",serif;
     font-size:clamp(22px,3.4vw,40px);line-height:1.3;color:var(--ivory);text-shadow:0 2px 24px rgba(0,0,0,.85)}
-  #film .loader{position:absolute;left:clamp(18px,5vw,42px);bottom:clamp(24px,5vh,40px);z-index:5;font-family:"Cormorant Garamond",serif;letter-spacing:.28em;font-size:12px;color:var(--ivory-faint);transition:opacity .6s}
+  #film .loader{position:absolute;inset-inline-end:clamp(18px,5vw,42px);bottom:clamp(24px,5vh,40px);z-index:5;font-family:"Cormorant Garamond",serif;letter-spacing:.28em;font-size:12px;color:var(--ivory-faint);transition:opacity .6s}
 
   /* 2.5 · ORIGIN (كربلاء — pinned full-bleed) */
   #origin{padding:0;height:200vh}
   #origin .stage{position:sticky;top:0;height:100svh;overflow:hidden}
   #origin .bg{position:absolute;inset:-8%;width:116%;height:116%;object-fit:cover;will-change:transform;filter:brightness(.82)}
   #origin .wash{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,8,5,.95) 6%,rgba(11,8,5,.28) 42%,rgba(11,8,5,.45) 100%)}
-  #origin .copy{position:absolute;z-index:2;right:clamp(24px,6vw,90px);bottom:clamp(48px,10vh,110px);max-width:min(90vw,640px);text-align:right}
+  #origin .copy{position:absolute;z-index:2;inset-inline-start:clamp(24px,6vw,90px);bottom:clamp(48px,10vh,110px);max-width:min(90vw,640px);text-align:start}
   #origin .idx{display:block;margin-bottom:12px}
   #origin h2{font-size:clamp(36px,6vw,78px);margin:8px 0 14px}
   #origin p{color:var(--ivory-soft);font-size:clamp(15px,1.8vw,20px);max-width:50ch;margin-inline-start:auto}
@@ -139,7 +143,7 @@
   @media(min-width:900px){#product .grid{grid-template-columns:1.05fr .95fr}}
   #product .shot{position:relative;aspect-ratio:4/3;display:grid;place-items:center}
   #product .shot img{width:100%;height:100%;object-fit:contain}
-  #product .copy{text-align:right} #product .idx{display:block;margin-bottom:12px}
+  #product .copy{text-align:start} #product .idx{display:block;margin-bottom:12px}
   #product h2{font-size:clamp(36px,5.6vw,76px);margin:8px 0 22px}
   #product .lead{font-size:clamp(16px,1.8vw,20px);color:var(--ivory-soft);max-width:48ch;margin-inline-start:auto}
   #product .specs{list-style:none;margin-top:36px}
@@ -157,12 +161,12 @@
   @media(min-width:760px){#grades .cards{grid-template-columns:repeat(2,1fr)}}
   @media(min-width:1100px){#grades .cards{grid-template-columns:repeat(4,1fr)}}
   .gr-card{position:relative;border:1px solid var(--line-soft);border-radius:8px;background:linear-gradient(180deg,var(--surface),rgba(23,16,9,.4));
-    padding:30px 26px 28px;text-align:right;transition:transform .5s var(--ease),box-shadow .5s,border-color .5s}
+    padding:30px 26px 28px;text-align:start;transition:transform .5s var(--ease),box-shadow .5s,border-color .5s}
   .gr-card:hover{transform:translateY(-8px);box-shadow:0 34px 70px -36px rgba(0,0,0,.8);border-color:var(--line)}
   .gr-card.premium{border-color:var(--gold);background:linear-gradient(180deg,#1E150A,rgba(30,21,10,.55))}
   .gr-card .g-latin{font-family:"Cormorant Garamond",serif;letter-spacing:.3em;font-size:11px;color:var(--gold);text-transform:uppercase}
   .gr-card h3{font-size:24px;margin:8px 0 4px}
-  .gr-card .g-badge{position:absolute;top:22px;left:22px;font-family:"El Messiri",serif;font-weight:700;font-size:30px;line-height:1;
+  .gr-card .g-badge{position:absolute;top:22px;inset-inline-end:22px;font-family:"El Messiri",serif;font-weight:700;font-size:30px;line-height:1;
     color:transparent;background:linear-gradient(180deg,var(--gold-bright),var(--gold-deep));-webkit-background-clip:text;background-clip:text}
   .gr-card ul{list-style:none;margin-top:18px}
   .gr-card ul li{padding:10px 0;border-top:1px solid var(--line-soft);font-size:13.5px;color:var(--ivory-soft)}
@@ -177,7 +181,7 @@
   #packing .duo{display:grid;grid-template-columns:1fr;gap:26px}
   @media(min-width:820px){#packing .duo{grid-template-columns:1fr 1fr}}
   .pk-card{position:relative;border:1px solid var(--line-soft);border-radius:8px;overflow:hidden;background:var(--surface);
-    transition:transform .5s var(--ease),box-shadow .5s,border-color .5s;text-align:right}
+    transition:transform .5s var(--ease),box-shadow .5s,border-color .5s;text-align:start}
   .pk-card:hover{transform:translateY(-8px);box-shadow:0 34px 70px -36px rgba(0,0,0,.85);border-color:var(--line)}
   .pk-card .pic{aspect-ratio:4/3;overflow:hidden;display:grid;place-items:center;background:var(--bg0)}
   .pk-card .pic img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
@@ -189,7 +193,7 @@
   @media(min-width:900px){#packing .plabel{grid-template-columns:1fr 1fr}}
   #packing .plabel .pic{min-height:300px;background:var(--bg0);display:grid;place-items:center;overflow:hidden}
   #packing .plabel .pic img{width:100%;height:100%;object-fit:cover}
-  #packing .plabel .body{padding:clamp(28px,4vw,52px);text-align:right;align-self:center}
+  #packing .plabel .body{padding:clamp(28px,4vw,52px);text-align:start;align-self:center}
   #packing .plabel .tag{display:inline-block;border:1px solid var(--gold);color:var(--gold-bright);border-radius:999px;padding:5px 16px;font-size:12px;letter-spacing:.08em;margin-bottom:16px}
   #packing .plabel h3{font-size:clamp(26px,3.4vw,40px)}
   #packing .plabel p{color:var(--ivory-soft);margin-top:12px;font-size:15px;max-width:52ch;margin-inline-start:auto}
@@ -199,7 +203,7 @@
   #shipping .stage{position:sticky;top:0;height:100svh;overflow:hidden}
   #shipping .bg{position:absolute;inset:-8%;width:116%;height:116%;object-fit:cover;will-change:transform;filter:brightness(.72)}
   #shipping .wash{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,8,5,.94) 8%,rgba(11,8,5,.35) 45%,rgba(11,8,5,.55) 100%)}
-  #shipping .copy{position:absolute;z-index:2;right:clamp(24px,6vw,90px);bottom:clamp(48px,10vh,110px);max-width:min(90vw,620px);text-align:right}
+  #shipping .copy{position:absolute;z-index:2;inset-inline-start:clamp(24px,6vw,90px);bottom:clamp(48px,10vh,110px);max-width:min(90vw,620px);text-align:start}
   #shipping .idx{display:block;margin-bottom:12px}
   #shipping h2{font-size:clamp(34px,5.8vw,72px);margin:8px 0 14px}
   #shipping p{color:var(--ivory-soft);font-size:clamp(15px,1.7vw,19px);max-width:52ch;margin-inline-start:auto}
@@ -214,7 +218,7 @@
   @media(min-width:900px){#why .grid{grid-template-columns:.95fr 1.05fr}}
   #why .frame{position:relative;border-radius:8px;overflow:hidden;aspect-ratio:16/11;box-shadow:0 50px 110px -50px rgba(0,0,0,.9)}
   #why .frame img{position:absolute;inset:-6%;width:112%;height:112%;object-fit:cover;will-change:transform}
-  #why .copy{text-align:right} #why .idx{display:block;margin-bottom:12px}
+  #why .copy{text-align:start} #why .idx{display:block;margin-bottom:12px}
   #why h2{font-size:clamp(34px,5.4vw,64px);margin:8px 0 18px}
   #why .lead{color:var(--ivory-soft);font-size:clamp(15px,1.8vw,19px);max-width:52ch;margin-inline-start:auto}
   #why .pillars{list-style:none;margin-top:30px}
@@ -248,7 +252,7 @@
   #rfq .head{text-align:center;margin-bottom:clamp(28px,4vw,44px)} #rfq .idx{display:block;margin-bottom:10px}
   #rfq h2{font-size:clamp(30px,4.8vw,56px);margin-top:6px}
   #rfq .sub{color:var(--ivory-soft);max-width:56ch;margin:12px auto 0;font-size:15px}
-  #rfq form{display:grid;grid-template-columns:1fr;gap:18px;text-align:right}
+  #rfq form{display:grid;grid-template-columns:1fr;gap:18px;text-align:start}
   @media(min-width:720px){#rfq form{grid-template-columns:1fr 1fr}}
   #rfq .full{grid-column:1/-1}
   #rfq label{display:block;font-size:13.5px;color:var(--gold-bright);margin-bottom:7px;font-family:"El Messiri",serif;font-weight:600}
@@ -257,6 +261,7 @@
   #rfq input::placeholder,#rfq textarea::placeholder{color:var(--ivory-faint)}
   #rfq input:focus,#rfq select:focus,#rfq textarea:focus{border-color:var(--gold);outline:none}
   #rfq select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C89044' fill='none' stroke-width='1.6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 16px center}
+  html[dir="ltr"] #rfq select{background-position:right 16px center}
   #rfq textarea{min-height:110px;resize:vertical}
   #rfq .submit-row{grid-column:1/-1;text-align:center;margin-top:10px}
   #rfq .submit-row button{border:none}
@@ -271,6 +276,66 @@
   footer .links a{color:var(--ivory-soft);text-decoration:none;font-size:14px;transition:color .3s} footer .links a:hover{color:var(--gold-bright)}
   footer .cr{color:var(--ivory-faint);font-size:12px}
 
+  /* ── LANGUAGE SWITCH ─────────────────────────────────────────── */
+  .lang-switch{display:inline-flex;align-items:center;gap:3px;padding:3px;border:1px solid var(--line);
+    border-radius:999px;background:rgba(11,8,5,.42);cursor:pointer;line-height:1;flex-shrink:0}
+  .lang-switch:hover{border-color:var(--gold)}
+  .lang-switch span{display:block;padding:5px 12px;border-radius:999px;font-size:12px;color:var(--ivory-faint);
+    transition:background .4s var(--ease),color .4s var(--ease);pointer-events:none}
+  .lang-switch span[data-lang="ar"]{font-family:"El Messiri",serif;font-weight:600;font-size:13px}
+  .lang-switch span[data-lang="en"]{font-family:"Cormorant Garamond",serif;letter-spacing:.16em;font-weight:600}
+  html[lang="ar"] .lang-switch span[data-lang="ar"],
+  html[lang="en"] .lang-switch span[data-lang="en"]{background:var(--gold);color:#140D06}
+  @media(max-width:420px){.lang-switch span{padding:5px 9px}}
+  /* the Latin brand + CTA are far wider than the Arabic ones — tighten the bar */
+  @media(max-width:600px){
+    html[lang="en"] header{padding-inline:14px}
+    html[lang="en"] header nav{gap:9px}
+    html[lang="en"] .brand{gap:8px}
+    html[lang="en"] .brand .wm{font-size:16px;white-space:nowrap}
+    html[lang="en"] .nav-cta{font-size:10.5px;letter-spacing:.05em;padding:7px 13px}
+    html[lang="en"] #hero .b2b{font-size:11.5px;padding:7px 15px;white-space:nowrap;margin-top:.7vh}
+    html[lang="en"] #hero h1{font-size:clamp(44px,10.6vw,146px)}
+    html[lang="en"] #hero .sub{font-size:14.5px;margin-top:1.2vh}
+  }
+
+  /* ── ENGLISH (LTR) TYPOGRAPHIC SYSTEM ────────────────────────── */
+  html[lang="en"] body{font-family:"Jost",system-ui,sans-serif;font-weight:300;line-height:1.7;letter-spacing:.005em}
+  html[lang="en"] h1,html[lang="en"] h2,html[lang="en"] h3,html[lang="en"] .display,
+  html[lang="en"] footer .wm,html[lang="en"] .brand .wm,
+  html[lang="en"] #shipping .stat .n,html[lang="en"] .gr-card .g-badge,
+  html[lang="en"] #film .cap{font-family:"Cormorant Garamond",serif;font-weight:600}
+  html[lang="en"] h1,html[lang="en"] h2{line-height:1.04;letter-spacing:-.005em}
+  html[lang="en"] .brand .wm{font-weight:600;letter-spacing:.05em;font-size:clamp(18px,2vw,23px)}
+  html[lang="en"] footer .wm{letter-spacing:.06em}
+  html[lang="en"] .idx{font-family:"Cormorant Garamond",serif;font-weight:600;letter-spacing:.26em;
+    text-transform:uppercase;font-size:13px}
+  html[lang="en"] .btn{font-family:"Jost",sans-serif;font-weight:500;font-size:14px;
+    letter-spacing:.14em;text-transform:uppercase;padding:16px 38px}
+  html[lang="en"] header nav a{font-family:"Jost",sans-serif;font-weight:400;font-size:13px;letter-spacing:.09em;text-transform:uppercase}
+  html[lang="en"] .nav-cta{letter-spacing:.11em}
+  html[lang="en"] #rfq label{font-family:"Jost",sans-serif;font-weight:500;font-size:11.5px;
+    letter-spacing:.14em;text-transform:uppercase}
+  html[lang="en"] #rfq input,html[lang="en"] #rfq select,html[lang="en"] #rfq textarea{font-family:"Jost",sans-serif;font-size:14.5px}
+  html[lang="en"] #product .specs .k{font-family:"Jost",sans-serif;font-weight:500;font-size:12.5px;
+    letter-spacing:.13em;text-transform:uppercase}
+  html[lang="en"] #why .pillars b,html[lang="en"] .gr-card ul li b{font-family:"Jost",sans-serif;font-weight:500;letter-spacing:.03em}
+  html[lang="en"] #progress{transform-origin:0% 50%}
+  /* Latin sets wider than Arabic — rebalance the display sizes */
+  html[lang="en"] #hero h1{font-size:clamp(50px,10.6vw,146px);font-weight:600;letter-spacing:-.01em}
+  html[lang="en"] #origin h2{font-size:clamp(30px,4.6vw,60px)}
+  html[lang="en"] #product h2{font-size:clamp(32px,4.6vw,62px)}
+  html[lang="en"] #grades h2{font-size:clamp(28px,4.2vw,54px)}
+  html[lang="en"] #packing h2{font-size:clamp(30px,4.4vw,56px)}
+  html[lang="en"] #shipping h2{font-size:clamp(30px,4.4vw,58px)}
+  html[lang="en"] #why h2{font-size:clamp(28px,4.2vw,52px)}
+  html[lang="en"] #cta h2{font-size:clamp(34px,6vw,82px);max-width:15ch;margin-inline:auto}
+  html[lang="en"] #rfq h2{font-size:clamp(28px,4vw,48px)}
+  html[lang="en"] #film .caps{width:min(84vw,540px)}
+  html[lang="en"] #film .cap{font-size:clamp(21px,3vw,36px);line-height:1.18}
+  html[lang="en"] .gr-card h3,html[lang="en"] .pk-card h3{font-size:26px;letter-spacing:.01em}
+  html[lang="en"] #packing .plabel h3{font-size:clamp(26px,3.2vw,42px)}
+
   @media(prefers-reduced-motion:reduce){
     #hero .aura,#hero .motes span,#hero .specular,#hero .media-float,.scrollcue .bar{animation:none}
     #hero .aura{opacity:.6} #hero .latin,#hero .hero-media,#hero h1,#hero .sub,#hero .b2b{opacity:1;clip-path:none}
@@ -282,10 +347,11 @@
 <div id="ambient"></div><div id="glow"></div><div id="vignette"></div><div id="grain"></div><div id="progress"></div>
 
 <header id="header">
-  <a class="brand" href="#hero"><span class="wm">تمور السلطان</span><span class="lm">Alsultan Dates</span></a>
+  <a class="brand" href="#hero"><span class="wm" data-i18n="brand.wm">تمور السلطان</span><span class="lm" data-i18n="brand.lm">Alsultan Dates</span></a>
   <nav>
-    <a href="#product">المنتج</a><a href="#grades">درجات الجودة</a><a href="#packing">التعبئة</a><a href="#shipping">الشحن</a>
-    <a class="nav-cta" href="#rfq">اطلب عرض سعر</a>
+    <a href="#product" data-i18n="nav.product">المنتج</a><a href="#grades" data-i18n="nav.grades">درجات الجودة</a><a href="#packing" data-i18n="nav.packing">التعبئة</a><a href="#shipping" data-i18n="nav.shipping">الشحن</a>
+    <a class="nav-cta" href="#rfq" data-i18n="nav.quote">اطلب عرض سعر</a>
+    <button class="lang-switch" id="langSwitch" type="button"><span data-lang="ar" lang="ar">ع</span><span data-lang="en" lang="en">EN</span></button>
   </nav>
 </header>
 
@@ -307,27 +373,44 @@
       <div class="hero-inner">
         <span class="latin">Alsultan Dates · Karbala · Iraq</span>
         <div class="media-float"><div class="media-tilt">
-          <img class="hero-media" src="assets/product-cut.webp" alt="تمر الزهدي العراقي" loading="eager" />
+          <img class="hero-media" src="assets/product-cut.webp" alt="تمر الزهدي العراقي" data-i18n-alt="hero.alt" loading="eager" />
           <span class="specular" aria-hidden="true"></span>
         </div></div>
-        <h1>تمر الزهدي</h1>
-        <div class="sub">من بساتين كربلاء المقدسة… إلى موانئ العالم</div>
-        <div class="b2b">توريد بالجملة والتصدير حصراً — بالطنّ والكونتينر</div>
+        <h1 data-i18n="hero.h1">تمر الزهدي</h1>
+        <div class="sub" data-i18n="hero.sub">من بساتين كربلاء المقدسة… إلى موانئ العالم</div>
+        <div class="b2b" data-i18n="hero.b2b">توريد بالجملة والتصدير حصراً — بالطنّ والكونتينر</div>
       </div>
-      <div class="scrollcue"><span>مرّر</span><span class="bar"></span></div>
+      <div class="scrollcue"><span data-i18n="hero.scroll">مرّر</span><span class="bar"></span></div>
     </div>
+  </section>
+
+  <!-- 2 · لماذا نحن (طبيعة عملنا — أول ما يراه الزائر) -->
+  <section id="why" data-ambient="#110C08" data-glow=".5">
+    <div class="wrap"><div class="grid">
+      <div class="copy">
+        <span class="idx reveal" data-i18n="why.idx">٠١ — لماذا السلطان</span>
+        <h2 class="gold-text reveal" data-i18n="why.h2">تعاملٌ مباشر…<br/>بلا وسطاء إضافيين</h2>
+        <p class="lead reveal" data-i18n="why.lead">شركة تمور السلطان هي الوسيط التجاري المباشر بين المورّد المنتج في كربلاء وبين المستوردين حول العالم — طرفٌ واحد موثوق يشرف على السلسلة كاملة، من النخلة إلى باب الحاوية.</p>
+        <ul class="pillars">
+          <li class="reveal"><span class="p-n">01</span><span><b data-i18n="why.b1">إشراف مباشر على المصدر</b><span class="d" data-i18n="why.d1">فريقنا في كربلاء يعاين المحصول والفرز والتعبئة بنفسه — لا نبيع ما لم نرَه.</span></span></li>
+          <li class="reveal"><span class="p-n">02</span><span><b data-i18n="why.b2">سعر المصدر الحقيقي</b><span class="d" data-i18n="why.d2">حلقة واحدة بين المنتج والمستورد تعني هامشاً أقل وسعراً تنافسياً ثابتاً.</span></span></li>
+          <li class="reveal"><span class="p-n">03</span><span><b data-i18n="why.b3">التزامٌ بالمواصفة</b><span class="d" data-i18n="why.d3">عينة مرجعية معتمدة قبل الشحن، ومطابقة موثقة عند التحميل — شحنة تلو الأخرى.</span></span></li>
+        </ul>
+      </div>
+      <div class="frame fallback-host reveal"><img src="assets/inspect.jpg" alt="فحص الجودة في المصدر" data-i18n-alt="why.alt" loading="lazy" /></div>
+    </div></div>
   </section>
 
   <!-- 2 · FILM -->
   <section id="film" data-ambient="#0D0906" data-glow=".7">
     <div class="stage fallback-host">
       <canvas id="filmCanvas"></canvas>
-      <img class="film-fallback screen" src="assets/product-hero.jpg" alt="تمر الزهدي العراقي" />
+      <img class="film-fallback screen" src="assets/product-hero.jpg" alt="تمر الزهدي العراقي" data-i18n-alt="hero.alt" />
       <div class="caps" id="filmCaps">
-        <div class="cap" data-a="0.02" data-b="0.22">من نخيل كربلاء…<br/>يبدأ الإرث</div>
-        <div class="cap" data-a="0.28" data-b="0.48">فرزٌ دقيق،<br/>درجةً بعد درجة</div>
-        <div class="cap" data-a="0.54" data-b="0.74">تعبئة تحفظ الذهب<br/>الذي في الداخل</div>
-        <div class="cap" data-a="0.80" data-b="0.98">جاهزٌ للعالم —<br/>بالكونتينر، لا بالكيلو</div>
+        <div class="cap" data-a="0.02" data-b="0.22" data-i18n="film.cap1">من نخيل كربلاء…<br/>يبدأ الإرث</div>
+        <div class="cap" data-a="0.28" data-b="0.48" data-i18n="film.cap2">فرزٌ دقيق،<br/>درجةً بعد درجة</div>
+        <div class="cap" data-a="0.54" data-b="0.74" data-i18n="film.cap3">تعبئة تحفظ الذهب<br/>الذي في الداخل</div>
+        <div class="cap" data-a="0.80" data-b="0.98" data-i18n="film.cap4">جاهزٌ للعالم —<br/>بالكونتينر، لا بالكيلو</div>
       </div>
       <div class="loader" id="filmLoader">…</div>
     </div>
@@ -336,12 +419,12 @@
   <!-- 2.5 · المنشأ -->
   <section id="origin" data-ambient="#0C0906" data-glow=".4">
     <div class="stage fallback-host">
-      <img class="bg" src="assets/origin.jpg" alt="بساتين نخيل كربلاء" />
+      <img class="bg" src="assets/origin.jpg" alt="بساتين نخيل كربلاء" data-i18n-alt="origin.alt" />
       <div class="wash"></div>
       <div class="copy">
-        <span class="idx">المنشأ</span>
-        <h2 class="gold-text">كربلاء…<br/>أرضُ النخيل الأولى</h2>
-        <p>على ضفاف الفرات، حيث توارثت العوائل الكربلائية بساتينها جيلاً بعد جيل، ينضج الزهدي على مهلٍ تحت شمسٍ سخية — ليصل إليك كما أرادته الأرض: كثيفاً، ذهبياً، صادقاً.</p>
+        <span class="idx" data-i18n="origin.idx">المنشأ</span>
+        <h2 class="gold-text" data-i18n="origin.h2">كربلاء…<br/>أرضُ النخيل الأولى</h2>
+        <p data-i18n="origin.p">على ضفاف الفرات، حيث توارثت العوائل الكربلائية بساتينها جيلاً بعد جيل، ينضج الزهدي على مهلٍ تحت شمسٍ سخية — ليصل إليك كما أرادته الأرض: كثيفاً، ذهبياً، صادقاً.</p>
       </div>
     </div>
   </section>
@@ -349,17 +432,17 @@
   <!-- 3 · المنتج -->
   <section id="product" data-ambient="#120C07" data-glow=".5">
     <div class="wrap"><div class="grid">
-      <div class="shot fallback-host reveal"><img class="screen" src="assets/product-hero.jpg" alt="تمر الزهدي العراقي" loading="lazy" /></div>
+      <div class="shot fallback-host reveal"><img class="screen" src="assets/product-hero.jpg" alt="تمر الزهدي العراقي" data-i18n-alt="hero.alt" loading="lazy" /></div>
       <div class="copy">
-        <span class="idx reveal">٠١ — المنتج</span>
-        <h2 class="gold-text reveal">ذهبُ العراق الكهرماني</h2>
-        <p class="lead reveal">من أعرق أصناف التمور العراقية، ينضج الزهدي تحت شمس كربلاء بقوامٍ متماسك ونكهةٍ كراميلية هادئة وقشرةٍ عنبرية لامعة. تجفيفٌ طبيعي وفرزٌ متدرّج، بلا إضافات ولا سكر مضاف — منتجٌ خام مثالي للاستيراد وإعادة التعبئة والتوزيع.</p>
+        <span class="idx reveal" data-i18n="product.idx">٠٢ — المنتج</span>
+        <h2 class="gold-text reveal" data-i18n="product.h2">ذهبُ العراق الكهرماني</h2>
+        <p class="lead reveal" data-i18n="product.lead">من أعرق أصناف التمور العراقية، ينضج الزهدي تحت شمس كربلاء بقوامٍ متماسك ونكهةٍ كراميلية هادئة وقشرةٍ عنبرية لامعة. تجفيفٌ طبيعي وفرزٌ متدرّج، بلا إضافات ولا سكر مضاف — منتجٌ خام مثالي للاستيراد وإعادة التعبئة والتوزيع.</p>
         <ul class="specs">
-          <li class="reveal"><span class="k">المنشأ</span><span class="v">محافظة كربلاء المقدسة — العراق</span></li>
-          <li class="reveal"><span class="k">الطاقة</span><span class="v">275 سعرة حرارية / 100غ</span></li>
-          <li class="reveal"><span class="k">الألياف الغذائية</span><span class="v">7.5غ / 100غ — 27% من الحاجة اليومية</span></li>
-          <li class="reveal"><span class="k">البوتاسيوم</span><span class="v">655ملغ / 100غ</span></li>
-          <li class="reveal"><span class="k">الإضافات</span><span class="v">صفر — سكريات طبيعية 67.5غ بلا سكر مضاف</span></li>
+          <li class="reveal"><span class="k" data-i18n="product.k1">المنشأ</span><span class="v" data-i18n="product.v1">محافظة كربلاء المقدسة — العراق</span></li>
+          <li class="reveal"><span class="k" data-i18n="product.k2">الطاقة</span><span class="v" data-i18n="product.v2">275 سعرة حرارية / 100غ</span></li>
+          <li class="reveal"><span class="k" data-i18n="product.k3">الألياف الغذائية</span><span class="v" data-i18n="product.v3">7.5غ / 100غ — 27% من الحاجة اليومية</span></li>
+          <li class="reveal"><span class="k" data-i18n="product.k4">البوتاسيوم</span><span class="v" data-i18n="product.v4">655ملغ / 100غ</span></li>
+          <li class="reveal"><span class="k" data-i18n="product.k5">الإضافات</span><span class="v" data-i18n="product.v5">صفر — سكريات طبيعية 67.5غ بلا سكر مضاف</span></li>
         </ul>
       </div>
     </div></div>
@@ -369,53 +452,53 @@
   <section id="grades" data-ambient="#0F0B07" data-glow=".45">
     <div class="wrap">
       <div class="head">
-        <span class="idx reveal">٠٢ — درجات الجودة</span>
-        <h2 class="gold-text reveal">أربع درجات… لكل سوقٍ درجته</h2>
-        <p class="sub reveal">نظام فرزٍ متدرّج يمنح كل مشترٍ المواصفة التي يحتاجها — من واجهات التجزئة الفاخرة إلى خطوط التصنيع.</p>
+        <span class="idx reveal" data-i18n="grades.idx">٠٣ — درجات الجودة</span>
+        <h2 class="gold-text reveal" data-i18n="grades.h2">أربع درجات… لكل سوقٍ درجته</h2>
+        <p class="sub reveal" data-i18n="grades.sub">نظام فرزٍ متدرّج يمنح كل مشترٍ المواصفة التي يحتاجها — من واجهات التجزئة الفاخرة إلى خطوط التصنيع.</p>
       </div>
       <div class="cards">
         <article class="gr-card premium reveal">
           <span class="g-badge">A</span>
-          <span class="g-latin">Grade A · Premium</span>
-          <h3>الدرجة الأولى</h3>
+          <span class="g-latin" data-i18n="gradeA.latin">Grade A · Premium</span>
+          <h3 data-i18n="gradeA.h3">الدرجة الأولى</h3>
           <ul>
-            <li><b>الحجم والاتساق</b>حبات كبيرة متجانسة، قشرة سليمة لامعة</li>
-            <li><b>نسبة الحبوب التالفة</b>الحد الأدنى — فرز يدوي نهائي</li>
-            <li><b>الوجهة المثالية</b>واجهات التجزئة الفاخرة والتعبئة الاستهلاكية</li>
+            <li><b data-i18n="grades.rowSize">الحجم والاتساق</b><span data-i18n="gradeA.size">حبات كبيرة متجانسة، قشرة سليمة لامعة</span></li>
+            <li><b data-i18n="grades.rowDefect">نسبة الحبوب التالفة</b><span data-i18n="gradeA.defect">الحد الأدنى — فرز يدوي نهائي</span></li>
+            <li><b data-i18n="grades.rowUse">الوجهة المثالية</b><span data-i18n="gradeA.use">واجهات التجزئة الفاخرة والتعبئة الاستهلاكية</span></li>
           </ul>
         </article>
         <article class="gr-card reveal">
           <span class="g-badge">B</span>
-          <span class="g-latin">Grade B · Standard</span>
-          <h3>الدرجة الثانية</h3>
+          <span class="g-latin" data-i18n="gradeB.latin">Grade B · Standard</span>
+          <h3 data-i18n="gradeB.h3">الدرجة الثانية</h3>
           <ul>
-            <li><b>الحجم والاتساق</b>حبات متوسطة متقاربة الحجم</li>
-            <li><b>نسبة الحبوب التالفة</b>منخفضة — ضمن المواصفة التجارية</li>
-            <li><b>الوجهة المثالية</b>سلاسل السوبرماركت والتوزيع الإقليمي</li>
+            <li><b data-i18n="grades.rowSize">الحجم والاتساق</b><span data-i18n="gradeB.size">حبات متوسطة متقاربة الحجم</span></li>
+            <li><b data-i18n="grades.rowDefect">نسبة الحبوب التالفة</b><span data-i18n="gradeB.defect">منخفضة — ضمن المواصفة التجارية</span></li>
+            <li><b data-i18n="grades.rowUse">الوجهة المثالية</b><span data-i18n="gradeB.use">سلاسل السوبرماركت والتوزيع الإقليمي</span></li>
           </ul>
         </article>
         <article class="gr-card reveal">
           <span class="g-badge">C</span>
-          <span class="g-latin">Grade C · Commercial</span>
-          <h3>الدرجة الثالثة</h3>
+          <span class="g-latin" data-i18n="gradeC.latin">Grade C · Commercial</span>
+          <h3 data-i18n="gradeC.h3">الدرجة الثالثة</h3>
           <ul>
-            <li><b>الحجم والاتساق</b>أحجام متفاوتة، قشرة سليمة غالباً</li>
-            <li><b>نسبة الحبوب التالفة</b>متوسطة — مقبولة صناعياً</li>
-            <li><b>الوجهة المثالية</b>إعادة التعبئة الاقتصادية والأسواق الشعبية</li>
+            <li><b data-i18n="grades.rowSize">الحجم والاتساق</b><span data-i18n="gradeC.size">أحجام متفاوتة، قشرة سليمة غالباً</span></li>
+            <li><b data-i18n="grades.rowDefect">نسبة الحبوب التالفة</b><span data-i18n="gradeC.defect">متوسطة — مقبولة صناعياً</span></li>
+            <li><b data-i18n="grades.rowUse">الوجهة المثالية</b><span data-i18n="gradeC.use">إعادة التعبئة الاقتصادية والأسواق الشعبية</span></li>
           </ul>
         </article>
         <article class="gr-card reveal">
           <span class="g-badge">D</span>
-          <span class="g-latin">Grade D · Acceptable</span>
-          <h3>الدرجة المقبولة</h3>
+          <span class="g-latin" data-i18n="gradeD.latin">Grade D · Acceptable</span>
+          <h3 data-i18n="gradeD.h3">الدرجة المقبولة</h3>
           <ul>
-            <li><b>الحجم والاتساق</b>خليط أحجام — مادة خام</li>
-            <li><b>نسبة الحبوب التالفة</b>أعلى نسبياً — بسعرٍ تنافسي</li>
-            <li><b>الوجهة المثالية</b>الصناعات التحويلية (دبس، معجون، أعلاف)</li>
+            <li><b data-i18n="grades.rowSize">الحجم والاتساق</b><span data-i18n="gradeD.size">خليط أحجام — مادة خام</span></li>
+            <li><b data-i18n="grades.rowDefect">نسبة الحبوب التالفة</b><span data-i18n="gradeD.defect">أعلى نسبياً — بسعرٍ تنافسي</span></li>
+            <li><b data-i18n="grades.rowUse">الوجهة المثالية</b><span data-i18n="gradeD.use">الصناعات التحويلية (دبس، معجون، أعلاف)</span></li>
           </ul>
         </article>
       </div>
-      <p class="note reveal">جميع المعايير <b>قابلة للتخصيص حسب مواصفات المشتري</b> — تُعتمد العينة المرجعية قبل كل شحنة.</p>
+      <p class="note reveal" data-i18n="grades.note">جميع المعايير <b>قابلة للتخصيص حسب مواصفات المشتري</b> — تُعتمد العينة المرجعية قبل كل شحنة.</p>
     </div>
   </section>
 
@@ -423,27 +506,27 @@
   <section id="packing" data-ambient="#140E08" data-glow=".5">
     <div class="wrap">
       <div class="head">
-        <span class="idx reveal">٠٣ — التعبئة</span>
-        <h2 class="gold-text reveal">تعبئتك… على طريقتك</h2>
+        <span class="idx reveal" data-i18n="packing.idx">٠٤ — التعبئة</span>
+        <h2 class="gold-text reveal" data-i18n="packing.h2">تعبئتك… على طريقتك</h2>
       </div>
       <div class="duo">
         <article class="pk-card reveal">
-          <div class="pic fallback-host"><img src="assets/pack-carton.jpg" alt="تعبئة كرتون" loading="lazy" /></div>
-          <div class="body"><h3>كرتون <span class="latin" style="font-size:11px;color:var(--gold)">Carton</span></h3>
-          <p>كراتين تصدير مبطّنة بغلاف غذائي شفاف، بأوزان قياسية أو حسب الطلب — الخيار الأمثل للتنضيد على البالتات والشحن البحري الطويل.</p></div>
+          <div class="pic fallback-host"><img src="assets/pack-carton.jpg" alt="تعبئة كرتون" data-i18n-alt="packing.cartonAlt" loading="lazy" /></div>
+          <div class="body"><h3 data-i18n="packing.cartonH3">كرتون <span class="latin" style="font-size:11px;color:var(--gold)">Carton</span></h3>
+          <p data-i18n="packing.cartonP">كراتين تصدير مبطّنة بغلاف غذائي شفاف، بأوزان قياسية أو حسب الطلب — الخيار الأمثل للتنضيد على البالتات والشحن البحري الطويل.</p></div>
         </article>
         <article class="pk-card reveal">
-          <div class="pic fallback-host"><img src="assets/pack-bag.jpg" alt="تعبئة أكياس" loading="lazy" /></div>
-          <div class="body"><h3>أكياس <span class="latin" style="font-size:11px;color:var(--gold)">Bags</span></h3>
-          <p>أكياس غذائية بأحجام مرنة للكميات الكبيرة وخطوط إعادة التعبئة — كفاءة أعلى في الوزن والمساحة لكل كونتينر.</p></div>
+          <div class="pic fallback-host"><img src="assets/pack-bag.jpg" alt="تعبئة أكياس" data-i18n-alt="packing.bagAlt" loading="lazy" /></div>
+          <div class="body"><h3 data-i18n="packing.bagH3">أكياس <span class="latin" style="font-size:11px;color:var(--gold)">Bags</span></h3>
+          <p data-i18n="packing.bagP">أكياس غذائية بأحجام مرنة للكميات الكبيرة وخطوط إعادة التعبئة — كفاءة أعلى في الوزن والمساحة لكل كونتينر.</p></div>
         </article>
       </div>
       <div class="plabel reveal">
-        <div class="pic fallback-host"><img src="assets/label.jpg" alt="ليبل خاص بتصميم العميل" loading="lazy" /></div>
+        <div class="pic fallback-host"><img src="assets/label.jpg" alt="ليبل خاص بتصميم العميل" data-i18n-alt="packing.labelAlt" loading="lazy" /></div>
         <div class="body">
-          <span class="tag">Private Label · نقطة تميّزنا</span>
-          <h3 class="gold-text">الليبل بتصميمك أنت</h3>
-          <p>اطبع علامتك التجارية على كل كرتون وكيس: التصميم، اللغة، الباركود، وبيانات المستورد — نجهّز الشحنة جاهزةً لرفوفك مباشرة، وكأنها خرجت من مصنعك.</p>
+          <span class="tag" data-i18n="packing.tag">Private Label · نقطة تميّزنا</span>
+          <h3 class="gold-text" data-i18n="packing.labelH3">الليبل بتصميمك أنت</h3>
+          <p data-i18n="packing.labelP">اطبع علامتك التجارية على كل كرتون وكيس: التصميم، اللغة، الباركود، وبيانات المستورد — نجهّز الشحنة جاهزةً لرفوفك مباشرة، وكأنها خرجت من مصنعك.</p>
         </div>
       </div>
     </div>
@@ -455,34 +538,18 @@
       <img class="bg" src="assets/port.jpg" alt="" aria-hidden="true" />
       <div class="wash"></div>
       <div class="copy">
-        <span class="idx">٠٤ — الشحن والتصدير</span>
-        <h2 class="gold-text">إلى جميع موانئ العالم</h2>
-        <p>شحن بحري رئيسي بالحاويات — بالجملة فقط. من مخازن كربلاء إلى ميناء الوجهة، بإشرافٍ مباشر على التحميل والتوثيق وسلسلة الجودة.</p>
+        <span class="idx" data-i18n="shipping.idx">٠٥ — الشحن والتصدير</span>
+        <h2 class="gold-text" data-i18n="shipping.h2">إلى جميع موانئ العالم</h2>
+        <p data-i18n="shipping.p">شحن بحري رئيسي بالحاويات — بالجملة فقط. من مخازن كربلاء إلى ميناء الوجهة، بإشرافٍ مباشر على التحميل والتوثيق وسلسلة الجودة.</p>
         <div class="stats">
-          <div class="stat"><div class="n">٢٠′ / ٤٠′</div><div class="l">حاويات كاملة FCL</div></div>
-          <div class="stat"><div class="n">عالمي</div><div class="l">جميع الوجهات حسب الكمية</div></div>
-          <div class="stat"><div class="n">بالطنّ</div><div class="l">حد أدنى للطلب بالجملة</div></div>
+          <div class="stat"><div class="n" data-i18n="shipping.n1">٢٠′ / ٤٠′</div><div class="l" data-i18n="shipping.l1">حاويات كاملة FCL</div></div>
+          <div class="stat"><div class="n" data-i18n="shipping.n2">عالمي</div><div class="l" data-i18n="shipping.l2">جميع الوجهات حسب الكمية</div></div>
+          <div class="stat"><div class="n" data-i18n="shipping.n3">بالطنّ</div><div class="l" data-i18n="shipping.l3">حد أدنى للطلب بالجملة</div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 7 · لماذا نحن -->
-  <section id="why" data-ambient="#110C08" data-glow=".5">
-    <div class="wrap"><div class="grid">
-      <div class="copy">
-        <span class="idx reveal">٠٥ — لماذا السلطان</span>
-        <h2 class="gold-text reveal">تعاملٌ مباشر…<br/>بلا وسطاء إضافيين</h2>
-        <p class="lead reveal">شركة تمور السلطان هي الوسيط التجاري المباشر بين المورّد المنتج في كربلاء وبين المستوردين حول العالم — طرفٌ واحد موثوق يشرف على السلسلة كاملة، من النخلة إلى باب الحاوية.</p>
-        <ul class="pillars">
-          <li class="reveal"><span class="p-n">01</span><span><b>إشراف مباشر على المصدر</b><span class="d">فريقنا في كربلاء يعاين المحصول والفرز والتعبئة بنفسه — لا نبيع ما لم نرَه.</span></span></li>
-          <li class="reveal"><span class="p-n">02</span><span><b>سعر المصدر الحقيقي</b><span class="d">حلقة واحدة بين المنتج والمستورد تعني هامشاً أقل وسعراً تنافسياً ثابتاً.</span></span></li>
-          <li class="reveal"><span class="p-n">03</span><span><b>التزامٌ بالمواصفة</b><span class="d">عينة مرجعية معتمدة قبل الشحن، ومطابقة موثقة عند التحميل — شحنة تلو الأخرى.</span></span></li>
-        </ul>
-      </div>
-      <div class="frame fallback-host reveal"><img src="assets/inspect.jpg" alt="فحص الجودة في المصدر" loading="lazy" /></div>
-    </div></div>
-  </section>
 
   <!-- 8 · CTA -->
   <section id="cta" data-ambient="#0D0906" data-glow=".5">
@@ -492,9 +559,9 @@
       <div class="dim" id="ctaDim"></div>
       <div class="content" id="ctaContent">
         <span class="latin">Wholesale &amp; Export Only</span>
-        <h2 class="gold-text">جاهزون لشحنتك الأولى</h2>
-        <p>أخبرنا بالكمية والدرجة والوجهة — ونعود إليك بعرض سعرٍ رسمي خلال يوم عمل.</p>
-        <div class="btns"><a class="btn btn-primary" href="#rfq">اطلب عرض سعر الجملة</a><a class="btn btn-ghost" href="#grades">استعرض الدرجات</a></div>
+        <h2 class="gold-text" data-i18n="cta.h2">جاهزون لشحنتك الأولى</h2>
+        <p data-i18n="cta.p">أخبرنا بالكمية والدرجة والوجهة — ونعود إليك بعرض سعرٍ رسمي خلال يوم عمل.</p>
+        <div class="btns"><a class="btn btn-primary" href="#rfq" data-i18n="cta.btn1">اطلب عرض سعر الجملة</a><a class="btn btn-ghost" href="#grades" data-i18n="cta.btn2">استعرض الدرجات</a></div>
       </div>
     </div>
   </section>
@@ -503,53 +570,53 @@
   <section id="rfq" data-ambient="#120D08" data-glow=".45">
     <div class="wrap"><div class="panel reveal">
       <div class="head">
-        <span class="idx">٠٦ — طلب عرض سعر</span>
-        <h2 class="gold-text">Request a Quote</h2>
-        <p class="sub">للمستوردين والموزعين وشركات إعادة التعبئة — تصلك الإجابة من فريق «تمور السلطان» مباشرة.</p>
+        <span class="idx" data-i18n="rfq.idx">٠٦ — طلب عرض سعر</span>
+        <h2 class="gold-text" data-i18n="rfq.h2">Request a Quote</h2>
+        <p class="sub" data-i18n="rfq.sub">للمستوردين والموزعين وشركات إعادة التعبئة — تصلك الإجابة من فريق «تمور السلطان» مباشرة.</p>
       </div>
       <form id="rfqForm" novalidate>
-        <div><label for="f-company">اسم الشركة *</label><input id="f-company" name="company" type="text" required placeholder="شركة الاستيراد / التوزيع" /></div>
-        <div><label for="f-country">الدولة *</label><input id="f-country" name="country" type="text" required placeholder="بلد الاستيراد" /></div>
-        <div><label for="f-qty">الكمية المطلوبة *</label>
+        <div><label for="f-company" data-i18n="rfq.lCompany">اسم الشركة *</label><input id="f-company" name="company" type="text" required placeholder="شركة الاستيراد / التوزيع" data-i18n-ph="rfq.phCompany" /></div>
+        <div><label for="f-country" data-i18n="rfq.lCountry">الدولة *</label><input id="f-country" name="country" type="text" required placeholder="بلد الاستيراد" data-i18n-ph="rfq.phCountry" /></div>
+        <div><label for="f-qty" data-i18n="rfq.lQty">الكمية المطلوبة *</label>
           <select id="f-qty" name="qty" required>
-            <option value="">اختر الكمية…</option>
-            <option>١ – ٥ طن (تجربة)</option>
-            <option>٥ – ٢٠ طن</option>
-            <option>كونتينر ٢٠ قدم</option>
-            <option>كونتينر ٤٠ قدم</option>
-            <option>أكثر من كونتينر — توريد دوري</option>
+            <option value="" data-i18n="rfq.qty0">اختر الكمية…</option>
+            <option data-i18n="rfq.qty1">١ – ٥ طن (تجربة)</option>
+            <option data-i18n="rfq.qty2">٥ – ٢٠ طن</option>
+            <option data-i18n="rfq.qty3">كونتينر ٢٠ قدم</option>
+            <option data-i18n="rfq.qty4">كونتينر ٤٠ قدم</option>
+            <option data-i18n="rfq.qty5">أكثر من كونتينر — توريد دوري</option>
           </select></div>
-        <div><label for="f-grade">درجة الجودة *</label>
+        <div><label for="f-grade" data-i18n="rfq.lGrade">درجة الجودة *</label>
           <select id="f-grade" name="grade" required>
-            <option value="">اختر الدرجة…</option>
-            <option>الدرجة الأولى — Grade A</option>
-            <option>الدرجة الثانية — Grade B</option>
-            <option>الدرجة الثالثة — Grade C</option>
-            <option>الدرجة المقبولة — Grade D</option>
-            <option>أكثر من درجة / حسب العينة</option>
+            <option value="" data-i18n="rfq.gr0">اختر الدرجة…</option>
+            <option data-i18n="rfq.gr1">الدرجة الأولى — Grade A</option>
+            <option data-i18n="rfq.gr2">الدرجة الثانية — Grade B</option>
+            <option data-i18n="rfq.gr3">الدرجة الثالثة — Grade C</option>
+            <option data-i18n="rfq.gr4">الدرجة المقبولة — Grade D</option>
+            <option data-i18n="rfq.gr5">أكثر من درجة / حسب العينة</option>
           </select></div>
-        <div><label for="f-pack">نوع التعبئة *</label>
+        <div><label for="f-pack" data-i18n="rfq.lPack">نوع التعبئة *</label>
           <select id="f-pack" name="pack" required>
-            <option value="">اختر التعبئة…</option>
-            <option>كرتون — Carton</option>
-            <option>أكياس — Bags</option>
-            <option>ليبل خاص — Private Label</option>
-            <option>حسب توصية المورّد</option>
+            <option value="" data-i18n="rfq.pk0">اختر التعبئة…</option>
+            <option data-i18n="rfq.pk1">كرتون — Carton</option>
+            <option data-i18n="rfq.pk2">أكياس — Bags</option>
+            <option data-i18n="rfq.pk3">ليبل خاص — Private Label</option>
+            <option data-i18n="rfq.pk4">حسب توصية المورّد</option>
           </select></div>
-        <div><label for="f-email">البريد / واتساب *</label><input id="f-email" name="contact" type="text" required placeholder="email@company.com أو رقم واتساب" /></div>
-        <div class="full"><label for="f-notes">ملاحظات</label><textarea id="f-notes" name="notes" placeholder="مواصفات خاصة، ميناء الوصول، توقيت الشحنة…"></textarea></div>
-        <div class="submit-row"><button class="btn btn-primary" type="submit">أرسل الطلب</button></div>
-        <p class="contact-note">أو راسلنا مباشرة: <a href="mailto:sales@alsultan-dates.com">sales@alsultan-dates.com</a></p>
+        <div><label for="f-email" data-i18n="rfq.lContact">البريد / واتساب *</label><input id="f-email" name="contact" type="text" required placeholder="email@company.com أو رقم واتساب" data-i18n-ph="rfq.phContact" /></div>
+        <div class="full"><label for="f-notes" data-i18n="rfq.lNotes">ملاحظات</label><textarea id="f-notes" name="notes" placeholder="مواصفات خاصة، ميناء الوصول، توقيت الشحنة…" data-i18n-ph="rfq.phNotes"></textarea></div>
+        <div class="submit-row"><button class="btn btn-primary" type="submit" data-i18n="rfq.submit">أرسل الطلب</button></div>
+        <p class="contact-note" data-i18n="rfq.contactNote">أو راسلنا مباشرة: <a href="mailto:sales@alsultan-dates.com">sales@alsultan-dates.com</a></p>
       </form>
     </div></div>
   </section>
 
   <footer data-ambient="#0B0805" data-glow=".4"><div class="wrap">
-    <div class="wm gold-text">تمور السلطان</div>
-    <div class="lm">Alsultan Dates · Karbala · Iraq</div>
-    <p class="role">الوسيط التجاري المباشر بين مورّد كربلاء والمستوردين حول العالم — جملة وتصدير حصراً.</p>
-    <nav class="links"><a href="#product">المنتج</a><a href="#grades">درجات الجودة</a><a href="#packing">التعبئة</a><a href="#shipping">الشحن</a><a href="#rfq">اطلب عرض سعر</a></nav>
-    <div class="cr">© 2026 شركة تمور السلطان — Alsultan Dates. جميع الحقوق محفوظة.</div>
+    <div class="wm gold-text" data-i18n="brand.wm">تمور السلطان</div>
+    <div class="lm" data-i18n="footer.lm">Alsultan Dates · Karbala · Iraq</div>
+    <p class="role" data-i18n="footer.role">الوسيط التجاري المباشر بين مورّد كربلاء والمستوردين حول العالم — جملة وتصدير حصراً.</p>
+    <nav class="links"><a href="#product" data-i18n="nav.product">المنتج</a><a href="#grades" data-i18n="nav.grades">درجات الجودة</a><a href="#packing" data-i18n="nav.packing">التعبئة</a><a href="#shipping" data-i18n="nav.shipping">الشحن</a><a href="#rfq" data-i18n="nav.quote">اطلب عرض سعر</a></nav>
+    <div class="cr" data-i18n="footer.cr">© 2026 شركة تمور السلطان — Alsultan Dates. جميع الحقوق محفوظة.</div>
   </div></footer>
 </main>
 
@@ -561,6 +628,207 @@
   if(hasGSAP) gsap.registerPlugin(ScrollTrigger);
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   const smooth=(e0,e1,x)=>{const t=clamp((x-e0)/(e1-e0),0,1);return t*t*(3-2*t);};
+
+  /* ══════════════════════════════════════════════════════════════
+     I18N — Arabic is authored in the markup (default, works with JS off).
+     English lives in this dictionary; switching swaps innerHTML in place.
+     ══════════════════════════════════════════════════════════════ */
+  const EN={
+    "doc.title":"Iraqi Zahdi Dates — Alsultan Dates | B2B Wholesale & Export",
+    "doc.desc":"Authentic Iraqi Zahdi dates from Karbala — wholesale supply for export only. Four quality grades, carton and bag packing, private label in your own design, and shipping to every port in the world. Alsultan Dates.",
+    "doc.ogTitle":"Iraqi Zahdi Dates — Alsultan Dates",
+    "doc.ogDesc":"From the groves of Karbala to the world's ports — wholesale supply and export only. Four quality grades, carton and bag packing, and private label in your own design.",
+    "ui.switch":"التبديل إلى العربية / Switch to Arabic",
+
+    "brand.wm":"Alsultan Dates", "brand.lm":"Karbala · Iraq",
+    "nav.product":"The Product", "nav.grades":"Grades", "nav.packing":"Packing",
+    "nav.shipping":"Shipping", "nav.quote":"Request a Quote",
+
+    "hero.alt":"Iraqi Zahdi dates",
+    "hero.h1":"Zahdi Dates",
+    "hero.sub":"From the groves of holy Karbala… to the ports of the world",
+    "hero.b2b":"Wholesale &amp; export only — by the ton and container",
+    "hero.scroll":"Scroll",
+
+    "film.cap1":"From the palms of Karbala…<br/>a legacy begins",
+    "film.cap2":"Sorted with precision,<br/>grade after grade",
+    "film.cap3":"Packed to protect<br/>the gold inside",
+    "film.cap4":"Ready for the world —<br/>by the container, not the kilo",
+
+    "origin.alt":"Date palm groves in Karbala",
+    "origin.idx":"Origin",
+    "origin.h2":"Karbala…<br/>the first land of palms",
+    "origin.p":"On the banks of the Euphrates, where Karbala's families have handed their groves down generation after generation, the Zahdi ripens slowly under a generous sun — and reaches you exactly as the land intended it: dense, golden, honest.",
+
+    "product.idx":"02 — The Product",
+    "product.h2":"Iraq's Amber Gold",
+    "product.lead":"One of Iraq's most established date varieties, the Zahdi ripens under the Karbala sun with a firm bite, a quiet caramel note and a glossy amber skin. Naturally dried and graded in tiers, with no additives and no added sugar — an ideal raw product for importers, repackers and distributors.",
+    "product.k1":"Origin", "product.v1":"Karbala Governorate — Iraq",
+    "product.k2":"Energy", "product.v2":"275 kcal per 100 g",
+    "product.k3":"Dietary fibre", "product.v3":"7.5 g per 100 g — 27% of daily needs",
+    "product.k4":"Potassium", "product.v4":"655 mg per 100 g",
+    "product.k5":"Additives", "product.v5":"Zero — 67.5 g natural sugars, none added",
+
+    "grades.idx":"03 — Quality Grades",
+    "grades.h2":"Four grades… one for every market",
+    "grades.sub":"A tiered sorting system that gives every buyer the specification they actually need — from luxury retail shelves to processing lines.",
+    "grades.rowSize":"Size & consistency", "grades.rowDefect":"Defect rate", "grades.rowUse":"Best suited to",
+    "grades.note":"Every criterion is <b>adaptable to the buyer's own specification</b> — a reference sample is approved before each shipment.",
+    "gradeA.latin":"Grade A", "gradeA.h3":"Premium Select",
+    "gradeA.size":"Large, uniform fruit with intact, glossy skin",
+    "gradeA.defect":"Minimal — final hand sorting",
+    "gradeA.use":"Premium retail shelves and consumer packing",
+    "gradeB.latin":"Grade B", "gradeB.h3":"Standard Export",
+    "gradeB.size":"Medium fruit, closely matched in size",
+    "gradeB.defect":"Low — within commercial specification",
+    "gradeB.use":"Supermarket chains and regional distribution",
+    "gradeC.latin":"Grade C", "gradeC.h3":"Commercial",
+    "gradeC.size":"Mixed sizes, skin mostly intact",
+    "gradeC.defect":"Moderate — industrially acceptable",
+    "gradeC.use":"Economy repacking and open markets",
+    "gradeD.latin":"Grade D", "gradeD.h3":"Industrial",
+    "gradeD.size":"Assorted sizes — raw material",
+    "gradeD.defect":"Higher, at a competitive price",
+    "gradeD.use":"Processing industries (syrup, paste, feed)",
+
+    "packing.idx":"04 — Packing",
+    "packing.h2":"Your packing… your way",
+    "packing.cartonAlt":"Carton packing", "packing.cartonH3":"Export Carton",
+    "packing.cartonP":"Export cartons lined with clear food-grade film, in standard or custom weights — the best option for palletised stacking and long ocean voyages.",
+    "packing.bagAlt":"Bag packing", "packing.bagH3":"Bulk Bags",
+    "packing.bagP":"Food-grade bags in flexible sizes for large volumes and repacking lines — better weight and space efficiency per container.",
+    "packing.labelAlt":"Private label in the client's own design",
+    "packing.tag":"Private Label · What sets us apart",
+    "packing.labelH3":"Your label, your design",
+    "packing.labelP":"Print your brand on every carton and bag: the artwork, the language, the barcode and the importer details. We prepare the shipment ready for your shelves — as though it left your own plant.",
+
+    "shipping.idx":"05 — Shipping & Export",
+    "shipping.h2":"To every port in the world",
+    "shipping.p":"Container sea freight as standard — wholesale only. From our Karbala warehouses to your destination port, with direct supervision of loading, documentation and the quality chain.",
+    "shipping.n1":"20′ / 40′", "shipping.l1":"Full container loads (FCL)",
+    "shipping.n2":"Worldwide", "shipping.l2":"All destinations, subject to volume",
+    "shipping.n3":"By the ton", "shipping.l3":"Wholesale minimum order",
+
+    "why.idx":"01 — Why Alsultan",
+    "why.h2":"Deal direct…<br/>with no extra middlemen",
+    "why.lead":"Alsultan Dates is the direct trading link between the producing supplier in Karbala and importers around the world — one trusted party overseeing the whole chain, from the palm to the container door.",
+    "why.b1":"Direct oversight at source",
+    "why.d1":"Our team in Karbala inspects the harvest, the sorting and the packing in person — we don't sell what we haven't seen.",
+    "why.b2":"A true source price",
+    "why.d2":"A single link between producer and importer means a thinner margin and a stable, competitive price.",
+    "why.b3":"Committed to the specification",
+    "why.d3":"An approved reference sample before shipping, and documented conformity at loading — shipment after shipment.",
+    "why.alt":"Quality inspection at source",
+
+    "cta.h2":"Ready for your first shipment",
+    "cta.p":"Tell us the volume, the grade and the destination — we'll come back with a formal quotation within one business day.",
+    "cta.btn1":"Request a wholesale quote", "cta.btn2":"See the grades",
+
+    "rfq.idx":"06 — Request a Quote",
+    "rfq.h2":"Request a Quote",
+    "rfq.sub":"For importers, distributors and repacking companies — your answer comes straight from the Alsultan Dates team.",
+    "rfq.lCompany":"Company name *", "rfq.phCompany":"Importing / distribution company",
+    "rfq.lCountry":"Country *", "rfq.phCountry":"Country of import",
+    "rfq.lQty":"Required volume *",
+    "rfq.qty0":"Select a volume…", "rfq.qty1":"1 – 5 tons (trial)", "rfq.qty2":"5 – 20 tons",
+    "rfq.qty3":"20 ft container", "rfq.qty4":"40 ft container", "rfq.qty5":"More than one container — recurring supply",
+    "rfq.lGrade":"Quality grade *",
+    "rfq.gr0":"Select a grade…", "rfq.gr1":"Grade A — Premium Select", "rfq.gr2":"Grade B — Standard Export",
+    "rfq.gr3":"Grade C — Commercial", "rfq.gr4":"Grade D — Industrial", "rfq.gr5":"Multiple grades / per sample",
+    "rfq.lPack":"Packing type *",
+    "rfq.pk0":"Select packing…", "rfq.pk1":"Export carton", "rfq.pk2":"Bulk bags",
+    "rfq.pk3":"Private label", "rfq.pk4":"As recommended by the supplier",
+    "rfq.lContact":"Email / WhatsApp *", "rfq.phContact":"email@company.com or a WhatsApp number",
+    "rfq.lNotes":"Notes", "rfq.phNotes":"Special specifications, port of arrival, shipment timing…",
+    "rfq.submit":"Send request",
+    "rfq.contactNote":"Or email us directly: <a href=\"mailto:sales@alsultan-dates.com\">sales@alsultan-dates.com</a>",
+
+    "footer.lm":"Karbala · Iraq · Wholesale &amp; Export",
+    "footer.role":"The direct trading link between the Karbala supplier and importers worldwide — wholesale and export only.",
+    "footer.cr":"© 2026 Alsultan Dates. All rights reserved.",
+
+    "mail.subject":"Wholesale quote request — Iraqi Zahdi dates",
+    "mail.head":"Quote request — Iraqi Zahdi dates (Alsultan Dates)",
+    "mail.company":"Company name", "mail.country":"Country", "mail.qty":"Required volume",
+    "mail.grade":"Quality grade", "mail.pack":"Packing type", "mail.contact":"Contact details", "mail.notes":"Notes"
+  };
+
+  const I18N=(function(){
+    const root=document.documentElement;
+    const metaDesc=document.querySelector('meta[name="description"]');
+    const metaOgT=document.querySelector('meta[property="og:title"]');
+    const metaOgD=document.querySelector('meta[property="og:description"]');
+    const nodes=Array.from(document.querySelectorAll("[data-i18n]"));
+    const alts=Array.from(document.querySelectorAll("[data-i18n-alt]"));
+    const phs=Array.from(document.querySelectorAll("[data-i18n-ph]"));
+
+    // snapshot the authored Arabic so switching back is lossless
+    const AR={};
+    nodes.forEach(el=>{AR[el.dataset.i18n]=el.innerHTML;});
+    alts.forEach(el=>{AR["@alt."+el.dataset.i18nAlt]=el.getAttribute("alt")||"";});
+    phs.forEach(el=>{AR["@ph."+el.dataset.i18nPh]=el.getAttribute("placeholder")||"";});
+    Object.assign(AR,{
+      "doc.title":document.title,
+      "doc.desc":metaDesc?metaDesc.content:"",
+      "doc.ogTitle":metaOgT?metaOgT.content:"",
+      "doc.ogDesc":metaOgD?metaOgD.content:"",
+      "ui.switch":"Switch to English / التبديل إلى الإنكليزية",
+      "mail.subject":"طلب عرض سعر جملة — تمر الزهدي",
+      "mail.head":"طلب عرض سعر — تمر الزهدي العراقي (Alsultan Dates)",
+      "mail.company":"اسم الشركة","mail.country":"الدولة","mail.qty":"الكمية المطلوبة",
+      "mail.grade":"درجة الجودة","mail.pack":"نوع التعبئة","mail.contact":"بيانات التواصل","mail.notes":"ملاحظات"
+    });
+    // the authored-English keys, captured before the Arabic fallback merge
+    const EN_OWN=Object.assign({},EN);
+    // English falls back to Arabic for anything left untranslated
+    Object.keys(AR).forEach(k=>{if(!(k in EN)) EN[k]=AR[k];});
+
+    let cur="ar";
+    const dictOf=l=>l==="en"?EN:AR;
+    const t=k=>{const d=dictOf(cur);return d[k]!==undefined?d[k]:(AR[k]!==undefined?AR[k]:k);};
+
+    function apply(lang,persist){
+      cur=lang==="en"?"en":"ar";
+      const d=dictOf(cur);
+      const val=k=>d[k]!==undefined?d[k]:AR[k];
+
+      root.lang=cur; root.dir=cur==="en"?"ltr":"rtl";
+      nodes.forEach(el=>{const v=val(el.dataset.i18n); if(v!==undefined) el.innerHTML=v;});
+      // attributes: English uses the plain key, Arabic uses the authored snapshot
+      const attr=(pfx,k)=>cur==="en"&&EN_OWN[k]!==undefined?EN_OWN[k]:AR["@"+pfx+"."+k];
+      alts.forEach(el=>{const v=attr("alt",el.dataset.i18nAlt); if(v!==undefined) el.setAttribute("alt",v);});
+      phs.forEach(el=>{const v=attr("ph",el.dataset.i18nPh); if(v!==undefined) el.setAttribute("placeholder",v);});
+
+      document.title=val("doc.title");
+      if(metaDesc) metaDesc.content=val("doc.desc");
+      if(metaOgT) metaOgT.content=val("doc.ogTitle");
+      if(metaOgD) metaOgD.content=val("doc.ogDesc");
+      const sw=document.getElementById("langSwitch");
+      if(sw){sw.setAttribute("aria-label",val("ui.switch"));sw.setAttribute("title",val("ui.switch"));}
+
+      if(persist){
+        try{localStorage.setItem("alsultan-lang",cur);}catch(e){}
+        try{const u=new URL(location.href);u.searchParams.set("lang",cur);history.replaceState(null,"",u);}catch(e){}
+      }
+      if(typeof ScrollTrigger!=="undefined") requestAnimationFrame(()=>ScrollTrigger.refresh());
+    }
+
+    // initial language: ?lang= → stored choice → browser preference
+    let initial="ar";
+    try{
+      const q=new URLSearchParams(location.search).get("lang");
+      const stored=localStorage.getItem("alsultan-lang");
+      if(q==="en"||q==="ar") initial=q;
+      else if(stored==="en"||stored==="ar") initial=stored;
+      else if(!(navigator.language||"").toLowerCase().startsWith("ar")) initial="en";
+    }catch(e){}
+    apply(initial,false);
+
+    const sw=document.getElementById("langSwitch");
+    if(sw) sw.addEventListener("click",()=>apply(cur==="en"?"ar":"en",true));
+
+    return {apply,t,get lang(){return cur;}};
+  })();
 
   // graceful asset fallback
   document.querySelectorAll("img[src]").forEach(img=>img.addEventListener("error",()=>{
@@ -673,17 +941,18 @@
       required.forEach(id=>{const el=document.getElementById(id);
         if(!el.value.trim()){el.style.borderColor="#B5722F";ok=false;}else el.style.borderColor="";});
       if(!ok) return;
+      const t=I18N.t;
       const body=[
-        "طلب عرض سعر — تمر الزهدي العراقي (Alsultan Dates)","",
-        "اسم الشركة: "+g("f-company"),
-        "الدولة: "+g("f-country"),
-        "الكمية المطلوبة: "+g("f-qty"),
-        "درجة الجودة: "+g("f-grade"),
-        "نوع التعبئة: "+g("f-pack"),
-        "بيانات التواصل: "+g("f-email"),
-        "ملاحظات: "+(g("f-notes")||"—")
+        t("mail.head"),"",
+        t("mail.company")+": "+g("f-company"),
+        t("mail.country")+": "+g("f-country"),
+        t("mail.qty")+": "+g("f-qty"),
+        t("mail.grade")+": "+g("f-grade"),
+        t("mail.pack")+": "+g("f-pack"),
+        t("mail.contact")+": "+g("f-email"),
+        t("mail.notes")+": "+(g("f-notes")||"—")
       ].join("\n");
-      location.href="mailto:sales@alsultan-dates.com?subject="+encodeURIComponent("طلب عرض سعر جملة — تمر الزهدي")+"&body="+encodeURIComponent(body);
+      location.href="mailto:sales@alsultan-dates.com?subject="+encodeURIComponent(t("mail.subject"))+"&body="+encodeURIComponent(body);
     });
   })();
 
