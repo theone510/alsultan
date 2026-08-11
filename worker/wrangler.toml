@@ -2,11 +2,16 @@ name = "alsultan-rfq"
 main = "src/index.js"
 compatibility_date = "2025-06-01"
 
+# النطاق الفرعي الذي يستقبل الطلبات ويعرض لوحة التحكم.
+# Cloudflare تنشئ سجل DNS تلقائياً — الجذر و www يبقيان على Vercel دون تغيير.
+routes = [
+  { pattern = "rfq.alsultan-zahdi-dates.com", custom_domain = true }
+]
+
 [[d1_databases]]
 binding = "DB"
 database_name = "alsultan"
-# ← ضع هنا database_id الذي يظهر بعد: wrangler d1 create alsultan
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "0cbb3a2a-bcba-4ce3-8245-73b66597ee9f"
 
 [vars]
 # النطاقات المسموح لها بإرسال النموذج (مفصولة بفاصلة).
