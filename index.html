@@ -161,9 +161,16 @@
   #product .specs li{display:flex;align-items:baseline;justify-content:space-between;gap:18px;padding:16px 0;border-top:1px solid var(--line-soft)}
   #product .specs li:last-child{border-bottom:1px solid var(--line-soft)}
   #product .specs .k{font-family:"El Messiri",serif;color:var(--gold-bright);font-weight:600;white-space:nowrap}
-  /* the value takes the space the label leaves and centres inside it, so the grey
-     column reads as one centred run instead of hugging the far edge */
   #product .specs .v{color:var(--ivory-soft);flex:1;text-align:center}
+  /* Flex sizes each row on its own, so every row centred on a different axis. Subgrid
+     makes all rows share ONE label track (as wide as the longest label) and one value
+     track, so the grey text centres on the same axis down the whole table. The li
+     stays a real box, so the .reveal animation still applies to it. Browsers without
+     subgrid keep the flex layout above. */
+  @supports (grid-template-columns: subgrid){
+    #product .specs{display:grid;grid-template-columns:max-content 1fr}
+    #product .specs li{display:grid;grid-template-columns:subgrid;grid-column:1/-1}
+  }
 
   /* 4 · GRADES */
   #grades{padding:16vh 0}
