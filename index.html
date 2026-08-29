@@ -306,6 +306,29 @@
   #rfq .contact-note .sep{margin:0 10px;opacity:.45}
   @media(max-width:480px){#rfq .contact-note .sep{display:block;height:4px;margin:0;overflow:hidden;color:transparent}}
 
+  /* floating WhatsApp contact */
+  .wa-fab{position:fixed;z-index:55;inset-block-end:calc(22px + env(safe-area-inset-bottom,0px));
+    inset-inline-end:calc(22px + env(safe-area-inset-right,0px));
+    display:inline-flex;align-items:center;gap:10px;padding:13px 20px 13px 16px;border-radius:999px;
+    color:var(--gold-bright);text-decoration:none;border:1px solid var(--line);
+    background:rgba(14,10,6,.82);backdrop-filter:blur(10px);
+    box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 0 rgba(200,144,68,0);
+    opacity:0;visibility:hidden;transform:translateY(14px) scale(.94);pointer-events:none;
+    transition:opacity .5s var(--ease),transform .5s var(--ease),visibility .5s,
+               border-color .3s,box-shadow .45s,background .3s}
+  .wa-fab.show{opacity:1;visibility:visible;transform:none;pointer-events:auto}
+  .wa-fab svg{width:23px;height:23px;flex-shrink:0}
+  .wa-fab .lbl{font-size:14px;font-weight:500;white-space:nowrap}
+  .wa-fab:hover{border-color:var(--gold);background:rgba(22,15,8,.92);
+    box-shadow:0 12px 34px rgba(0,0,0,.55),0 0 26px rgba(200,144,68,.22)}
+  @media(max-width:600px){
+    .wa-fab{padding:0;width:54px;height:54px;justify-content:center;gap:0;
+      inset-block-end:calc(16px + env(safe-area-inset-bottom,0px));
+      inset-inline-end:calc(16px + env(safe-area-inset-right,0px))}
+    .wa-fab .lbl{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){.wa-fab{transition:opacity .2s linear,visibility .2s}}
+
   /* ── LANGUAGE SWITCH ─────────────────────────────────────────── */
   .lang-switch{display:inline-flex;align-items:center;gap:3px;padding:3px;border:1px solid var(--line);
     border-radius:999px;background:rgba(11,8,5,.42);cursor:pointer;line-height:1;flex-shrink:0}
@@ -567,6 +590,14 @@
 </head>
 <body>
 <div id="ambient"></div><div id="glow"></div><div id="vignette"></div><div id="grain"></div><div id="progress"></div>
+
+<!-- floating WhatsApp contact. href stays language-neutral in the raw HTML so the
+     pre-rendered English document is correct too; JS appends the localised prefill. -->
+<a id="waFab" class="wa-fab" href="https://wa.me/971565553328" target="_blank" rel="noopener"
+   aria-label="تواصل عبر واتساب" title="تواصل عبر واتساب">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+  <span class="lbl" data-i18n="wa.fab">واتساب</span>
+</a>
 
 <header id="header">
   <a class="brand" href="#hero"><span class="wm" data-i18n="brand.wm">تمور السلطان</span><span class="lm" data-i18n="brand.lm">Alsultan Dates</span></a>
@@ -997,7 +1028,10 @@
     "rfq.contactNote":"Or contact us directly: <a href=\"mailto:info@alsultan-dates.com\">info@alsultan-dates.com</a><span class=\"sep\">·</span><a href=\"https://wa.me/971565553328\" rel=\"noopener\">WhatsApp +971 56 555 3328</a>",
     "footer.instagram":"Instagram",
     "footer.whatsapp":"WhatsApp",
-    "footer.email":"Email"
+    "footer.email":"Email",
+    "wa.fab":"WhatsApp",
+    "wa.label":"Contact us on WhatsApp",
+    "wa.msg":"Hello, I would like a wholesale quotation for Iraqi Zahdi dates.\nVolume required:\nGrade:\nDestination country:"
   };
 
   const I18N=(function(){
@@ -1028,6 +1062,8 @@
       "doc.ogTitle":metaOgT?metaOgT.content:"",
       "doc.ogDesc":metaOgD?metaOgD.content:"",
       "ui.switch":"Switch to English / التبديل إلى الإنكليزية",
+      "wa.label":"تواصل معنا عبر واتساب",
+      "wa.msg":"مرحباً، أرغب بعرض سعر لتمر الزهدي العراقي بالجملة.\nالكمية المطلوبة:\nالدرجة:\nبلد الوصول:",
       "mail.subject":"طلب عرض سعر جملة — تمر الزهدي",
       "mail.head":"طلب عرض سعر — تمر الزهدي العراقي (Alsultan Dates)",
       "mail.company":"اسم الشركة","mail.country":"الدولة","mail.qty":"الكمية المطلوبة",
@@ -1073,6 +1109,11 @@
       if(metaTwD) metaTwD.content=val("doc.ogDesc");
       const sw=document.getElementById("langSwitch");
       if(sw){sw.setAttribute("aria-label",val("ui.switch"));sw.setAttribute("title",val("ui.switch"));}
+      const wa=document.getElementById("waFab");
+      if(wa){
+        wa.href="https://wa.me/971565553328?text="+encodeURIComponent(val("wa.msg"));
+        wa.setAttribute("aria-label",val("wa.label")); wa.setAttribute("title",val("wa.label"));
+      }
 
       if(persist){
         try{localStorage.setItem("alsultan-lang",cur);}catch(e){}
@@ -1132,12 +1173,15 @@
   }
 
   // header hide/show + progress
-  const header=document.getElementById("header"), progress=document.getElementById("progress");
+  const header=document.getElementById("header"), progress=document.getElementById("progress"), waFab=document.getElementById("waFab");
   if(hasGSAP) ScrollTrigger.create({start:0,end:"max",onUpdate:s=>{
     progress.style.transform="scaleX("+s.progress+")";
     header.classList.toggle("solid",s.scroll()>40);
     if(s.scroll()>140) header.classList.toggle("hidden",s.direction===1); else header.classList.remove("hidden");
+    if(waFab) waFab.classList.toggle("show",s.scroll()>window.innerHeight*0.85);
   }});
+  // without GSAP the button would never appear — show it immediately instead
+  if(!hasGSAP&&waFab) waFab.classList.add("show");
 
   // ambient per section
   const ambient=document.getElementById("ambient"), glow=document.getElementById("glow");
