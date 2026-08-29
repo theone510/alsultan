@@ -172,6 +172,19 @@
     #product .specs li{display:grid;grid-template-columns:subgrid;grid-column:1/-1}
   }
 
+  /* Justified body copy. Scoped to prose that actually wraps over several lines:
+     justifying a two-line heading stretches it apart, and the centred blocks
+     (#grades .sub, #rfq .sub, footer .role, film captions) must stay centred.
+     text-align-last keeps the closing line from being stretched, and hyphens help
+     English avoid the wide word gaps justification otherwise opens up. */
+  #why .lead, #why .pillars li .d,
+  #origin .copy p,
+  #product .lead,
+  #packing .pk-card .body p, #packing .plabel .body p,
+  #shipping .copy p,
+  .gr-card ul li span{
+    text-align:justify;text-align-last:start;hyphens:auto;-webkit-hyphens:auto}
+
   /* 4 · GRADES */
   #grades{padding:16vh 0}
   #grades .head{text-align:center;margin-bottom:clamp(40px,6vw,70px)} #grades .idx{display:block;margin-bottom:10px}
