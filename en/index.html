@@ -1140,7 +1140,10 @@
       if(persist){
         try{localStorage.setItem("alsultan-lang",cur);}catch(e){}
         // each language is its own indexable URL (/ and /en) — never a query param
-        try{const u=new URL(location.href);u.pathname=cur==="en"?"/en":"/";u.searchParams.delete("lang");history.pushState(null,"",u);}catch(e){}
+        try{const u=new URL(location.href);
+          const sec=u.pathname.replace(/^\/en(?=\/|$)/,"").replace(/\/+$/,"");
+          u.pathname=(cur==="en"?"/en":"")+(sec||"")||"/";
+          u.searchParams.delete("lang");history.pushState(null,"",u);}catch(e){}
       }
       if(typeof ScrollTrigger!=="undefined") requestAnimationFrame(()=>ScrollTrigger.refresh());
     }
@@ -1154,10 +1157,11 @@
     try{
       const path=location.pathname.toLowerCase().replace(/\/+$/,"");
       const q=new URLSearchParams(location.search).get("lang");
-      if(path==="/en"||path==="/en/index.html") initial="en";
+      if(path==="/en"||path==="/en/index.html"||path.indexOf("/en/")===0) initial="en";
       else if(q==="en"||q==="ar") initial=q;                       // legacy ?lang= links
       else if(localStorage.getItem("alsultan-lang")==="en"){
-        location.replace("/en"+location.hash); return {apply:()=>{},t:k=>k,get lang(){return "en";}};
+        location.replace("/en"+(path==="/"?"":path)+location.hash);
+        return {apply:()=>{},t:k=>k,get lang(){return "en";}};
       }
     }catch(e){}
     apply(initial,false);
@@ -1171,7 +1175,8 @@
       const next=cur==="en"?"ar":"en";
       if(BASE!=="ar"&&next!==BASE){
         try{localStorage.setItem("alsultan-lang",next);}catch(e){}
-        location.href=next==="en"?"/en":"/"; return;
+        const sec=location.pathname.replace(/^\/en(?=\/|$)/,"").replace(/\/+$/,"");
+        location.href=(next==="en"?"/en":"")+sec||"/"; return;
       }
       apply(next,true);
     });
@@ -1190,9 +1195,77 @@
     lenis=new Lenis({duration:1.2,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),smoothWheel:true});
     lenis.on("scroll",ScrollTrigger.update);
     gsap.ticker.add(t=>lenis.raf(t*1000)); gsap.ticker.lagSmoothing(0); window.lenis=lenis;
-    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener("click",e=>{
-      const t=document.querySelector(a.getAttribute("href")); if(t){e.preventDefault();lenis.scrollTo(t,{offset:0});}}));
   }
+
+
+  // ── SECTION ROUTING ───────────────────────────────────────────────────────────
+  // Every section has a real, shareable URL ("/grades", "/en/grades") that the host
+  // rewrites to this same document. The URL follows the reader as they scroll, and
+  // in-page links push proper history entries so Back works. Canonical is NOT touched:
+  // the sections are one document, so they all consolidate onto "/" or "/en" — these
+  // routes exist to be linked and shared, not to be indexed as separate pages.
+  const ROUTER=(function(){
+    const ROUTES={why:"why",film:"film",origin:"origin",product:"product",grades:"grades",
+                  packing:"packing",shipping:"shipping",rfq:"quote"};
+    const BY_SLUG={}; for(const id in ROUTES) BY_SLUG[ROUTES[id]]=id;
+    const prefix=()=>document.documentElement.lang==="en"?"/en":"";
+    const pathFor=id=>ROUTES[id]?prefix()+"/"+ROUTES[id]:(prefix()||"/");
+    const slugNow=()=>location.pathname.replace(/^\/en(?=\/|$)/,"").replace(/^\/|\/+$/g,"");
+    const idNow=()=>BY_SLUG[slugNow()]||null;
+
+    let settled=false;                      // do not rewrite the URL during the entry scroll
+    function scrollTo(el,instant){
+      if(window.lenis) window.lenis.scrollTo(el,{offset:0,immediate:!!instant});
+      else el.scrollIntoView({behavior:instant?"auto":"smooth",block:"start"});
+    }
+    function go(id,push){
+      const el=document.getElementById(id); if(!el) return;
+      if(push){ try{history.pushState({id:id},"",pathFor(id));}catch(e){} }
+      scrollTo(el,false);
+    }
+    // the URL trails the reader; replaceState so scrolling never fills up history
+    function mark(id){
+      if(!settled) return;
+      const want=pathFor(id);
+      if(location.pathname!==want){ try{history.replaceState({id:id},"",want+location.search);}catch(e){} }
+    }
+    // in-page links become real paths, so they can be copied and shared
+    function wire(){
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        const id=a.getAttribute("href").slice(1);
+        if(!document.getElementById(id)) return;
+        a.dataset.section=id;
+        a.setAttribute("href",pathFor(id));
+      });
+      document.addEventListener("click",e=>{
+        const a=e.target.closest&&e.target.closest("a[data-section]");
+        if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||e.button) return;
+        e.preventDefault(); go(a.dataset.section,true);
+      });
+      // keep hrefs correct when the language flips in place
+      const root=document.documentElement;
+      new MutationObserver(()=>document.querySelectorAll("a[data-section]")
+        .forEach(a=>a.setAttribute("href",pathFor(a.dataset.section))))
+        .observe(root,{attributes:true,attributeFilter:["lang"]});
+    }
+    window.addEventListener("popstate",()=>{
+      const id=idNow(); const el=id?document.getElementById(id):document.getElementById("hero");
+      if(el) scrollTo(el,false);
+    });
+    wire();
+    // land on the requested section once layout has settled, then start tracking
+    function enter(){
+      const id=idNow();
+      if(id&&document.getElementById(id)){
+        if(typeof ScrollTrigger!=="undefined") ScrollTrigger.refresh();
+        scrollTo(document.getElementById(id),true);
+      }
+      setTimeout(()=>{settled=true;},400);
+    }
+    if(document.readyState==="complete") setTimeout(enter,60);
+    else window.addEventListener("load",()=>setTimeout(enter,60),{once:true});
+    return window.ROUTER={go,mark,pathFor,idNow};   // exposed for verification, like window.lenis
+  })();
 
   // header hide/show + progress
   const header=document.getElementById("header"), progress=document.getElementById("progress"), waFab=document.getElementById("waFab");
@@ -1210,8 +1283,9 @@
   function applyAmbient(c,g){ if(hasGSAP){gsap.to(ambient,{backgroundColor:c,duration:1.1,overwrite:"auto",ease:"power2.out"});gsap.to(glow,{opacity:g,duration:1.1,overwrite:"auto"});}else{ambient.style.backgroundColor=c;glow.style.opacity=g;} }
   document.querySelectorAll("[data-ambient]").forEach(sec=>{
     const c=sec.getAttribute("data-ambient"),g=parseFloat(sec.getAttribute("data-glow")||".5");
-    if(hasGSAP) ScrollTrigger.create({trigger:sec,start:"top 60%",end:"bottom 40%",onEnter:()=>applyAmbient(c,g),onEnterBack:()=>applyAmbient(c,g)});
-    else if("IntersectionObserver" in window) new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)applyAmbient(c,g);}),{threshold:.4}).observe(sec);
+    const enter=()=>{applyAmbient(c,g); if(sec.id) ROUTER.mark(sec.id);};
+    if(hasGSAP) ScrollTrigger.create({trigger:sec,start:"top 60%",end:"bottom 40%",onEnter:enter,onEnterBack:enter});
+    else if("IntersectionObserver" in window) new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)enter();}),{threshold:.4}).observe(sec);
   });
 
   // reveals
