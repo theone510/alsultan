@@ -1,2 +1,5 @@
 .agents/
 assets/up-*.json
+
+# skills installed via `npx skills add` (symlinks into the gitignored .agents/)
+.claude/skills/find-skills/
