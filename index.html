@@ -299,6 +299,12 @@
   footer .links{margin:24px 0;display:flex;gap:30px;justify-content:center;flex-wrap:wrap}
   footer .links a{color:var(--ivory-soft);text-decoration:none;font-size:14px;transition:color .3s} footer .links a:hover{color:var(--gold-bright)}
   footer .cr{color:var(--ivory-faint);font-size:12px}
+  footer .social{display:flex;justify-content:center;gap:22px;margin:18px 0 14px;flex-wrap:wrap}
+  footer .social a{color:var(--gold-bright);text-decoration:none;font-size:13.5px;
+    border-bottom:1px solid transparent;transition:border-color .3s,color .3s;padding-bottom:2px}
+  footer .social a:hover{border-bottom-color:var(--gold)}
+  #rfq .contact-note .sep{margin:0 10px;opacity:.45}
+  @media(max-width:480px){#rfq .contact-note .sep{display:block;height:4px;margin:0;overflow:hidden;color:transparent}}
 
   /* ── LANGUAGE SWITCH ─────────────────────────────────────────── */
   .lang-switch{display:inline-flex;align-items:center;gap:3px;padding:3px;border:1px solid var(--line);
@@ -403,6 +409,19 @@
       "Arabic",
       "English"
      ],
+     "areaServed": "Worldwide",
+     "telephone": "+971565553328"
+    },
+    {
+     "@type": "ContactPoint",
+     "contactType": "sales",
+     "name": "WhatsApp",
+     "telephone": "+971565553328",
+     "url": "https://wa.me/971565553328",
+     "availableLanguage": [
+      "Arabic",
+      "English"
+     ],
      "areaServed": "Worldwide"
     }
    ],
@@ -429,7 +448,11 @@
      "unitCode": "TNE",
      "unitText": "tonne"
     }
-   }
+   },
+   "sameAs": [
+    "https://www.instagram.com/alsultan_dates_export"
+   ],
+   "telephone": "+971565553328"
   },
   {
    "@type": "WebSite",
@@ -807,7 +830,7 @@
         <div class="hp" aria-hidden="true"><label for="f-website">Website</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off" /></div>
         <div class="submit-row"><button class="btn btn-primary" type="submit" data-i18n="rfq.submit">أرسل الطلب</button></div>
         <p id="rfqStatus" class="form-status" role="status" aria-live="polite"></p>
-        <p class="contact-note" data-i18n="rfq.contactNote">أو راسلنا مباشرة: <a href="mailto:info@alsultan-dates.com">info@alsultan-dates.com</a></p>
+        <p class="contact-note" data-i18n="rfq.contactNote">أو راسلنا مباشرة: <a href="mailto:info@alsultan-dates.com">info@alsultan-dates.com</a><span class="sep">·</span><a href="https://wa.me/971565553328" rel="noopener">واتساب ‎+971 56 555 3328</a></p>
       </form>
     </div></div>
   </section>
@@ -817,6 +840,11 @@
     <div class="lm" data-i18n="footer.lm">Alsultan Dates · Karbala · Iraq</div>
     <p class="role" data-i18n="footer.role">الوسيط التجاري المباشر بين مورّد كربلاء والمستوردين حول العالم — جملة وتصدير حصراً.</p>
     <nav class="links"><a href="#product" data-i18n="nav.product">المنتج</a><a href="#grades" data-i18n="nav.grades">درجات الجودة</a><a href="#packing" data-i18n="nav.packing">التعبئة</a><a href="#shipping" data-i18n="nav.shipping">الشحن</a><a href="#rfq" data-i18n="nav.quote">اطلب عرض سعر</a></nav>
+    <nav class="social">
+      <a href="https://www.instagram.com/alsultan_dates_export" rel="me noopener" target="_blank" data-i18n="footer.instagram">إنستغرام</a>
+      <a href="https://wa.me/971565553328" rel="noopener" target="_blank" data-i18n="footer.whatsapp">واتساب</a>
+      <a href="mailto:info@alsultan-dates.com" data-i18n="footer.email">البريد</a>
+    </nav>
     <div class="cr" data-i18n="footer.cr">© 2026 شركة تمور السلطان — Alsultan Dates. جميع الحقوق محفوظة.</div>
   </div></footer>
 </main>
@@ -950,7 +978,6 @@
     "rfq.lContact":"Email / WhatsApp *", "rfq.phContact":"email@company.com or a WhatsApp number",
     "rfq.lNotes":"Notes", "rfq.phNotes":"Special specifications, port of arrival, shipment timing…",
     "rfq.submit":"Send request",
-    "rfq.contactNote":"Or email us directly: <a href=\"mailto:info@alsultan-dates.com\">info@alsultan-dates.com</a>",
 
     "footer.lm":"Karbala · Iraq · Wholesale &amp; Export",
     "footer.role":"The direct trading link between the Karbala supplier and importers worldwide — wholesale and export only.",
@@ -966,7 +993,11 @@
     "rfq.okBody":"Reference <b class=\"ref\">{ref}</b> — our export team is reviewing it now and a formal quotation will reach you within one business day.",
     "rfq.errRequired":"Please complete the required fields.",
     "rfq.errRate":"We already received several requests from this device. Please try again shortly, or contact us directly.",
-    "rfq.errNet":"We couldn't send the request right now. Please email <a href=\"mailto:info@alsultan-dates.com\">info@alsultan-dates.com</a> or reach us on WhatsApp."
+    "rfq.errNet":"We couldn't send the request right now. Please email <a href=\"mailto:info@alsultan-dates.com\">info@alsultan-dates.com</a> or reach us on WhatsApp.",
+    "rfq.contactNote":"Or contact us directly: <a href=\"mailto:info@alsultan-dates.com\">info@alsultan-dates.com</a><span class=\"sep\">·</span><a href=\"https://wa.me/971565553328\" rel=\"noopener\">WhatsApp +971 56 555 3328</a>",
+    "footer.instagram":"Instagram",
+    "footer.whatsapp":"WhatsApp",
+    "footer.email":"Email"
   };
 
   const I18N=(function(){
