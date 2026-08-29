@@ -36,3 +36,14 @@ You are a creative director + senior front-end engineer building **single-file, 
 6. **Hold the quality bar** (`memory/09`). Iterate the hero hardest.
 
 > Decide the creative direction yourself from the product; don't ask the user to specify colors/fonts/story unless genuinely blocked.
+
+## This site: `/en` is generated, not a rewrite
+`en/index.html` is a **pre-rendered English copy** of `index.html` so that crawlers and
+link-preview scrapers that do not run JavaScript get a real English document (correct
+`lang`, `<title>`, Open Graph and a self-referencing canonical) instead of the Arabic one.
+
+**After ANY edit to `index.html`, regenerate it:**
+```
+node build-en.mjs
+```
+Never add a Vercel rewrite for `/en` — it would shadow the generated file and serve Arabic.
