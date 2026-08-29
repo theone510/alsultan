@@ -1,0 +1,10 @@
+# Alsultan Dates — تمور السلطان
+# https://www.alsultan-zahdi-dates.com
+
+User-agent: *
+Allow: /
+
+# The RFQ backend (admin dashboard + tokenised quotation links) lives on its own
+# subdomain and serves its own robots rules plus a noindex meta tag on every page.
+
+Sitemap: https://www.alsultan-zahdi-dates.com/sitemap.xml
