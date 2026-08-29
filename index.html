@@ -161,7 +161,9 @@
   #product .specs li{display:flex;align-items:baseline;justify-content:space-between;gap:18px;padding:16px 0;border-top:1px solid var(--line-soft)}
   #product .specs li:last-child{border-bottom:1px solid var(--line-soft)}
   #product .specs .k{font-family:"El Messiri",serif;color:var(--gold-bright);font-weight:600;white-space:nowrap}
-  #product .specs .v{color:var(--ivory-soft)}
+  /* the value takes the space the label leaves and centres inside it, so the grey
+     column reads as one centred run instead of hugging the far edge */
+  #product .specs .v{color:var(--ivory-soft);flex:1;text-align:center}
 
   /* 4 · GRADES */
   #grades{padding:16vh 0}
