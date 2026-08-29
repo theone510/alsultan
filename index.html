@@ -34,7 +34,7 @@
     --ambient:#0B0805; --maxw:1280px; --ease:cubic-bezier(.22,.61,.36,1);
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html,body{height:100%} html{scroll-behavior:auto}
+  html,body{height:100%} html{scroll-behavior:auto} /* never set overflow on <html>: it stops body's overflow-x propagating to the viewport and makes <body> the scroller → window scroll, Lenis and ScrollTrigger all break */
   body{background:var(--bg0);color:var(--ivory);font-family:"Tajawal",system-ui,sans-serif;font-weight:300;
     -webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.85}
   ::selection{background:var(--gold);color:#140D06}
@@ -267,7 +267,11 @@
   #rfq .submit-row button{border:none}
   #rfq .contact-note{grid-column:1/-1;text-align:center;color:var(--ivory-faint);font-size:13px;margin-top:8px}
   #rfq .contact-note a{color:var(--gold-bright);text-decoration:none}
-  #rfq .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  /* honeypot: hidden by clipping, NEVER by a negative offset — in RTL a negative
+     inline offset overflows the scrollable (end) side and adds ~10000px of
+     horizontal scroll to the whole page. */
+  #rfq .hp{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;
+    overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
   #rfq .form-status{grid-column:1/-1;text-align:center;font-size:14.5px;margin:4px 0 0;padding:14px 18px;
     border:1px solid var(--line-soft);border-radius:8px;background:rgba(11,8,5,.45);display:none;line-height:1.8}
   #rfq .form-status.show{display:block}
