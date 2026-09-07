@@ -211,6 +211,13 @@
   .faq-item .a{padding:0 4px 24px}
   .faq-item .a p{color:var(--ivory-soft);font-size:clamp(14.5px,1.7vw,16.5px);max-width:70ch;
     text-align:justify;text-align-last:start;hyphens:auto;-webkit-hyphens:auto}
+  .faq-item .a p + p{margin-top:12px}
+  .faq-item .a ul{list-style:none;margin:12px 0;max-width:70ch}
+  .faq-item .a ul li{position:relative;padding-inline-start:18px;margin:7px 0;
+    color:var(--ivory-soft);font-size:clamp(14px,1.6vw,16px);line-height:1.75}
+  .faq-item .a ul li::before{content:"";position:absolute;inset-inline-start:0;top:.72em;
+    width:5px;height:5px;border-radius:50%;background:var(--gold)}
+  .faq-item .a ul li b{color:var(--ivory);font-weight:500}
   @media(prefers-reduced-motion:reduce){.faq-item summary::after{transition:none}}
 
   /* 4 · GRADES */
@@ -656,15 +663,39 @@
      "name": "What is the minimum order?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "We supply wholesale for export only. Trial orders start at one tonne, and shipping is most economical by full container load, 20ft or 40ft. We do not serve quantities below a tonne."
+      "text": "<p>We serve wholesale and export enquiries only; we do not sell retail. A trial order starts from one tonne, subject to the destination and to shipping availability, while a full container load usually achieves a better cost per tonne. We advise on the most suitable option once we know the quantity and the port of arrival.</p>"
      }
     },
     {
      "@type": "Question",
-     "name": "What separates the four grades, and which suits my market?",
+     "name": "Where do the dates come from?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Grade A is for premium retail and consumer packing, Grade B for supermarket chains and regional distribution, Grade C for economy repacking and popular markets, and Grade D for processing into syrup, paste or feed. If you are unsure, tell us your market and target price and we will recommend the grade."
+      "text": "<p>The Zahdi dates we supply are of Iraqi origin, collected, graded and prepared through our suppliers in Karbala. Origin and crop details are stated in the quotation and in the agreed documents.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What separates the quality grades?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>We offer several grades to suit different markets and uses:</p><ul><li><b>Grade A:</b> premium retail and consumer packing.</li><li><b>Grade B:</b> supermarkets, wholesalers and distribution.</li><li><b>Grade C:</b> repacking and economy markets.</li><li><b>Grade D, industrial:</b> syrup and paste production and other suitable industrial uses.</li></ul><p>If you are unsure which grade you need, tell us the intended use, the market and your target price, and we will suggest the closest fit.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can the specification be tailored to the buyer?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>Yes. Size, colour, moisture content, grading, packing type and acceptable defect limits can all be discussed, subject to the quantity and to processing capacity. The final specification is fixed in the quotation or contract and in the approved reference sample.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What packing types and weights are available?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>We pack in cartons or food-grade bags in a range of weights, including 10 kg cartons and bulk bags, according to the grade and the target market. The packing material, net weight and count per container are confirmed before contracting.</p>"
      }
     },
     {
@@ -672,31 +703,63 @@
      "name": "How many tonnes fit in a container?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "It depends on the packing and the carton weight. As a guide, a 20ft container holds roughly 18 to 20 tonnes and a 40ft container roughly 26 to 28 tonnes. The exact figure is fixed in the quotation once the packing and pallet stacking are agreed."
+      "text": "<p>The load varies with the container type, the permitted weight limits, the packaging weight, and whether pallets are used and how the cargo is stacked. As a rough guide:</p><ul><li>20ft container: approximately 18–20 tonnes.</li><li>40ft container: approximately 26–28 tonnes.</li></ul><p>The final load and carton count are fixed once the packing and loading plan are approved. This estimate is not to be treated as a binding final weight.</p>"
      }
     },
     {
      "@type": "Question",
-     "name": "Do you print my own brand on the packing?",
+     "name": "Do you offer packing under the buyer's own brand?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Yes, and it is what sets us apart. Your brand and artwork are printed on the cartons and labels, and the label proof is approved with you before printing. Our export cartons ship with a blank label panel precisely for this."
+      "text": "<p>Yes. Private label can be prepared carrying your brand name, artwork, language, barcode and importer details. The carton or label design is approved in writing before printing, and may be subject to a minimum quantity, an additional cost and extra preparation time.</p>"
      }
     },
     {
      "@type": "Question",
-     "name": "Which Incoterms and ports do you ship from?",
+     "name": "Can a sample be sent before contracting?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Our usual basis is FOB Umm Qasr, and we can quote CFR or CIF to your destination port on request. State the port and the Incoterm in your enquiry and we will price on that basis."
+      "text": "<p>Yes. A sample can be sent so you can assess quality and approve the specification before a commercial order is executed. The sample cost, the courier charge and the dispatch date depend on the country and the delivery method. Where the contract provides for it, the approved sample becomes the reference when the shipment is prepared.</p>"
      }
     },
     {
      "@type": "Question",
-     "name": "What is the lead time to shipment?",
+     "name": "How is the price determined?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "It depends on the volume, the grade and the harvest season. Orders covered by ready stock move fastest, while large volumes or your own branded packing need extra time for label printing and packing. The exact lead time is stated in writing in the quotation before you commit."
+      "text": "<p>Price depends on the grade, the specification, the crop, the quantity, the packing type, any private label, the Incoterm and the destination port. We therefore issue a separate quotation for each enquiry, and prices hold for the validity period written on that quotation, because product and freight rates move.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Which delivery terms are available?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>We can quote on commercial terms such as:</p><ul><li><b>FOB Umm Qasr:</b> the consignment delivered on board at the port of Umm Qasr.</li><li><b>CFR:</b> the price includes sea freight to the destination port.</li><li><b>CIF:</b> the price includes sea freight and insurance to the destination port.</li></ul><p>The final delivery term is stated explicitly in the quotation and the contract, under the agreed Incoterms edition.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Which countries and ports do you ship to?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>We handle export enquiries to international markets subject to the quantity, the availability of shipping lines and the import rules of the destination country. Send us the country and the port and we will review whether we can ship and quote the cost available.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How long does preparation take?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>It varies with the quantity, the grade, crop availability and the packing type. Private label orders and large volumes normally need extra time for printing and preparation. We state the expected preparation time in writing in the quotation before work begins.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How long does sea freight take?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>Transit time depends on the destination port, the shipping line, the vessel schedule, the transit routing and port procedures. We give an estimate when the freight offer is issued, but it remains subject to carrier and port schedules changing.</p>"
      }
     },
     {
@@ -704,15 +767,23 @@
      "name": "What are the payment terms?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "The usual export basis: an advance by bank transfer with the balance against shipping documents, or a letter of credit for larger volumes. Final terms are agreed in the contract before preparation begins."
+      "text": "<p>Payment terms are set according to the order value, the quantity and the nature of the transaction. They may involve an agreed bank transfer, or a letter of credit for qualifying transactions. Preparation begins only after the agreement is signed and the payment or the financial guarantee specified in the contract has been received.</p>"
      }
     },
     {
      "@type": "Question",
-     "name": "Do you send a sample before shipment, and what documents come with it?",
+     "name": "Which export documents are available?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Yes. A reference sample is sent for your approval before shipment, and the consignment is matched against it at loading under the supervision of our team in Karbala. Every shipment travels with the usual documents: certificate of origin, health certificate, phytosanitary certificate, packing list and bill of lading."
+      "text": "<p>Documents are prepared according to the product, the importing country and the terms of the contract, and may include:</p><ul><li>Commercial invoice.</li><li>Packing list.</li><li>Certificate of origin.</li><li>Health certificate or phytosanitary certificate where applicable.</li><li>Bill of lading.</li><li>Additional inspection certificates where the buyer requests them and they are agreed in advance.</li></ul><p>The importer must give us their country's specific requirements before the order is confirmed. No additional certificate should be assumed available unless it is named in the offer or the contract.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do you allow the consignment to be inspected before loading?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>Yes. Inspection and documentation during grading, packing and loading can be agreed. The buyer may also appoint an independent inspection body at their own cost, provided both the body and the acceptance criteria are agreed before preparation starts.</p>"
      }
     },
     {
@@ -720,7 +791,23 @@
      "name": "What is the shelf life and how should it be stored?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Zahdi dates keep in a cool, dry, well-ventilated place away from humidity and direct sun. Held that way they hold their quality for around twelve months, and refrigeration extends that while preserving texture and colour."
+      "text": "<p>Shelf life depends on the condition of the crop, the moisture content, the packing type and the storage temperature. Dates must be kept somewhere cool, dry, clean and well ventilated, away from humidity, sunlight and strong odours. The final shelf life and storage conditions are stated on the packaging, according to the test results and the agreed specification.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can you supply on a regular basis?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>Yes. Monthly or seasonal supply and repeat volumes can be discussed, subject to crop availability and operating capacity. The quantity, the schedule and either the price or the mechanism for updating it are set out in a separate supply contract.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What do you need in order to quote accurately?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>Please send the following:</p><ul><li>Company name and importing country.</li><li>Quantity required.</li><li>Quality grade, or the intended use.</li><li>Packing type and weight.</li><li>Port of arrival.</li><li>The delivery term you want: FOB, CFR or CIF.</li><li>Whether you need private label, or additional documents and inspections.</li><li>Email address and WhatsApp number.</li></ul><p>Once we have the complete information, we send the quotation and the available details as quickly as we can.</p>"
      }
     }
    ]
@@ -951,44 +1038,84 @@
       <div class="head">
         <span class="idx reveal" data-i18n="faq.idx">06 — Buyer questions</span>
         <h2 class="gold-text reveal" data-i18n="faq.h2">What importers ask</h2>
-        <p class="sub reveal" data-i18n="faq.sub">Straight answers to what comes up before every first shipment. Anything not covered here, ask in your enquiry and we will answer in writing.</p>
+        <p class="sub reveal" data-i18n="faq.sub">Clear answers to what an importer most needs to know before a first shipment. If your question is not here, send it with your enquiry and we will answer it in writing.</p>
       </div>
       <div class="faq-list">
         <details class="faq-item reveal">
           <summary><span data-i18n="faq.q1">What is the minimum order?</span></summary>
-          <div class="a"><p data-i18n="faq.a1">We supply wholesale for export only. Trial orders start at one tonne, and shipping is most economical by full container load, 20ft or 40ft. We do not serve quantities below a tonne.</p></div>
+          <div class="a" data-i18n="faq.a1"><p>We serve wholesale and export enquiries only; we do not sell retail. A trial order starts from one tonne, subject to the destination and to shipping availability, while a full container load usually achieves a better cost per tonne. We advise on the most suitable option once we know the quantity and the port of arrival.</p></div>
         </details>
         <details class="faq-item reveal">
-          <summary><span data-i18n="faq.q2">What separates the four grades, and which suits my market?</span></summary>
-          <div class="a"><p data-i18n="faq.a2">Grade A is for premium retail and consumer packing, Grade B for supermarket chains and regional distribution, Grade C for economy repacking and popular markets, and Grade D for processing into syrup, paste or feed. If you are unsure, tell us your market and target price and we will recommend the grade.</p></div>
+          <summary><span data-i18n="faq.q2">Where do the dates come from?</span></summary>
+          <div class="a" data-i18n="faq.a2"><p>The Zahdi dates we supply are of Iraqi origin, collected, graded and prepared through our suppliers in Karbala. Origin and crop details are stated in the quotation and in the agreed documents.</p></div>
         </details>
         <details class="faq-item reveal">
-          <summary><span data-i18n="faq.q3">How many tonnes fit in a container?</span></summary>
-          <div class="a"><p data-i18n="faq.a3">It depends on the packing and the carton weight. As a guide, a 20ft container holds roughly 18 to 20 tonnes and a 40ft container roughly 26 to 28 tonnes. The exact figure is fixed in the quotation once the packing and pallet stacking are agreed.</p></div>
+          <summary><span data-i18n="faq.q3">What separates the quality grades?</span></summary>
+          <div class="a" data-i18n="faq.a3"><p>We offer several grades to suit different markets and uses:</p><ul><li><b>Grade A:</b> premium retail and consumer packing.</li><li><b>Grade B:</b> supermarkets, wholesalers and distribution.</li><li><b>Grade C:</b> repacking and economy markets.</li><li><b>Grade D, industrial:</b> syrup and paste production and other suitable industrial uses.</li></ul><p>If you are unsure which grade you need, tell us the intended use, the market and your target price, and we will suggest the closest fit.</p></div>
         </details>
         <details class="faq-item reveal">
-          <summary><span data-i18n="faq.q4">Do you print my own brand on the packing?</span></summary>
-          <div class="a"><p data-i18n="faq.a4">Yes, and it is what sets us apart. Your brand and artwork are printed on the cartons and labels, and the label proof is approved with you before printing. Our export cartons ship with a blank label panel precisely for this.</p></div>
+          <summary><span data-i18n="faq.q4">Can the specification be tailored to the buyer?</span></summary>
+          <div class="a" data-i18n="faq.a4"><p>Yes. Size, colour, moisture content, grading, packing type and acceptable defect limits can all be discussed, subject to the quantity and to processing capacity. The final specification is fixed in the quotation or contract and in the approved reference sample.</p></div>
         </details>
         <details class="faq-item reveal">
-          <summary><span data-i18n="faq.q5">Which Incoterms and ports do you ship from?</span></summary>
-          <div class="a"><p data-i18n="faq.a5">Our usual basis is FOB Umm Qasr, and we can quote CFR or CIF to your destination port on request. State the port and the Incoterm in your enquiry and we will price on that basis.</p></div>
+          <summary><span data-i18n="faq.q5">What packing types and weights are available?</span></summary>
+          <div class="a" data-i18n="faq.a5"><p>We pack in cartons or food-grade bags in a range of weights, including 10 kg cartons and bulk bags, according to the grade and the target market. The packing material, net weight and count per container are confirmed before contracting.</p></div>
         </details>
         <details class="faq-item reveal">
-          <summary><span data-i18n="faq.q6">What is the lead time to shipment?</span></summary>
-          <div class="a"><p data-i18n="faq.a6">It depends on the volume, the grade and the harvest season. Orders covered by ready stock move fastest, while large volumes or your own branded packing need extra time for label printing and packing. The exact lead time is stated in writing in the quotation before you commit.</p></div>
+          <summary><span data-i18n="faq.q6">How many tonnes fit in a container?</span></summary>
+          <div class="a" data-i18n="faq.a6"><p>The load varies with the container type, the permitted weight limits, the packaging weight, and whether pallets are used and how the cargo is stacked. As a rough guide:</p><ul><li>20ft container: approximately 18–20 tonnes.</li><li>40ft container: approximately 26–28 tonnes.</li></ul><p>The final load and carton count are fixed once the packing and loading plan are approved. This estimate is not to be treated as a binding final weight.</p></div>
         </details>
         <details class="faq-item reveal">
-          <summary><span data-i18n="faq.q7">What are the payment terms?</span></summary>
-          <div class="a"><p data-i18n="faq.a7">The usual export basis: an advance by bank transfer with the balance against shipping documents, or a letter of credit for larger volumes. Final terms are agreed in the contract before preparation begins.</p></div>
+          <summary><span data-i18n="faq.q7">Do you offer packing under the buyer's own brand?</span></summary>
+          <div class="a" data-i18n="faq.a7"><p>Yes. Private label can be prepared carrying your brand name, artwork, language, barcode and importer details. The carton or label design is approved in writing before printing, and may be subject to a minimum quantity, an additional cost and extra preparation time.</p></div>
         </details>
         <details class="faq-item reveal">
-          <summary><span data-i18n="faq.q8">Do you send a sample before shipment, and what documents come with it?</span></summary>
-          <div class="a"><p data-i18n="faq.a8">Yes. A reference sample is sent for your approval before shipment, and the consignment is matched against it at loading under the supervision of our team in Karbala. Every shipment travels with the usual documents: certificate of origin, health certificate, phytosanitary certificate, packing list and bill of lading.</p></div>
+          <summary><span data-i18n="faq.q8">Can a sample be sent before contracting?</span></summary>
+          <div class="a" data-i18n="faq.a8"><p>Yes. A sample can be sent so you can assess quality and approve the specification before a commercial order is executed. The sample cost, the courier charge and the dispatch date depend on the country and the delivery method. Where the contract provides for it, the approved sample becomes the reference when the shipment is prepared.</p></div>
         </details>
         <details class="faq-item reveal">
-          <summary><span data-i18n="faq.q9">What is the shelf life and how should it be stored?</span></summary>
-          <div class="a"><p data-i18n="faq.a9">Zahdi dates keep in a cool, dry, well-ventilated place away from humidity and direct sun. Held that way they hold their quality for around twelve months, and refrigeration extends that while preserving texture and colour.</p></div>
+          <summary><span data-i18n="faq.q9">How is the price determined?</span></summary>
+          <div class="a" data-i18n="faq.a9"><p>Price depends on the grade, the specification, the crop, the quantity, the packing type, any private label, the Incoterm and the destination port. We therefore issue a separate quotation for each enquiry, and prices hold for the validity period written on that quotation, because product and freight rates move.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q10">Which delivery terms are available?</span></summary>
+          <div class="a" data-i18n="faq.a10"><p>We can quote on commercial terms such as:</p><ul><li><b>FOB Umm Qasr:</b> the consignment delivered on board at the port of Umm Qasr.</li><li><b>CFR:</b> the price includes sea freight to the destination port.</li><li><b>CIF:</b> the price includes sea freight and insurance to the destination port.</li></ul><p>The final delivery term is stated explicitly in the quotation and the contract, under the agreed Incoterms edition.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q11">Which countries and ports do you ship to?</span></summary>
+          <div class="a" data-i18n="faq.a11"><p>We handle export enquiries to international markets subject to the quantity, the availability of shipping lines and the import rules of the destination country. Send us the country and the port and we will review whether we can ship and quote the cost available.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q12">How long does preparation take?</span></summary>
+          <div class="a" data-i18n="faq.a12"><p>It varies with the quantity, the grade, crop availability and the packing type. Private label orders and large volumes normally need extra time for printing and preparation. We state the expected preparation time in writing in the quotation before work begins.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q13">How long does sea freight take?</span></summary>
+          <div class="a" data-i18n="faq.a13"><p>Transit time depends on the destination port, the shipping line, the vessel schedule, the transit routing and port procedures. We give an estimate when the freight offer is issued, but it remains subject to carrier and port schedules changing.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q14">What are the payment terms?</span></summary>
+          <div class="a" data-i18n="faq.a14"><p>Payment terms are set according to the order value, the quantity and the nature of the transaction. They may involve an agreed bank transfer, or a letter of credit for qualifying transactions. Preparation begins only after the agreement is signed and the payment or the financial guarantee specified in the contract has been received.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q15">Which export documents are available?</span></summary>
+          <div class="a" data-i18n="faq.a15"><p>Documents are prepared according to the product, the importing country and the terms of the contract, and may include:</p><ul><li>Commercial invoice.</li><li>Packing list.</li><li>Certificate of origin.</li><li>Health certificate or phytosanitary certificate where applicable.</li><li>Bill of lading.</li><li>Additional inspection certificates where the buyer requests them and they are agreed in advance.</li></ul><p>The importer must give us their country's specific requirements before the order is confirmed. No additional certificate should be assumed available unless it is named in the offer or the contract.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q16">Do you allow the consignment to be inspected before loading?</span></summary>
+          <div class="a" data-i18n="faq.a16"><p>Yes. Inspection and documentation during grading, packing and loading can be agreed. The buyer may also appoint an independent inspection body at their own cost, provided both the body and the acceptance criteria are agreed before preparation starts.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q17">What is the shelf life and how should it be stored?</span></summary>
+          <div class="a" data-i18n="faq.a17"><p>Shelf life depends on the condition of the crop, the moisture content, the packing type and the storage temperature. Dates must be kept somewhere cool, dry, clean and well ventilated, away from humidity, sunlight and strong odours. The final shelf life and storage conditions are stated on the packaging, according to the test results and the agreed specification.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q18">Can you supply on a regular basis?</span></summary>
+          <div class="a" data-i18n="faq.a18"><p>Yes. Monthly or seasonal supply and repeat volumes can be discussed, subject to crop availability and operating capacity. The quantity, the schedule and either the price or the mechanism for updating it are set out in a separate supply contract.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q19">What do you need in order to quote accurately?</span></summary>
+          <div class="a" data-i18n="faq.a19"><p>Please send the following:</p><ul><li>Company name and importing country.</li><li>Quantity required.</li><li>Quality grade, or the intended use.</li><li>Packing type and weight.</li><li>Port of arrival.</li><li>The delivery term you want: FOB, CFR or CIF.</li><li>Whether you need private label, or additional documents and inspections.</li><li>Email address and WhatsApp number.</li></ul><p>Once we have the complete information, we send the quotation and the available details as quickly as we can.</p></div>
         </details>
       </div>
     </div>
@@ -1003,7 +1130,7 @@
       <div class="content" id="ctaContent">
         <span class="latin">Wholesale &amp; Export Only</span>
         <h2 class="gold-text" data-i18n="cta.h2">Ready for your first shipment</h2>
-        <p data-i18n="cta.p">Tell us the volume, the grade and the destination — we'll come back with a formal quotation within one business day.</p>
+        <p data-i18n="cta.p">Tell us the volume, the grade and the destination — we'll come back to you as soon as we have reviewed the specification and the shipping.</p>
         <div class="btns"><a class="btn btn-primary" href="#rfq" data-i18n="cta.btn1">Request a wholesale quote</a><a class="btn btn-ghost" href="#grades" data-i18n="cta.btn2">See the grades</a></div>
       </div>
     </div>
@@ -1179,7 +1306,7 @@
     "why.alt":"Quality inspection at source",
 
     "cta.h2":"Ready for your first shipment",
-    "cta.p":"Tell us the volume, the grade and the destination — we'll come back with a formal quotation within one business day.",
+    "cta.p":"Tell us the volume, the grade and the destination — we'll come back to you as soon as we have reviewed the specification and the shipping.",
     "cta.btn1":"Request a wholesale quote", "cta.btn2":"See the grades",
 
     "rfq.idx":"06 — Request a Quote",
@@ -1211,7 +1338,7 @@
 
     "rfq.sending":"Sending…",
     "rfq.okTitle":"We received your request.",
-    "rfq.okBody":"Reference <b class=\"ref\">{ref}</b> — our export team is reviewing it now and a formal quotation will reach you within one business day.",
+    "rfq.okBody":"Reference <b class=\"ref\">{ref}</b> — our export team is reviewing it now, and we will come back to you as soon as we have reviewed the specification and the shipping.",
     "rfq.errRequired":"Please complete the required fields.",
     "rfq.errRate":"We already received several requests from this device. Please try again shortly, or contact us directly.",
     "rfq.errNet":"We couldn't send the request right now. Please email <a href=\"mailto:info@alsultan-dates.com\">info@alsultan-dates.com</a> or reach us on WhatsApp.",
@@ -1224,26 +1351,46 @@
     "nav.faq":"FAQ",
     "faq.idx":"06 \u2014 Buyer questions",
     "faq.h2":"What importers ask",
-    "faq.sub":"Straight answers to what comes up before every first shipment. Anything not covered here, ask in your enquiry and we will answer in writing.",
+    "faq.sub":"Clear answers to what an importer most needs to know before a first shipment. If your question is not here, send it with your enquiry and we will answer it in writing.",
     "rfq.idx":"07 \u2014 Request a quote",
     "faq.q1":"What is the minimum order?",
-    "faq.a1":"We supply wholesale for export only. Trial orders start at one tonne, and shipping is most economical by full container load, 20ft or 40ft. We do not serve quantities below a tonne.",
-    "faq.q2":"What separates the four grades, and which suits my market?",
-    "faq.a2":"Grade A is for premium retail and consumer packing, Grade B for supermarket chains and regional distribution, Grade C for economy repacking and popular markets, and Grade D for processing into syrup, paste or feed. If you are unsure, tell us your market and target price and we will recommend the grade.",
-    "faq.q3":"How many tonnes fit in a container?",
-    "faq.a3":"It depends on the packing and the carton weight. As a guide, a 20ft container holds roughly 18 to 20 tonnes and a 40ft container roughly 26 to 28 tonnes. The exact figure is fixed in the quotation once the packing and pallet stacking are agreed.",
-    "faq.q4":"Do you print my own brand on the packing?",
-    "faq.a4":"Yes, and it is what sets us apart. Your brand and artwork are printed on the cartons and labels, and the label proof is approved with you before printing. Our export cartons ship with a blank label panel precisely for this.",
-    "faq.q5":"Which Incoterms and ports do you ship from?",
-    "faq.a5":"Our usual basis is FOB Umm Qasr, and we can quote CFR or CIF to your destination port on request. State the port and the Incoterm in your enquiry and we will price on that basis.",
-    "faq.q6":"What is the lead time to shipment?",
-    "faq.a6":"It depends on the volume, the grade and the harvest season. Orders covered by ready stock move fastest, while large volumes or your own branded packing need extra time for label printing and packing. The exact lead time is stated in writing in the quotation before you commit.",
-    "faq.q7":"What are the payment terms?",
-    "faq.a7":"The usual export basis: an advance by bank transfer with the balance against shipping documents, or a letter of credit for larger volumes. Final terms are agreed in the contract before preparation begins.",
-    "faq.q8":"Do you send a sample before shipment, and what documents come with it?",
-    "faq.a8":"Yes. A reference sample is sent for your approval before shipment, and the consignment is matched against it at loading under the supervision of our team in Karbala. Every shipment travels with the usual documents: certificate of origin, health certificate, phytosanitary certificate, packing list and bill of lading.",
-    "faq.q9":"What is the shelf life and how should it be stored?",
-    "faq.a9":"Zahdi dates keep in a cool, dry, well-ventilated place away from humidity and direct sun. Held that way they hold their quality for around twelve months, and refrigeration extends that while preserving texture and colour.",
+    "faq.a1":"<p>We serve wholesale and export enquiries only; we do not sell retail. A trial order starts from one tonne, subject to the destination and to shipping availability, while a full container load usually achieves a better cost per tonne. We advise on the most suitable option once we know the quantity and the port of arrival.</p>",
+    "faq.q2":"Where do the dates come from?",
+    "faq.a2":"<p>The Zahdi dates we supply are of Iraqi origin, collected, graded and prepared through our suppliers in Karbala. Origin and crop details are stated in the quotation and in the agreed documents.</p>",
+    "faq.q3":"What separates the quality grades?",
+    "faq.a3":"<p>We offer several grades to suit different markets and uses:</p><ul><li><b>Grade A:</b> premium retail and consumer packing.</li><li><b>Grade B:</b> supermarkets, wholesalers and distribution.</li><li><b>Grade C:</b> repacking and economy markets.</li><li><b>Grade D, industrial:</b> syrup and paste production and other suitable industrial uses.</li></ul><p>If you are unsure which grade you need, tell us the intended use, the market and your target price, and we will suggest the closest fit.</p>",
+    "faq.q4":"Can the specification be tailored to the buyer?",
+    "faq.a4":"<p>Yes. Size, colour, moisture content, grading, packing type and acceptable defect limits can all be discussed, subject to the quantity and to processing capacity. The final specification is fixed in the quotation or contract and in the approved reference sample.</p>",
+    "faq.q5":"What packing types and weights are available?",
+    "faq.a5":"<p>We pack in cartons or food-grade bags in a range of weights, including 10 kg cartons and bulk bags, according to the grade and the target market. The packing material, net weight and count per container are confirmed before contracting.</p>",
+    "faq.q6":"How many tonnes fit in a container?",
+    "faq.a6":"<p>The load varies with the container type, the permitted weight limits, the packaging weight, and whether pallets are used and how the cargo is stacked. As a rough guide:</p><ul><li>20ft container: approximately 18–20 tonnes.</li><li>40ft container: approximately 26–28 tonnes.</li></ul><p>The final load and carton count are fixed once the packing and loading plan are approved. This estimate is not to be treated as a binding final weight.</p>",
+    "faq.q7":"Do you offer packing under the buyer's own brand?",
+    "faq.a7":"<p>Yes. Private label can be prepared carrying your brand name, artwork, language, barcode and importer details. The carton or label design is approved in writing before printing, and may be subject to a minimum quantity, an additional cost and extra preparation time.</p>",
+    "faq.q8":"Can a sample be sent before contracting?",
+    "faq.a8":"<p>Yes. A sample can be sent so you can assess quality and approve the specification before a commercial order is executed. The sample cost, the courier charge and the dispatch date depend on the country and the delivery method. Where the contract provides for it, the approved sample becomes the reference when the shipment is prepared.</p>",
+    "faq.q9":"How is the price determined?",
+    "faq.a9":"<p>Price depends on the grade, the specification, the crop, the quantity, the packing type, any private label, the Incoterm and the destination port. We therefore issue a separate quotation for each enquiry, and prices hold for the validity period written on that quotation, because product and freight rates move.</p>",
+    "faq.q10":"Which delivery terms are available?",
+    "faq.a10":"<p>We can quote on commercial terms such as:</p><ul><li><b>FOB Umm Qasr:</b> the consignment delivered on board at the port of Umm Qasr.</li><li><b>CFR:</b> the price includes sea freight to the destination port.</li><li><b>CIF:</b> the price includes sea freight and insurance to the destination port.</li></ul><p>The final delivery term is stated explicitly in the quotation and the contract, under the agreed Incoterms edition.</p>",
+    "faq.q11":"Which countries and ports do you ship to?",
+    "faq.a11":"<p>We handle export enquiries to international markets subject to the quantity, the availability of shipping lines and the import rules of the destination country. Send us the country and the port and we will review whether we can ship and quote the cost available.</p>",
+    "faq.q12":"How long does preparation take?",
+    "faq.a12":"<p>It varies with the quantity, the grade, crop availability and the packing type. Private label orders and large volumes normally need extra time for printing and preparation. We state the expected preparation time in writing in the quotation before work begins.</p>",
+    "faq.q13":"How long does sea freight take?",
+    "faq.a13":"<p>Transit time depends on the destination port, the shipping line, the vessel schedule, the transit routing and port procedures. We give an estimate when the freight offer is issued, but it remains subject to carrier and port schedules changing.</p>",
+    "faq.q14":"What are the payment terms?",
+    "faq.a14":"<p>Payment terms are set according to the order value, the quantity and the nature of the transaction. They may involve an agreed bank transfer, or a letter of credit for qualifying transactions. Preparation begins only after the agreement is signed and the payment or the financial guarantee specified in the contract has been received.</p>",
+    "faq.q15":"Which export documents are available?",
+    "faq.a15":"<p>Documents are prepared according to the product, the importing country and the terms of the contract, and may include:</p><ul><li>Commercial invoice.</li><li>Packing list.</li><li>Certificate of origin.</li><li>Health certificate or phytosanitary certificate where applicable.</li><li>Bill of lading.</li><li>Additional inspection certificates where the buyer requests them and they are agreed in advance.</li></ul><p>The importer must give us their country's specific requirements before the order is confirmed. No additional certificate should be assumed available unless it is named in the offer or the contract.</p>",
+    "faq.q16":"Do you allow the consignment to be inspected before loading?",
+    "faq.a16":"<p>Yes. Inspection and documentation during grading, packing and loading can be agreed. The buyer may also appoint an independent inspection body at their own cost, provided both the body and the acceptance criteria are agreed before preparation starts.</p>",
+    "faq.q17":"What is the shelf life and how should it be stored?",
+    "faq.a17":"<p>Shelf life depends on the condition of the crop, the moisture content, the packing type and the storage temperature. Dates must be kept somewhere cool, dry, clean and well ventilated, away from humidity, sunlight and strong odours. The final shelf life and storage conditions are stated on the packaging, according to the test results and the agreed specification.</p>",
+    "faq.q18":"Can you supply on a regular basis?",
+    "faq.a18":"<p>Yes. Monthly or seasonal supply and repeat volumes can be discussed, subject to crop availability and operating capacity. The quantity, the schedule and either the price or the mechanism for updating it are set out in a separate supply contract.</p>",
+    "faq.q19":"What do you need in order to quote accurately?",
+    "faq.a19":"<p>Please send the following:</p><ul><li>Company name and importing country.</li><li>Quantity required.</li><li>Quality grade, or the intended use.</li><li>Packing type and weight.</li><li>Port of arrival.</li><li>The delivery term you want: FOB, CFR or CIF.</li><li>Whether you need private label, or additional documents and inspections.</li><li>Email address and WhatsApp number.</li></ul><p>Once we have the complete information, we send the quotation and the available details as quickly as we can.</p>",
     "wa.msg":"Hello, I would like a wholesale quotation for Iraqi Zahdi dates.\nVolume required:\nGrade:\nDestination country:"
   };
 
@@ -1283,7 +1430,7 @@
       "mail.grade":"درجة الجودة","mail.pack":"نوع التعبئة","mail.contact":"بيانات التواصل","mail.notes":"ملاحظات",
       "rfq.sending":"جارٍ الإرسال…",
       "rfq.okTitle":"وصلنا طلبك.",
-      "rfq.okBody":"الرقم المرجعي <b class=\"ref\">{ref}</b> — يراجعه فريق التصدير الآن، ويصلك عرض سعر رسمي خلال يوم عمل واحد.",
+      "rfq.okBody":"الرقم المرجعي <b class=\"ref\">{ref}</b> — يراجعه فريق التصدير الآن، ونعود إليك بأسرع وقت بعد مراجعة المواصفات والشحن.",
       "rfq.errRequired":"يرجى إكمال الحقول المطلوبة.",
       "rfq.errRate":"استلمنا عدة طلبات من هذا الجهاز. يرجى المحاولة بعد قليل أو مراسلتنا مباشرة.",
       "rfq.errNet":"تعذّر إرسال الطلب الآن. راسلنا مباشرة على <a href=\"mailto:info@alsultan-dates.com\">info@alsultan-dates.com</a> أو عبر واتساب."
