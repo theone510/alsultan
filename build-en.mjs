@@ -135,15 +135,29 @@ meta(`name="twitter:description"`, EN["doc.ogDesc"]);
 /* ── 5. relative asset paths would resolve under /en/ — make them root-absolute */
 html = html.replace(/"assets\//g, '"/assets/').replace(/\(assets\//g, "(/assets/");
 
-/* ── 6. the WebPage node must describe THIS url, not the Arabic one ─────────── */
+/* ── 6. the graph must describe THIS document, not the Arabic one ───────────── */
+// The FAQ matters most here: Google requires FAQ markup to match the text actually
+// visible on the page, so leaving the Arabic questions on the English document
+// would be a mismatch, not a translation gap.
 html = html.replace(/(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/, (_, a, json, b) => {
   const data = JSON.parse(json);
   for (const node of data["@graph"]) {
-    if (node["@type"] !== "WebPage") continue;
-    node["@id"] = `${SITE}/en#webpage`;
-    node.url = `${SITE}/en`;
-    node.name = EN["doc.title"];
-    node.inLanguage = "en";
+    if (node["@type"] === "WebPage") {
+      node["@id"] = `${SITE}/en#webpage`;
+      node.url = `${SITE}/en`;
+      node.name = EN["doc.title"];
+      node.inLanguage = "en";
+    }
+    if (node["@type"] === "FAQPage") {
+      node["@id"] = `${SITE}/en#faq`;
+      node.isPartOf = { "@id": `${SITE}/en#webpage` };
+      node.inLanguage = "en";
+      node.mainEntity = node.mainEntity.map((_q, i) => {
+        const q = EN[`faq.q${i + 1}`], ans = EN[`faq.a${i + 1}`];
+        if (!q || !ans) throw new Error(`missing English text for faq.q${i + 1}/faq.a${i + 1}`);
+        return { "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: ans } };
+      });
+    }
   }
   return a + "\n" + JSON.stringify(data, null, 1) + "\n" + b;
 });

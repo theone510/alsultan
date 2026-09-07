@@ -14,11 +14,11 @@
   ],
   "rewrites": [
     {
-      "source": "/en/(why|film|origin|product|grades|packing|shipping|quote)",
+      "source": "/en/(why|film|origin|product|grades|packing|shipping|faq|quote)",
       "destination": "/en/index.html"
     },
     {
-      "source": "/(why|film|origin|product|grades|packing|shipping|quote)",
+      "source": "/(why|film|origin|product|grades|packing|shipping|faq|quote)",
       "destination": "/index.html"
     }
   ],

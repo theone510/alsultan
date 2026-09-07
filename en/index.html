@@ -190,6 +190,29 @@
   .gr-card ul li span{
     text-align:justify;text-align-last:start;hyphens:auto;-webkit-hyphens:auto}
 
+  /* FAQ - native <details>, so every answer sits in the DOM for crawlers and for
+     keyboard users even with no JavaScript at all */
+  #faq{padding:14vh 0}
+  #faq .head{text-align:center;margin-bottom:clamp(34px,5vw,56px)}
+  #faq .idx{display:block;margin-bottom:10px}
+  #faq .sub{color:var(--ivory-soft);max-width:58ch;margin:14px auto 0;font-size:clamp(14px,1.6vw,17px)}
+  #faq .faq-list{max-width:840px;margin-inline:auto;border-top:1px solid var(--line-soft)}
+  .faq-item{border-bottom:1px solid var(--line-soft)}
+  .faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;
+    padding:22px 4px;font-family:"El Messiri",serif;font-weight:600;color:var(--ivory);
+    font-size:clamp(16px,2vw,19px);line-height:1.5;transition:color .3s}
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary:hover{color:var(--gold-bright)}
+  .faq-item summary::after{content:"";flex:0 0 11px;height:11px;margin-inline-start:auto;
+    border-inline-end:1.5px solid var(--gold);border-block-end:1.5px solid var(--gold);
+    transform:rotate(45deg);transition:transform .35s var(--ease);transform-origin:60% 60%}
+  .faq-item[open] summary{color:var(--gold-bright)}
+  .faq-item[open] summary::after{transform:rotate(-135deg)}
+  .faq-item .a{padding:0 4px 24px}
+  .faq-item .a p{color:var(--ivory-soft);font-size:clamp(14.5px,1.7vw,16.5px);max-width:70ch;
+    text-align:justify;text-align-last:start;hyphens:auto;-webkit-hyphens:auto}
+  @media(prefers-reduced-motion:reduce){.faq-item summary::after{transition:none}}
+
   /* 4 · GRADES */
   #grades{padding:16vh 0}
   #grades .head{text-align:center;margin-bottom:clamp(40px,6vw,70px)} #grades .idx{display:block;margin-bottom:10px}
@@ -619,6 +642,88 @@
     "name": "Importers, distributors and repackers"
    },
    "inProductGroupWithID": "zahdi-bulk"
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://www.alsultan-zahdi-dates.com/en#faq",
+   "inLanguage": "en",
+   "isPartOf": {
+    "@id": "https://www.alsultan-zahdi-dates.com/en#webpage"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is the minimum order?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "We supply wholesale for export only. Trial orders start at one tonne, and shipping is most economical by full container load, 20ft or 40ft. We do not serve quantities below a tonne."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What separates the four grades, and which suits my market?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Grade A is for premium retail and consumer packing, Grade B for supermarket chains and regional distribution, Grade C for economy repacking and popular markets, and Grade D for processing into syrup, paste or feed. If you are unsure, tell us your market and target price and we will recommend the grade."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How many tonnes fit in a container?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It depends on the packing and the carton weight. As a guide, a 20ft container holds roughly 18 to 20 tonnes and a 40ft container roughly 26 to 28 tonnes. The exact figure is fixed in the quotation once the packing and pallet stacking are agreed."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do you print my own brand on the packing?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, and it is what sets us apart. Your brand and artwork are printed on the cartons and labels, and the label proof is approved with you before printing. Our export cartons ship with a blank label panel precisely for this."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Which Incoterms and ports do you ship from?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Our usual basis is FOB Umm Qasr, and we can quote CFR or CIF to your destination port on request. State the port and the Incoterm in your enquiry and we will price on that basis."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What is the lead time to shipment?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It depends on the volume, the grade and the harvest season. Orders covered by ready stock move fastest, while large volumes or your own branded packing need extra time for label printing and packing. The exact lead time is stated in writing in the quotation before you commit."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What are the payment terms?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The usual export basis: an advance by bank transfer with the balance against shipping documents, or a letter of credit for larger volumes. Final terms are agreed in the contract before preparation begins."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do you send a sample before shipment, and what documents come with it?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. A reference sample is sent for your approval before shipment, and the consignment is matched against it at loading under the supervision of our team in Karbala. Every shipment travels with the usual documents: certificate of origin, health certificate, phytosanitary certificate, packing list and bill of lading."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What is the shelf life and how should it be stored?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Zahdi dates keep in a cool, dry, well-ventilated place away from humidity and direct sun. Held that way they hold their quality for around twelve months, and refrigeration extends that while preserving texture and colour."
+     }
+    }
+   ]
   }
  ]
 }
@@ -638,7 +743,7 @@
 <header id="header">
   <a class="brand" href="#hero"><span class="wm" data-i18n="brand.wm">Alsultan Dates</span><span class="lm" data-i18n="brand.lm">Karbala · Iraq</span></a>
   <nav>
-    <a href="#product" data-i18n="nav.product">The Product</a><a href="#grades" data-i18n="nav.grades">Grades</a><a href="#packing" data-i18n="nav.packing">Packing</a><a href="#shipping" data-i18n="nav.shipping">Shipping</a>
+    <a href="#product" data-i18n="nav.product">The Product</a><a href="#grades" data-i18n="nav.grades">Grades</a><a href="#packing" data-i18n="nav.packing">Packing</a><a href="#shipping" data-i18n="nav.shipping">Shipping</a><a href="#faq" data-i18n="nav.faq">FAQ</a>
     <a class="nav-cta" href="#rfq" data-i18n="nav.quote">Request a Quote</a>
     <button class="lang-switch" id="langSwitch" type="button"><span data-lang="ar" lang="ar">ع</span><span data-lang="en" lang="en">EN</span></button>
   </nav>
@@ -840,7 +945,56 @@
   </section>
 
 
-  <!-- 8 · CTA -->
+  <!-- 8 . FAQ -->
+  <section id="faq" data-ambient="#100B07" data-glow=".4">
+    <div class="wrap">
+      <div class="head">
+        <span class="idx reveal" data-i18n="faq.idx">06 — Buyer questions</span>
+        <h2 class="gold-text reveal" data-i18n="faq.h2">What importers ask</h2>
+        <p class="sub reveal" data-i18n="faq.sub">Straight answers to what comes up before every first shipment. Anything not covered here, ask in your enquiry and we will answer in writing.</p>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q1">What is the minimum order?</span></summary>
+          <div class="a"><p data-i18n="faq.a1">We supply wholesale for export only. Trial orders start at one tonne, and shipping is most economical by full container load, 20ft or 40ft. We do not serve quantities below a tonne.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q2">What separates the four grades, and which suits my market?</span></summary>
+          <div class="a"><p data-i18n="faq.a2">Grade A is for premium retail and consumer packing, Grade B for supermarket chains and regional distribution, Grade C for economy repacking and popular markets, and Grade D for processing into syrup, paste or feed. If you are unsure, tell us your market and target price and we will recommend the grade.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q3">How many tonnes fit in a container?</span></summary>
+          <div class="a"><p data-i18n="faq.a3">It depends on the packing and the carton weight. As a guide, a 20ft container holds roughly 18 to 20 tonnes and a 40ft container roughly 26 to 28 tonnes. The exact figure is fixed in the quotation once the packing and pallet stacking are agreed.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q4">Do you print my own brand on the packing?</span></summary>
+          <div class="a"><p data-i18n="faq.a4">Yes, and it is what sets us apart. Your brand and artwork are printed on the cartons and labels, and the label proof is approved with you before printing. Our export cartons ship with a blank label panel precisely for this.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q5">Which Incoterms and ports do you ship from?</span></summary>
+          <div class="a"><p data-i18n="faq.a5">Our usual basis is FOB Umm Qasr, and we can quote CFR or CIF to your destination port on request. State the port and the Incoterm in your enquiry and we will price on that basis.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q6">What is the lead time to shipment?</span></summary>
+          <div class="a"><p data-i18n="faq.a6">It depends on the volume, the grade and the harvest season. Orders covered by ready stock move fastest, while large volumes or your own branded packing need extra time for label printing and packing. The exact lead time is stated in writing in the quotation before you commit.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q7">What are the payment terms?</span></summary>
+          <div class="a"><p data-i18n="faq.a7">The usual export basis: an advance by bank transfer with the balance against shipping documents, or a letter of credit for larger volumes. Final terms are agreed in the contract before preparation begins.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q8">Do you send a sample before shipment, and what documents come with it?</span></summary>
+          <div class="a"><p data-i18n="faq.a8">Yes. A reference sample is sent for your approval before shipment, and the consignment is matched against it at loading under the supervision of our team in Karbala. Every shipment travels with the usual documents: certificate of origin, health certificate, phytosanitary certificate, packing list and bill of lading.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q9">What is the shelf life and how should it be stored?</span></summary>
+          <div class="a"><p data-i18n="faq.a9">Zahdi dates keep in a cool, dry, well-ventilated place away from humidity and direct sun. Held that way they hold their quality for around twelve months, and refrigeration extends that while preserving texture and colour.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · CTA -->
   <section id="cta" data-ambient="#0D0906" data-glow=".5">
     <div class="stage fallback-host">
       <img class="cta-poster screen" id="ctaPoster" src="/assets/product-hero.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
@@ -859,7 +1013,7 @@
   <section id="rfq" data-ambient="#120D08" data-glow=".45">
     <div class="wrap"><div class="panel reveal">
       <div class="head">
-        <span class="idx" data-i18n="rfq.idx">06 — Request a Quote</span>
+        <span class="idx" data-i18n="rfq.idx">07 — Request a quote</span>
         <h2 class="gold-text" data-i18n="rfq.h2">Request a Quote</h2>
         <p class="sub" data-i18n="rfq.sub">For importers, distributors and repacking companies — your answer comes straight from the Alsultan Dates team.</p>
       </div>
@@ -906,7 +1060,7 @@
     <div class="wm gold-text" data-i18n="brand.wm">Alsultan Dates</div>
     <div class="lm" data-i18n="footer.lm">Karbala · Iraq · Wholesale &amp; Export</div>
     <p class="role" data-i18n="footer.role">The direct trading link between the Karbala supplier and importers worldwide — wholesale and export only.</p>
-    <nav class="links"><a href="#product" data-i18n="nav.product">The Product</a><a href="#grades" data-i18n="nav.grades">Grades</a><a href="#packing" data-i18n="nav.packing">Packing</a><a href="#shipping" data-i18n="nav.shipping">Shipping</a><a href="#rfq" data-i18n="nav.quote">Request a Quote</a></nav>
+    <nav class="links"><a href="#product" data-i18n="nav.product">The Product</a><a href="#grades" data-i18n="nav.grades">Grades</a><a href="#packing" data-i18n="nav.packing">Packing</a><a href="#shipping" data-i18n="nav.shipping">Shipping</a><a href="#faq" data-i18n="nav.faq">FAQ</a><a href="#rfq" data-i18n="nav.quote">Request a Quote</a></nav>
     <nav class="social">
       <a href="https://www.instagram.com/alsultan_dates_export" rel="me noopener" target="_blank" data-i18n="footer.instagram">Instagram</a>
       <a href="https://wa.me/971565553328" rel="noopener" target="_blank" data-i18n="footer.whatsapp">WhatsApp</a>
@@ -1067,6 +1221,29 @@
     "footer.email":"Email",
     "wa.fab":"WhatsApp",
     "wa.label":"Contact us on WhatsApp",
+    "nav.faq":"FAQ",
+    "faq.idx":"06 \u2014 Buyer questions",
+    "faq.h2":"What importers ask",
+    "faq.sub":"Straight answers to what comes up before every first shipment. Anything not covered here, ask in your enquiry and we will answer in writing.",
+    "rfq.idx":"07 \u2014 Request a quote",
+    "faq.q1":"What is the minimum order?",
+    "faq.a1":"We supply wholesale for export only. Trial orders start at one tonne, and shipping is most economical by full container load, 20ft or 40ft. We do not serve quantities below a tonne.",
+    "faq.q2":"What separates the four grades, and which suits my market?",
+    "faq.a2":"Grade A is for premium retail and consumer packing, Grade B for supermarket chains and regional distribution, Grade C for economy repacking and popular markets, and Grade D for processing into syrup, paste or feed. If you are unsure, tell us your market and target price and we will recommend the grade.",
+    "faq.q3":"How many tonnes fit in a container?",
+    "faq.a3":"It depends on the packing and the carton weight. As a guide, a 20ft container holds roughly 18 to 20 tonnes and a 40ft container roughly 26 to 28 tonnes. The exact figure is fixed in the quotation once the packing and pallet stacking are agreed.",
+    "faq.q4":"Do you print my own brand on the packing?",
+    "faq.a4":"Yes, and it is what sets us apart. Your brand and artwork are printed on the cartons and labels, and the label proof is approved with you before printing. Our export cartons ship with a blank label panel precisely for this.",
+    "faq.q5":"Which Incoterms and ports do you ship from?",
+    "faq.a5":"Our usual basis is FOB Umm Qasr, and we can quote CFR or CIF to your destination port on request. State the port and the Incoterm in your enquiry and we will price on that basis.",
+    "faq.q6":"What is the lead time to shipment?",
+    "faq.a6":"It depends on the volume, the grade and the harvest season. Orders covered by ready stock move fastest, while large volumes or your own branded packing need extra time for label printing and packing. The exact lead time is stated in writing in the quotation before you commit.",
+    "faq.q7":"What are the payment terms?",
+    "faq.a7":"The usual export basis: an advance by bank transfer with the balance against shipping documents, or a letter of credit for larger volumes. Final terms are agreed in the contract before preparation begins.",
+    "faq.q8":"Do you send a sample before shipment, and what documents come with it?",
+    "faq.a8":"Yes. A reference sample is sent for your approval before shipment, and the consignment is matched against it at loading under the supervision of our team in Karbala. Every shipment travels with the usual documents: certificate of origin, health certificate, phytosanitary certificate, packing list and bill of lading.",
+    "faq.q9":"What is the shelf life and how should it be stored?",
+    "faq.a9":"Zahdi dates keep in a cool, dry, well-ventilated place away from humidity and direct sun. Held that way they hold their quality for around twelve months, and refrigeration extends that while preserving texture and colour.",
     "wa.msg":"Hello, I would like a wholesale quotation for Iraqi Zahdi dates.\nVolume required:\nGrade:\nDestination country:"
   };
 
@@ -1220,7 +1397,7 @@
   // routes exist to be linked and shared, not to be indexed as separate pages.
   const ROUTER=(function(){
     const ROUTES={why:"why",film:"film",origin:"origin",product:"product",grades:"grades",
-                  packing:"packing",shipping:"shipping",rfq:"quote"};
+                  packing:"packing",shipping:"shipping",faq:"faq",rfq:"quote"};
     const BY_SLUG={}; for(const id in ROUTES) BY_SLUG[ROUTES[id]]=id;
     const prefix=()=>document.documentElement.lang==="en"?"/en":"";
     const pathFor=id=>ROUTES[id]?prefix()+"/"+ROUTES[id]:(prefix()||"/");
