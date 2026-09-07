@@ -42,8 +42,9 @@ You are a creative director + senior front-end engineer building **single-file, 
 link-preview scrapers that do not run JavaScript get a real English document (correct
 `lang`, `<title>`, Open Graph and a self-referencing canonical) instead of the Arabic one.
 
-**After ANY edit to `index.html`, regenerate it:**
+**After ANY edit to `index.html`, regenerate the derived files:**
 ```
-node build-en.mjs
+node build-en.mjs        # the pre-rendered English document
+node build-sitemap.mjs   # sitemap.xml (URLs, hreflang, image entries, lastmod)
 ```
 Never add a Vercel rewrite for `/en` — it would shadow the generated file and serve Arabic.
