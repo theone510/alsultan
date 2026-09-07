@@ -190,6 +190,36 @@
   .gr-card ul li span{
     text-align:justify;text-align-last:start;hyphens:auto;-webkit-hyphens:auto}
 
+  /* FAQ - native <details>, so every answer sits in the DOM for crawlers and for
+     keyboard users even with no JavaScript at all */
+  #faq{padding:14vh 0}
+  #faq .head{text-align:center;margin-bottom:clamp(34px,5vw,56px)}
+  #faq .idx{display:block;margin-bottom:10px}
+  #faq .sub{color:var(--ivory-soft);max-width:58ch;margin:14px auto 0;font-size:clamp(14px,1.6vw,17px)}
+  #faq .faq-list{max-width:840px;margin-inline:auto;border-top:1px solid var(--line-soft)}
+  .faq-item{border-bottom:1px solid var(--line-soft)}
+  .faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;
+    padding:22px 4px;font-family:"El Messiri",serif;font-weight:600;color:var(--ivory);
+    font-size:clamp(16px,2vw,19px);line-height:1.5;transition:color .3s}
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary:hover{color:var(--gold-bright)}
+  .faq-item summary::after{content:"";flex:0 0 11px;height:11px;margin-inline-start:auto;
+    border-inline-end:1.5px solid var(--gold);border-block-end:1.5px solid var(--gold);
+    transform:rotate(45deg);transition:transform .35s var(--ease);transform-origin:60% 60%}
+  .faq-item[open] summary{color:var(--gold-bright)}
+  .faq-item[open] summary::after{transform:rotate(-135deg)}
+  .faq-item .a{padding:0 4px 24px}
+  .faq-item .a p{color:var(--ivory-soft);font-size:clamp(14.5px,1.7vw,16.5px);max-width:70ch;
+    text-align:justify;text-align-last:start;hyphens:auto;-webkit-hyphens:auto}
+  .faq-item .a p + p{margin-top:12px}
+  .faq-item .a ul{list-style:none;margin:12px 0;max-width:70ch}
+  .faq-item .a ul li{position:relative;padding-inline-start:18px;margin:7px 0;
+    color:var(--ivory-soft);font-size:clamp(14px,1.6vw,16px);line-height:1.75}
+  .faq-item .a ul li::before{content:"";position:absolute;inset-inline-start:0;top:.72em;
+    width:5px;height:5px;border-radius:50%;background:var(--gold)}
+  .faq-item .a ul li b{color:var(--ivory);font-weight:500}
+  @media(prefers-reduced-motion:reduce){.faq-item summary::after{transition:none}}
+
   /* 4 · GRADES */
   #grades{padding:16vh 0}
   #grades .head{text-align:center;margin-bottom:clamp(40px,6vw,70px)} #grades .idx{display:block;margin-bottom:10px}
@@ -619,6 +649,168 @@
     "name": "Importers, distributors and repackers"
    },
    "inProductGroupWithID": "zahdi-bulk"
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://www.alsultan-zahdi-dates.com/#faq",
+   "inLanguage": "ar",
+   "isPartOf": {
+    "@id": "https://www.alsultan-zahdi-dates.com/#webpage"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "ما الحد الأدنى للطلب؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>نخدم طلبات الجملة والتصدير فقط، ولا نوفر البيع بالتجزئة. يبدأ الطلب التجريبي من طن واحد، بحسب الوجهة وإمكانية الشحن، بينما تحقق الحاوية الكاملة FCL عادةً تكلفة أفضل لكل طن. نحدد الخيار الأنسب بعد معرفة الكمية وميناء الوصول.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ما منشأ التمور؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>تمر الزهدي الذي نوفره عراقي المنشأ، ويجري جمعه وفرزه وتجهيزه من خلال موردينا في كربلاء. تُذكر بيانات المنشأ والمحصول ضمن عرض السعر والمستندات المتفق عليها.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ما الفرق بين درجات الجودة؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>نوفر درجات متعددة لتناسب الأسواق والاستخدامات المختلفة:</p><ul><li><b>الدرجة الأولى Grade A:</b> للتجزئة الفاخرة والتعبئة الاستهلاكية.</li><li><b>الدرجة الثانية Grade B:</b> للسوبرماركت وتجار الجملة والتوزيع.</li><li><b>الدرجة الثالثة Grade C:</b> لإعادة التعبئة والأسواق الاقتصادية.</li><li><b>الدرجة الصناعية Grade D:</b> لإنتاج الدبس والمعجون والاستخدامات الصناعية المناسبة.</li></ul><p>إذا لم تكن متأكدًا من الدرجة، أخبرنا بالاستخدام والسوق والسعر المستهدف، وسنقترح عليك الخيار الأقرب لاحتياجك.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "هل يمكن تخصيص المواصفات حسب طلب المشتري؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>نعم، يمكن مناقشة الحجم واللون ونسبة الرطوبة ودرجة الفرز ونوع التعبئة وحدود العيوب المقبولة وفق الكمية وإمكانات التجهيز. تُثبّت المواصفات النهائية في عرض السعر أو العقد والعينة المرجعية المعتمدة.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ما أنواع وأوزان التعبئة المتوفرة؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>نوفر التعبئة في كراتين أو أكياس غذائية بأوزان مختلفة، ومن ضمنها كراتين 10 كغم وأكياس الجملة، بحسب الدرجة والسوق المطلوب. تُؤكد مادة التعبئة والوزن الصافي والعدد داخل الحاوية قبل التعاقد.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "كم طنًا تستوعب الحاوية؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>تختلف الحمولة حسب نوع الحاوية، وحدود الوزن المسموح بها، ووزن العبوة، واستخدام البالتات وطريقة التنضيد. بصورة تقديرية:</p><ul><li>حاوية 20 قدمًا: قرابة 18–20 طنًا.</li><li>حاوية 40 قدمًا: قرابة 26–28 طنًا.</li></ul><p>الحمولة وعدد الكراتين النهائيان يُثبتان بعد اعتماد التعبئة وخطة التحميل، ولا يُعتمد التقدير بوصفه وزنًا نهائيًا ملزمًا.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "هل توفرون التعبئة بعلامة المشتري التجارية؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>نعم، يمكن تجهيز Private Label يتضمن اسم علامتك، التصميم، اللغة، الباركود وبيانات المستورد. يُعتمد تصميم الكرتون أو الملصق كتابةً قبل الطباعة، وقد يخضع لحد أدنى للكمية وتكلفة ومدة تجهيز إضافية.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "هل يمكن إرسال عينة قبل التعاقد؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>نعم، يمكن إرسال عينة لتقييم الجودة واعتماد المواصفة قبل تنفيذ الطلب التجاري. تُحدد تكلفة العينة والشحن وموعد إرسالها حسب الدولة وطريقة التوصيل. وتصبح العينة المعتمدة مرجعًا عند تجهيز الشحنة إذا نُص على ذلك في العقد.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "كيف يُحدد السعر؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>يعتمد السعر على الدرجة، والمواصفات، والمحصول، والكمية، ونوع التعبئة، والليبل الخاص، وشرط التسليم وميناء الوجهة. لذلك نصدر عرضًا منفصلًا لكل طلب، وتكون الأسعار صالحة للمدة المكتوبة في عرض السعر بسبب تغير أسعار المنتج والشحن.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ما شروط التسليم المتوفرة؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>يمكن تقديم العرض وفق شروط تجارية مثل:</p><ul><li><b>FOB أم قصر:</b> تسليم الشحنة على متن السفينة في ميناء أم قصر.</li><li><b>CFR:</b> السعر شامل أجور النقل البحري إلى ميناء الوجهة.</li><li><b>CIF:</b> السعر شامل النقل البحري والتأمين إلى ميناء الوجهة.</li></ul><p>يُحدد شرط التسليم النهائي بوضوح في عرض السعر والعقد وفق إصدار Incoterms المتفق عليه.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "إلى أي دول وموانئ تشحنون؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>نتعامل مع طلبات التصدير إلى الأسواق الدولية بحسب الكمية وتوافر خطوط الشحن وقواعد الاستيراد في دولة الوجهة. أرسل لنا اسم الدولة والميناء لنراجع إمكانية الشحن ونقدم التكلفة المتاحة.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "كم تستغرق مدة التجهيز؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>تختلف المدة حسب الكمية والدرجة وتوافر المحصول ونوع التعبئة. تحتاج طلبات الـPrivate Label والكميات الكبيرة عادةً وقتًا إضافيًا للطباعة والتجهيز. نثبت مدة التجهيز المتوقعة كتابةً في عرض السعر قبل بدء العمل.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "كم تستغرق مدة الشحن البحري؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>تعتمد مدة الوصول على ميناء الوجهة، وخط الملاحة، وجدول السفينة، ومسار الترانزيت والإجراءات المينائية. نقدم مدة تقديرية عند إصدار عرض الشحن، لكنها تبقى خاضعة لتغير جداول شركات الملاحة والموانئ.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ما شروط الدفع؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>تُحدد شروط الدفع وفق قيمة الطلب والكمية وطبيعة الصفقة. قد تشمل التحويل البنكي المتفق عليه أو الاعتماد المستندي L/C للصفقات المؤهلة. لا يبدأ التجهيز إلا بعد توقيع الاتفاق واستلام الدفعة أو الضمان المالي المحدد في العقد.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ما مستندات التصدير المتوفرة؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>تُجهز المستندات المطلوبة وفق المنتج ودولة الاستيراد وشروط العقد، وقد تشمل:</p><ul><li>الفاتورة التجارية.</li><li>قائمة التعبئة.</li><li>شهادة المنشأ.</li><li>الشهادة الصحية أو شهادة الفحص النباتي عند انطباقها.</li><li>بوليصة الشحن.</li><li>شهادات فحص إضافية إذا طلبها المشتري وتم الاتفاق عليها مسبقًا.</li></ul><p>يجب على المستورد تزويدنا بالمتطلبات الخاصة ببلده قبل تأكيد الطلب، ولا يُفترض توفر أي شهادة إضافية ما لم تُذكر في العرض أو العقد.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "هل تسمحون بفحص الشحنة قبل التحميل؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>نعم، يمكن الاتفاق على الفحص والتوثيق أثناء الفرز والتعبئة والتحميل. كما يمكن للمشتري طلب جهة فحص مستقلة على نفقته، بشرط الاتفاق عليها وعلى معيار القبول قبل بدء التجهيز.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ما مدة الصلاحية وطريقة التخزين؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>تعتمد مدة الصلاحية على حالة المحصول ونسبة الرطوبة ونوع التعبئة ودرجة حرارة التخزين. يجب حفظ التمور في مكان بارد وجاف ونظيف وجيد التهوية، بعيدًا عن الرطوبة وأشعة الشمس والروائح القوية. تُثبت مدة الصلاحية وشروط التخزين النهائية على العبوة وبحسب نتائج الفحص والمواصفة المتفق عليها.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "هل يمكن توفير توريد منتظم؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>نعم، يمكن مناقشة التوريد الشهري أو الموسمي والكميات المتكررة بحسب توافر المحصول والطاقة التشغيلية. تُحدد الكمية والجدول والسعر أو آلية تحديثه ضمن عقد توريد مستقل.</p>"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ماذا نحتاج لإصدار عرض سعر دقيق؟",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "<p>يرجى إرسال المعلومات التالية:</p><ul><li>اسم الشركة ودولة الاستيراد.</li><li>الكمية المطلوبة.</li><li>درجة الجودة أو الاستخدام المقصود.</li><li>نوع ووزن التعبئة.</li><li>ميناء الوصول.</li><li>شرط التسليم المطلوب: FOB أو CFR أو CIF.</li><li>الحاجة إلى علامة خاصة أو مستندات وفحوص إضافية.</li><li>البريد الإلكتروني ورقم واتساب.</li></ul><p>بعد استلام المعلومات الكاملة، نرسل عرض السعر والتفاصيل المتاحة بأسرع وقت ممكن.</p>"
+     }
+    }
+   ]
   }
  ]
 }
@@ -638,7 +830,7 @@
 <header id="header">
   <a class="brand" href="#hero"><span class="wm" data-i18n="brand.wm">تمور السلطان</span><span class="lm" data-i18n="brand.lm">Alsultan Dates</span></a>
   <nav>
-    <a href="#product" data-i18n="nav.product">المنتج</a><a href="#grades" data-i18n="nav.grades">درجات الجودة</a><a href="#packing" data-i18n="nav.packing">التعبئة</a><a href="#shipping" data-i18n="nav.shipping">الشحن</a>
+    <a href="#product" data-i18n="nav.product">المنتج</a><a href="#grades" data-i18n="nav.grades">درجات الجودة</a><a href="#packing" data-i18n="nav.packing">التعبئة</a><a href="#shipping" data-i18n="nav.shipping">الشحن</a><a href="#faq" data-i18n="nav.faq">الأسئلة</a>
     <a class="nav-cta" href="#rfq" data-i18n="nav.quote">اطلب عرض سعر</a>
     <button class="lang-switch" id="langSwitch" type="button"><span data-lang="ar" lang="ar">ع</span><span data-lang="en" lang="en">EN</span></button>
   </nav>
@@ -840,7 +1032,96 @@
   </section>
 
 
-  <!-- 8 · CTA -->
+  <!-- 8 . FAQ -->
+  <section id="faq" data-ambient="#100B07" data-glow=".4">
+    <div class="wrap">
+      <div class="head">
+        <span class="idx reveal" data-i18n="faq.idx">٠٦ — أسئلة المشترين</span>
+        <h2 class="gold-text reveal" data-i18n="faq.h2">ما يسأل عنه المستوردون</h2>
+        <p class="sub reveal" data-i18n="faq.sub">إجابات واضحة عن أهم ما يحتاج المستورد إلى معرفته قبل الشحنة الأولى. وإذا لم تجد سؤالك هنا، أرسله ضمن طلب التسعير وسنجيبك عنه كتابةً.</p>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q1">ما الحد الأدنى للطلب؟</span></summary>
+          <div class="a" data-i18n="faq.a1"><p>نخدم طلبات الجملة والتصدير فقط، ولا نوفر البيع بالتجزئة. يبدأ الطلب التجريبي من طن واحد، بحسب الوجهة وإمكانية الشحن، بينما تحقق الحاوية الكاملة FCL عادةً تكلفة أفضل لكل طن. نحدد الخيار الأنسب بعد معرفة الكمية وميناء الوصول.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q2">ما منشأ التمور؟</span></summary>
+          <div class="a" data-i18n="faq.a2"><p>تمر الزهدي الذي نوفره عراقي المنشأ، ويجري جمعه وفرزه وتجهيزه من خلال موردينا في كربلاء. تُذكر بيانات المنشأ والمحصول ضمن عرض السعر والمستندات المتفق عليها.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q3">ما الفرق بين درجات الجودة؟</span></summary>
+          <div class="a" data-i18n="faq.a3"><p>نوفر درجات متعددة لتناسب الأسواق والاستخدامات المختلفة:</p><ul><li><b>الدرجة الأولى Grade A:</b> للتجزئة الفاخرة والتعبئة الاستهلاكية.</li><li><b>الدرجة الثانية Grade B:</b> للسوبرماركت وتجار الجملة والتوزيع.</li><li><b>الدرجة الثالثة Grade C:</b> لإعادة التعبئة والأسواق الاقتصادية.</li><li><b>الدرجة الصناعية Grade D:</b> لإنتاج الدبس والمعجون والاستخدامات الصناعية المناسبة.</li></ul><p>إذا لم تكن متأكدًا من الدرجة، أخبرنا بالاستخدام والسوق والسعر المستهدف، وسنقترح عليك الخيار الأقرب لاحتياجك.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q4">هل يمكن تخصيص المواصفات حسب طلب المشتري؟</span></summary>
+          <div class="a" data-i18n="faq.a4"><p>نعم، يمكن مناقشة الحجم واللون ونسبة الرطوبة ودرجة الفرز ونوع التعبئة وحدود العيوب المقبولة وفق الكمية وإمكانات التجهيز. تُثبّت المواصفات النهائية في عرض السعر أو العقد والعينة المرجعية المعتمدة.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q5">ما أنواع وأوزان التعبئة المتوفرة؟</span></summary>
+          <div class="a" data-i18n="faq.a5"><p>نوفر التعبئة في كراتين أو أكياس غذائية بأوزان مختلفة، ومن ضمنها كراتين 10 كغم وأكياس الجملة، بحسب الدرجة والسوق المطلوب. تُؤكد مادة التعبئة والوزن الصافي والعدد داخل الحاوية قبل التعاقد.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q6">كم طنًا تستوعب الحاوية؟</span></summary>
+          <div class="a" data-i18n="faq.a6"><p>تختلف الحمولة حسب نوع الحاوية، وحدود الوزن المسموح بها، ووزن العبوة، واستخدام البالتات وطريقة التنضيد. بصورة تقديرية:</p><ul><li>حاوية 20 قدمًا: قرابة 18–20 طنًا.</li><li>حاوية 40 قدمًا: قرابة 26–28 طنًا.</li></ul><p>الحمولة وعدد الكراتين النهائيان يُثبتان بعد اعتماد التعبئة وخطة التحميل، ولا يُعتمد التقدير بوصفه وزنًا نهائيًا ملزمًا.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q7">هل توفرون التعبئة بعلامة المشتري التجارية؟</span></summary>
+          <div class="a" data-i18n="faq.a7"><p>نعم، يمكن تجهيز Private Label يتضمن اسم علامتك، التصميم، اللغة، الباركود وبيانات المستورد. يُعتمد تصميم الكرتون أو الملصق كتابةً قبل الطباعة، وقد يخضع لحد أدنى للكمية وتكلفة ومدة تجهيز إضافية.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q8">هل يمكن إرسال عينة قبل التعاقد؟</span></summary>
+          <div class="a" data-i18n="faq.a8"><p>نعم، يمكن إرسال عينة لتقييم الجودة واعتماد المواصفة قبل تنفيذ الطلب التجاري. تُحدد تكلفة العينة والشحن وموعد إرسالها حسب الدولة وطريقة التوصيل. وتصبح العينة المعتمدة مرجعًا عند تجهيز الشحنة إذا نُص على ذلك في العقد.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q9">كيف يُحدد السعر؟</span></summary>
+          <div class="a" data-i18n="faq.a9"><p>يعتمد السعر على الدرجة، والمواصفات، والمحصول، والكمية، ونوع التعبئة، والليبل الخاص، وشرط التسليم وميناء الوجهة. لذلك نصدر عرضًا منفصلًا لكل طلب، وتكون الأسعار صالحة للمدة المكتوبة في عرض السعر بسبب تغير أسعار المنتج والشحن.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q10">ما شروط التسليم المتوفرة؟</span></summary>
+          <div class="a" data-i18n="faq.a10"><p>يمكن تقديم العرض وفق شروط تجارية مثل:</p><ul><li><b>FOB أم قصر:</b> تسليم الشحنة على متن السفينة في ميناء أم قصر.</li><li><b>CFR:</b> السعر شامل أجور النقل البحري إلى ميناء الوجهة.</li><li><b>CIF:</b> السعر شامل النقل البحري والتأمين إلى ميناء الوجهة.</li></ul><p>يُحدد شرط التسليم النهائي بوضوح في عرض السعر والعقد وفق إصدار Incoterms المتفق عليه.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q11">إلى أي دول وموانئ تشحنون؟</span></summary>
+          <div class="a" data-i18n="faq.a11"><p>نتعامل مع طلبات التصدير إلى الأسواق الدولية بحسب الكمية وتوافر خطوط الشحن وقواعد الاستيراد في دولة الوجهة. أرسل لنا اسم الدولة والميناء لنراجع إمكانية الشحن ونقدم التكلفة المتاحة.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q12">كم تستغرق مدة التجهيز؟</span></summary>
+          <div class="a" data-i18n="faq.a12"><p>تختلف المدة حسب الكمية والدرجة وتوافر المحصول ونوع التعبئة. تحتاج طلبات الـPrivate Label والكميات الكبيرة عادةً وقتًا إضافيًا للطباعة والتجهيز. نثبت مدة التجهيز المتوقعة كتابةً في عرض السعر قبل بدء العمل.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q13">كم تستغرق مدة الشحن البحري؟</span></summary>
+          <div class="a" data-i18n="faq.a13"><p>تعتمد مدة الوصول على ميناء الوجهة، وخط الملاحة، وجدول السفينة، ومسار الترانزيت والإجراءات المينائية. نقدم مدة تقديرية عند إصدار عرض الشحن، لكنها تبقى خاضعة لتغير جداول شركات الملاحة والموانئ.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q14">ما شروط الدفع؟</span></summary>
+          <div class="a" data-i18n="faq.a14"><p>تُحدد شروط الدفع وفق قيمة الطلب والكمية وطبيعة الصفقة. قد تشمل التحويل البنكي المتفق عليه أو الاعتماد المستندي L/C للصفقات المؤهلة. لا يبدأ التجهيز إلا بعد توقيع الاتفاق واستلام الدفعة أو الضمان المالي المحدد في العقد.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q15">ما مستندات التصدير المتوفرة؟</span></summary>
+          <div class="a" data-i18n="faq.a15"><p>تُجهز المستندات المطلوبة وفق المنتج ودولة الاستيراد وشروط العقد، وقد تشمل:</p><ul><li>الفاتورة التجارية.</li><li>قائمة التعبئة.</li><li>شهادة المنشأ.</li><li>الشهادة الصحية أو شهادة الفحص النباتي عند انطباقها.</li><li>بوليصة الشحن.</li><li>شهادات فحص إضافية إذا طلبها المشتري وتم الاتفاق عليها مسبقًا.</li></ul><p>يجب على المستورد تزويدنا بالمتطلبات الخاصة ببلده قبل تأكيد الطلب، ولا يُفترض توفر أي شهادة إضافية ما لم تُذكر في العرض أو العقد.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q16">هل تسمحون بفحص الشحنة قبل التحميل؟</span></summary>
+          <div class="a" data-i18n="faq.a16"><p>نعم، يمكن الاتفاق على الفحص والتوثيق أثناء الفرز والتعبئة والتحميل. كما يمكن للمشتري طلب جهة فحص مستقلة على نفقته، بشرط الاتفاق عليها وعلى معيار القبول قبل بدء التجهيز.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q17">ما مدة الصلاحية وطريقة التخزين؟</span></summary>
+          <div class="a" data-i18n="faq.a17"><p>تعتمد مدة الصلاحية على حالة المحصول ونسبة الرطوبة ونوع التعبئة ودرجة حرارة التخزين. يجب حفظ التمور في مكان بارد وجاف ونظيف وجيد التهوية، بعيدًا عن الرطوبة وأشعة الشمس والروائح القوية. تُثبت مدة الصلاحية وشروط التخزين النهائية على العبوة وبحسب نتائج الفحص والمواصفة المتفق عليها.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q18">هل يمكن توفير توريد منتظم؟</span></summary>
+          <div class="a" data-i18n="faq.a18"><p>نعم، يمكن مناقشة التوريد الشهري أو الموسمي والكميات المتكررة بحسب توافر المحصول والطاقة التشغيلية. تُحدد الكمية والجدول والسعر أو آلية تحديثه ضمن عقد توريد مستقل.</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary><span data-i18n="faq.q19">ماذا نحتاج لإصدار عرض سعر دقيق؟</span></summary>
+          <div class="a" data-i18n="faq.a19"><p>يرجى إرسال المعلومات التالية:</p><ul><li>اسم الشركة ودولة الاستيراد.</li><li>الكمية المطلوبة.</li><li>درجة الجودة أو الاستخدام المقصود.</li><li>نوع ووزن التعبئة.</li><li>ميناء الوصول.</li><li>شرط التسليم المطلوب: FOB أو CFR أو CIF.</li><li>الحاجة إلى علامة خاصة أو مستندات وفحوص إضافية.</li><li>البريد الإلكتروني ورقم واتساب.</li></ul><p>بعد استلام المعلومات الكاملة، نرسل عرض السعر والتفاصيل المتاحة بأسرع وقت ممكن.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · CTA -->
   <section id="cta" data-ambient="#0D0906" data-glow=".5">
     <div class="stage fallback-host">
       <img class="cta-poster screen" id="ctaPoster" src="assets/product-hero.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
@@ -849,7 +1130,7 @@
       <div class="content" id="ctaContent">
         <span class="latin">Wholesale &amp; Export Only</span>
         <h2 class="gold-text" data-i18n="cta.h2">جاهزون لشحنتك الأولى</h2>
-        <p data-i18n="cta.p">أخبرنا بالكمية والدرجة والوجهة — ونعود إليك بعرض سعرٍ رسمي خلال يوم عمل.</p>
+        <p data-i18n="cta.p">أخبرنا بالكمية والدرجة والوجهة — ونعود إليك بأسرع وقت بعد مراجعة المواصفات والشحن.</p>
         <div class="btns"><a class="btn btn-primary" href="#rfq" data-i18n="cta.btn1">اطلب عرض سعر الجملة</a><a class="btn btn-ghost" href="#grades" data-i18n="cta.btn2">استعرض الدرجات</a></div>
       </div>
     </div>
@@ -859,7 +1140,7 @@
   <section id="rfq" data-ambient="#120D08" data-glow=".45">
     <div class="wrap"><div class="panel reveal">
       <div class="head">
-        <span class="idx" data-i18n="rfq.idx">٠٦ — طلب عرض سعر</span>
+        <span class="idx" data-i18n="rfq.idx">٠٧ — طلب عرض سعر</span>
         <h2 class="gold-text" data-i18n="rfq.h2">Request a Quote</h2>
         <p class="sub" data-i18n="rfq.sub">للمستوردين والموزعين وشركات إعادة التعبئة — تصلك الإجابة من فريق «تمور السلطان» مباشرة.</p>
       </div>
@@ -906,7 +1187,7 @@
     <div class="wm gold-text" data-i18n="brand.wm">تمور السلطان</div>
     <div class="lm" data-i18n="footer.lm">Alsultan Dates · Karbala · Iraq</div>
     <p class="role" data-i18n="footer.role">الوسيط التجاري المباشر بين مورّد كربلاء والمستوردين حول العالم — جملة وتصدير حصراً.</p>
-    <nav class="links"><a href="#product" data-i18n="nav.product">المنتج</a><a href="#grades" data-i18n="nav.grades">درجات الجودة</a><a href="#packing" data-i18n="nav.packing">التعبئة</a><a href="#shipping" data-i18n="nav.shipping">الشحن</a><a href="#rfq" data-i18n="nav.quote">اطلب عرض سعر</a></nav>
+    <nav class="links"><a href="#product" data-i18n="nav.product">المنتج</a><a href="#grades" data-i18n="nav.grades">درجات الجودة</a><a href="#packing" data-i18n="nav.packing">التعبئة</a><a href="#shipping" data-i18n="nav.shipping">الشحن</a><a href="#faq" data-i18n="nav.faq">الأسئلة</a><a href="#rfq" data-i18n="nav.quote">اطلب عرض سعر</a></nav>
     <nav class="social">
       <a href="https://www.instagram.com/alsultan_dates_export" rel="me noopener" target="_blank" data-i18n="footer.instagram">إنستغرام</a>
       <a href="https://wa.me/971565553328" rel="noopener" target="_blank" data-i18n="footer.whatsapp">واتساب</a>
@@ -1025,7 +1306,7 @@
     "why.alt":"Quality inspection at source",
 
     "cta.h2":"Ready for your first shipment",
-    "cta.p":"Tell us the volume, the grade and the destination — we'll come back with a formal quotation within one business day.",
+    "cta.p":"Tell us the volume, the grade and the destination — we'll come back to you as soon as we have reviewed the specification and the shipping.",
     "cta.btn1":"Request a wholesale quote", "cta.btn2":"See the grades",
 
     "rfq.idx":"06 — Request a Quote",
@@ -1057,7 +1338,7 @@
 
     "rfq.sending":"Sending…",
     "rfq.okTitle":"We received your request.",
-    "rfq.okBody":"Reference <b class=\"ref\">{ref}</b> — our export team is reviewing it now and a formal quotation will reach you within one business day.",
+    "rfq.okBody":"Reference <b class=\"ref\">{ref}</b> — our export team is reviewing it now, and we will come back to you as soon as we have reviewed the specification and the shipping.",
     "rfq.errRequired":"Please complete the required fields.",
     "rfq.errRate":"We already received several requests from this device. Please try again shortly, or contact us directly.",
     "rfq.errNet":"We couldn't send the request right now. Please email <a href=\"mailto:info@alsultan-dates.com\">info@alsultan-dates.com</a> or reach us on WhatsApp.",
@@ -1067,6 +1348,49 @@
     "footer.email":"Email",
     "wa.fab":"WhatsApp",
     "wa.label":"Contact us on WhatsApp",
+    "nav.faq":"FAQ",
+    "faq.idx":"06 \u2014 Buyer questions",
+    "faq.h2":"What importers ask",
+    "faq.sub":"Clear answers to what an importer most needs to know before a first shipment. If your question is not here, send it with your enquiry and we will answer it in writing.",
+    "rfq.idx":"07 \u2014 Request a quote",
+    "faq.q1":"What is the minimum order?",
+    "faq.a1":"<p>We serve wholesale and export enquiries only; we do not sell retail. A trial order starts from one tonne, subject to the destination and to shipping availability, while a full container load usually achieves a better cost per tonne. We advise on the most suitable option once we know the quantity and the port of arrival.</p>",
+    "faq.q2":"Where do the dates come from?",
+    "faq.a2":"<p>The Zahdi dates we supply are of Iraqi origin, collected, graded and prepared through our suppliers in Karbala. Origin and crop details are stated in the quotation and in the agreed documents.</p>",
+    "faq.q3":"What separates the quality grades?",
+    "faq.a3":"<p>We offer several grades to suit different markets and uses:</p><ul><li><b>Grade A:</b> premium retail and consumer packing.</li><li><b>Grade B:</b> supermarkets, wholesalers and distribution.</li><li><b>Grade C:</b> repacking and economy markets.</li><li><b>Grade D, industrial:</b> syrup and paste production and other suitable industrial uses.</li></ul><p>If you are unsure which grade you need, tell us the intended use, the market and your target price, and we will suggest the closest fit.</p>",
+    "faq.q4":"Can the specification be tailored to the buyer?",
+    "faq.a4":"<p>Yes. Size, colour, moisture content, grading, packing type and acceptable defect limits can all be discussed, subject to the quantity and to processing capacity. The final specification is fixed in the quotation or contract and in the approved reference sample.</p>",
+    "faq.q5":"What packing types and weights are available?",
+    "faq.a5":"<p>We pack in cartons or food-grade bags in a range of weights, including 10 kg cartons and bulk bags, according to the grade and the target market. The packing material, net weight and count per container are confirmed before contracting.</p>",
+    "faq.q6":"How many tonnes fit in a container?",
+    "faq.a6":"<p>The load varies with the container type, the permitted weight limits, the packaging weight, and whether pallets are used and how the cargo is stacked. As a rough guide:</p><ul><li>20ft container: approximately 18–20 tonnes.</li><li>40ft container: approximately 26–28 tonnes.</li></ul><p>The final load and carton count are fixed once the packing and loading plan are approved. This estimate is not to be treated as a binding final weight.</p>",
+    "faq.q7":"Do you offer packing under the buyer's own brand?",
+    "faq.a7":"<p>Yes. Private label can be prepared carrying your brand name, artwork, language, barcode and importer details. The carton or label design is approved in writing before printing, and may be subject to a minimum quantity, an additional cost and extra preparation time.</p>",
+    "faq.q8":"Can a sample be sent before contracting?",
+    "faq.a8":"<p>Yes. A sample can be sent so you can assess quality and approve the specification before a commercial order is executed. The sample cost, the courier charge and the dispatch date depend on the country and the delivery method. Where the contract provides for it, the approved sample becomes the reference when the shipment is prepared.</p>",
+    "faq.q9":"How is the price determined?",
+    "faq.a9":"<p>Price depends on the grade, the specification, the crop, the quantity, the packing type, any private label, the Incoterm and the destination port. We therefore issue a separate quotation for each enquiry, and prices hold for the validity period written on that quotation, because product and freight rates move.</p>",
+    "faq.q10":"Which delivery terms are available?",
+    "faq.a10":"<p>We can quote on commercial terms such as:</p><ul><li><b>FOB Umm Qasr:</b> the consignment delivered on board at the port of Umm Qasr.</li><li><b>CFR:</b> the price includes sea freight to the destination port.</li><li><b>CIF:</b> the price includes sea freight and insurance to the destination port.</li></ul><p>The final delivery term is stated explicitly in the quotation and the contract, under the agreed Incoterms edition.</p>",
+    "faq.q11":"Which countries and ports do you ship to?",
+    "faq.a11":"<p>We handle export enquiries to international markets subject to the quantity, the availability of shipping lines and the import rules of the destination country. Send us the country and the port and we will review whether we can ship and quote the cost available.</p>",
+    "faq.q12":"How long does preparation take?",
+    "faq.a12":"<p>It varies with the quantity, the grade, crop availability and the packing type. Private label orders and large volumes normally need extra time for printing and preparation. We state the expected preparation time in writing in the quotation before work begins.</p>",
+    "faq.q13":"How long does sea freight take?",
+    "faq.a13":"<p>Transit time depends on the destination port, the shipping line, the vessel schedule, the transit routing and port procedures. We give an estimate when the freight offer is issued, but it remains subject to carrier and port schedules changing.</p>",
+    "faq.q14":"What are the payment terms?",
+    "faq.a14":"<p>Payment terms are set according to the order value, the quantity and the nature of the transaction. They may involve an agreed bank transfer, or a letter of credit for qualifying transactions. Preparation begins only after the agreement is signed and the payment or the financial guarantee specified in the contract has been received.</p>",
+    "faq.q15":"Which export documents are available?",
+    "faq.a15":"<p>Documents are prepared according to the product, the importing country and the terms of the contract, and may include:</p><ul><li>Commercial invoice.</li><li>Packing list.</li><li>Certificate of origin.</li><li>Health certificate or phytosanitary certificate where applicable.</li><li>Bill of lading.</li><li>Additional inspection certificates where the buyer requests them and they are agreed in advance.</li></ul><p>The importer must give us their country's specific requirements before the order is confirmed. No additional certificate should be assumed available unless it is named in the offer or the contract.</p>",
+    "faq.q16":"Do you allow the consignment to be inspected before loading?",
+    "faq.a16":"<p>Yes. Inspection and documentation during grading, packing and loading can be agreed. The buyer may also appoint an independent inspection body at their own cost, provided both the body and the acceptance criteria are agreed before preparation starts.</p>",
+    "faq.q17":"What is the shelf life and how should it be stored?",
+    "faq.a17":"<p>Shelf life depends on the condition of the crop, the moisture content, the packing type and the storage temperature. Dates must be kept somewhere cool, dry, clean and well ventilated, away from humidity, sunlight and strong odours. The final shelf life and storage conditions are stated on the packaging, according to the test results and the agreed specification.</p>",
+    "faq.q18":"Can you supply on a regular basis?",
+    "faq.a18":"<p>Yes. Monthly or seasonal supply and repeat volumes can be discussed, subject to crop availability and operating capacity. The quantity, the schedule and either the price or the mechanism for updating it are set out in a separate supply contract.</p>",
+    "faq.q19":"What do you need in order to quote accurately?",
+    "faq.a19":"<p>Please send the following:</p><ul><li>Company name and importing country.</li><li>Quantity required.</li><li>Quality grade, or the intended use.</li><li>Packing type and weight.</li><li>Port of arrival.</li><li>The delivery term you want: FOB, CFR or CIF.</li><li>Whether you need private label, or additional documents and inspections.</li><li>Email address and WhatsApp number.</li></ul><p>Once we have the complete information, we send the quotation and the available details as quickly as we can.</p>",
     "wa.msg":"Hello, I would like a wholesale quotation for Iraqi Zahdi dates.\nVolume required:\nGrade:\nDestination country:"
   };
 
@@ -1106,7 +1430,7 @@
       "mail.grade":"درجة الجودة","mail.pack":"نوع التعبئة","mail.contact":"بيانات التواصل","mail.notes":"ملاحظات",
       "rfq.sending":"جارٍ الإرسال…",
       "rfq.okTitle":"وصلنا طلبك.",
-      "rfq.okBody":"الرقم المرجعي <b class=\"ref\">{ref}</b> — يراجعه فريق التصدير الآن، ويصلك عرض سعر رسمي خلال يوم عمل واحد.",
+      "rfq.okBody":"الرقم المرجعي <b class=\"ref\">{ref}</b> — يراجعه فريق التصدير الآن، ونعود إليك بأسرع وقت بعد مراجعة المواصفات والشحن.",
       "rfq.errRequired":"يرجى إكمال الحقول المطلوبة.",
       "rfq.errRate":"استلمنا عدة طلبات من هذا الجهاز. يرجى المحاولة بعد قليل أو مراسلتنا مباشرة.",
       "rfq.errNet":"تعذّر إرسال الطلب الآن. راسلنا مباشرة على <a href=\"mailto:info@alsultan-dates.com\">info@alsultan-dates.com</a> أو عبر واتساب."
@@ -1220,7 +1544,7 @@
   // routes exist to be linked and shared, not to be indexed as separate pages.
   const ROUTER=(function(){
     const ROUTES={why:"why",film:"film",origin:"origin",product:"product",grades:"grades",
-                  packing:"packing",shipping:"shipping",rfq:"quote"};
+                  packing:"packing",shipping:"shipping",faq:"faq",rfq:"quote"};
     const BY_SLUG={}; for(const id in ROUTES) BY_SLUG[ROUTES[id]]=id;
     const prefix=()=>document.documentElement.lang==="en"?"/en":"";
     const pathFor=id=>ROUTES[id]?prefix()+"/"+ROUTES[id]:(prefix()||"/");
