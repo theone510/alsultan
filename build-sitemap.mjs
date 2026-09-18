@@ -41,8 +41,10 @@ function lastmodOf(file) {
 const SKIP = /(favicon|apple-touch-icon|icon-\d+|logo|emblem-master)/;
 function imagesOf(file) {
   const html = readFileSync(file, "utf8");
+  // pages served at a nested path (/experience/film) carry root-absolute asset
+  // paths, so accept both spellings and normalise to the repo-relative one
   const found = [...new Set(
-    [...html.matchAll(/(?:src|href)="(assets\/[^"]+\.(?:jpg|jpeg|png|webp))"/g)].map(m => m[1])
+    [...html.matchAll(/(?:src|href)="\/?(assets\/[^"]+\.(?:jpg|jpeg|png|webp))"/g)].map(m => m[1])
   )].filter(f => !SKIP.test(f)).sort();
   if (!found.length) throw new Error(`no content images found in ${file} — check the markup`);
   return found;
