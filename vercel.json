@@ -10,15 +10,38 @@
       "source": "/index.html",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/experience.html",
+      "destination": "/experience",
+      "permanent": true
+    },
+    {
+      "source": "/(film|origin)",
+      "destination": "/experience",
+      "permanent": true
+    },
+    {
+      "source": "/en/(film|origin)",
+      "destination": "/en/experience",
+      "permanent": true
     }
   ],
   "rewrites": [
     {
-      "source": "/en/(why|film|origin|product|grades|packing|shipping|faq|quote)",
+      "source": "/en/experience/(film|origin|product)",
+      "destination": "/en/experience.html"
+    },
+    {
+      "source": "/experience/(film|origin|product)",
+      "destination": "/experience.html"
+    },
+    {
+      "source": "/en/(why|grades|packing|product|gallery|shipping|faq|quote)",
       "destination": "/en/index.html"
     },
     {
-      "source": "/(why|film|origin|product|grades|packing|shipping|faq|quote)",
+      "source": "/(why|grades|packing|product|gallery|shipping|faq|quote)",
       "destination": "/index.html"
     }
   ],
