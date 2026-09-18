@@ -10,14 +10,20 @@
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.alsultan-zahdi-dates.com/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.alsultan-zahdi-dates.com/en" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alsultan-zahdi-dates.com/" />
-    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/inspect.jpg</image:loc></image:image>
-    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/label.jpg</image:loc></image:image>
-    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/origin.jpg</image:loc></image:image>
-    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/pack-bag.jpg</image:loc></image:image>
-    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/pack-carton.jpg</image:loc></image:image>
     <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/port.jpg</image:loc></image:image>
-    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/product-cut.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/product-hero.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/dates-01.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/dates-02.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/dates-03.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/dates-04.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/facility-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/facility-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/hero.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/label-nutrition.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/label.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/pack-bags.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/pack-carton.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/pack-crate.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/why.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.alsultan-zahdi-dates.com/en</loc>
@@ -27,12 +33,42 @@
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.alsultan-zahdi-dates.com/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.alsultan-zahdi-dates.com/en" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alsultan-zahdi-dates.com/" />
-    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/inspect.jpg</image:loc></image:image>
-    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/label.jpg</image:loc></image:image>
-    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/origin.jpg</image:loc></image:image>
-    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/pack-bag.jpg</image:loc></image:image>
-    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/pack-carton.jpg</image:loc></image:image>
     <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/port.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/dates-01.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/dates-02.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/dates-03.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/dates-04.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/facility-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/facility-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/hero.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/label-nutrition.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/label.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/pack-bags.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/pack-carton.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/pack-crate.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/real/why.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.alsultan-zahdi-dates.com/experience</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.alsultan-zahdi-dates.com/experience" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alsultan-zahdi-dates.com/en/experience" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alsultan-zahdi-dates.com/experience" />
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/origin.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/product-cut.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/product-hero.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.alsultan-zahdi-dates.com/en/experience</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.alsultan-zahdi-dates.com/experience" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alsultan-zahdi-dates.com/en/experience" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alsultan-zahdi-dates.com/experience" />
+    <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/origin.jpg</image:loc></image:image>
     <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/product-cut.webp</image:loc></image:image>
     <image:image><image:loc>https://www.alsultan-zahdi-dates.com/assets/product-hero.jpg</image:loc></image:image>
   </url>

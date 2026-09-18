@@ -1,4 +1,4 @@
-// Pre-renders the English page as a real static document at en/index.html.
+// Pre-renders each English page as a real static document under en/.
 //
 // Why this exists: /en used to be a Vercel rewrite onto the Arabic index.html, so the
 // RAW html served at /en was Arabic — <html lang="ar">, an Arabic <title>, Arabic
@@ -6,27 +6,27 @@
 // that does not run JS (WhatsApp, LinkedIn and Twitter link previews, several AI
 // crawlers, Google's pre-render pass) saw /en declaring itself a duplicate of "/".
 //
-// Run after ANY edit to index.html:   node build-en.mjs
+// The site has two documents now — the catalogue at "/" and the cinematic journey at
+// "/experience" — so this builds both. Each carries its own EN dictionary inline.
 //
-// No dependencies. Reads index.html, applies the EN dictionary that already lives in
-// the page, rewrites the head signals, and writes en/index.html.
+// Run after ANY edit to index.html or experience.html:   node build-en.mjs
+//
+// No dependencies. Reads the Arabic page, applies the EN dictionary that already lives
+// in it, rewrites the head signals, and writes the English twin.
 
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { dirname } from "node:path";
 
 const SITE = "https://www.alsultan-zahdi-dates.com";
-const SRC = "index.html";
-const OUT_DIR = "en";
-const OUT = `${OUT_DIR}/index.html`;
 
-let html = readFileSync(SRC, "utf8");
+const PAGES = [
+  { src: "index.html",      out: "en/index.html",      ar: "/",           en: "/en" },
+  { src: "experience.html", out: "en/experience.html", ar: "/experience", en: "/en/experience" },
+];
 
-/* ── 1. lift the EN dictionary straight out of the page ─────────────────────── */
-const start = html.indexOf("  const EN={");
-if (start < 0) throw new Error("EN dictionary not found in " + SRC);
-const objStart = html.indexOf("{", start);
-const objEnd = html.indexOf("\n  };", objStart);
-if (objEnd < 0) throw new Error("could not find the end of the EN dictionary");
-const EN = JSON.parse(html.slice(objStart, objEnd + 4)); // "\n  };" → keep through "}"
+// section slugs that resolve to a page of their own; their links must gain the /en
+// prefix in the raw HTML too, or a crawler following them lands back on Arabic
+const CROSS_PAGE = /\shref="\/(experience|why|grades|packing|product|gallery|shipping|faq|quote)"/g;
 
 /* ── 2. replace the inner HTML of every [data-i18n] element ─────────────────── */
 // Walks the opening tag, then tracks depth so nested same-name tags cannot fool it.
@@ -102,66 +102,88 @@ function replaceAttr(src, flagAttr, targetAttr, pick) {
   return src;
 }
 
-const before = html;
-html = replaceInner(html, "data-i18n", k => EN[k]);
-html = replaceAttr(html, "data-i18n-alt", "alt", k => EN[k]);
-html = replaceAttr(html, "data-i18n-ph", "placeholder", k => EN[k]);
-if (html === before) throw new Error("nothing was translated — check the markup");
+/* ── 4. build one page ─────────────────────────────────────────────────────── */
+function build(page) {
+  let html = readFileSync(page.src, "utf8");
 
-/* ── 4. head signals, so a non-JS crawler sees an English page at /en ───────── */
-const head = [
-  [`<html lang="ar" dir="rtl" data-base-lang="ar">`, `<html lang="en" dir="ltr" data-base-lang="en">`],
-  [`<link rel="canonical" href="${SITE}/" />`, `<link rel="canonical" href="${SITE}/en" />`],
-  [`<meta property="og:url" content="${SITE}/" />`, `<meta property="og:url" content="${SITE}/en" />`],
-  [`<meta property="og:locale" content="ar_IQ" />`, `<meta property="og:locale" content="en_US" />`],
-  [`<meta property="og:locale:alternate" content="en_US" />`, `<meta property="og:locale:alternate" content="ar_IQ" />`],
-];
-for (const [a, b] of head) {
-  if (!html.includes(a)) throw new Error("head marker not found: " + a);
-  html = html.replace(a, b);
-}
-html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${EN["doc.title"]}</title>`);
-const meta = (sel, val) => {
-  const re = new RegExp(`(<meta ${sel} content=")[^"]*(")`);
-  if (!re.test(html)) throw new Error("meta not found: " + sel);
-  html = html.replace(re, `$1${val.replace(/\$/g, "$$$$")}$2`);
-};
-meta(`name="description"`, EN["doc.desc"]);
-meta(`property="og:title"`, EN["doc.ogTitle"]);
-meta(`property="og:description"`, EN["doc.ogDesc"]);
-meta(`name="twitter:title"`, EN["doc.ogTitle"]);
-meta(`name="twitter:description"`, EN["doc.ogDesc"]);
+  // lift the EN dictionary straight out of the page
+  const start = html.indexOf("  const EN={");
+  if (start < 0) throw new Error("EN dictionary not found in " + page.src);
+  const objStart = html.indexOf("{", start);
+  const objEnd = html.indexOf("\n  };", objStart);
+  if (objEnd < 0) throw new Error("could not find the end of the EN dictionary in " + page.src);
+  const EN = JSON.parse(html.slice(objStart, objEnd + 4)); // "\n  };" → keep through "}"
 
-/* ── 5. relative asset paths would resolve under /en/ — make them root-absolute */
-html = html.replace(/"assets\//g, '"/assets/').replace(/\(assets\//g, "(/assets/");
+  const before = html;
+  html = replaceInner(html, "data-i18n", k => EN[k]);
+  html = replaceAttr(html, "data-i18n-alt", "alt", k => EN[k]);
+  html = replaceAttr(html, "data-i18n-ph", "placeholder", k => EN[k]);
+  if (html === before) throw new Error("nothing was translated in " + page.src + " — check the markup");
 
-/* ── 6. the graph must describe THIS document, not the Arabic one ───────────── */
-// The FAQ matters most here: Google requires FAQ markup to match the text actually
-// visible on the page, so leaving the Arabic questions on the English document
-// would be a mismatch, not a translation gap.
-html = html.replace(/(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/, (_, a, json, b) => {
-  const data = JSON.parse(json);
-  for (const node of data["@graph"]) {
-    if (node["@type"] === "WebPage") {
-      node["@id"] = `${SITE}/en#webpage`;
-      node.url = `${SITE}/en`;
-      node.name = EN["doc.title"];
-      node.inLanguage = "en";
-    }
-    if (node["@type"] === "FAQPage") {
-      node["@id"] = `${SITE}/en#faq`;
-      node.isPartOf = { "@id": `${SITE}/en#webpage` };
-      node.inLanguage = "en";
-      node.mainEntity = node.mainEntity.map((_q, i) => {
-        const q = EN[`faq.q${i + 1}`], ans = EN[`faq.a${i + 1}`];
-        if (!q || !ans) throw new Error(`missing English text for faq.q${i + 1}/faq.a${i + 1}`);
-        return { "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: ans } };
-      });
-    }
+  /* head signals, so a non-JS crawler sees an English page ──────────────────── */
+  const head = [
+    [`<html lang="ar" dir="rtl" data-base-lang="ar">`, `<html lang="en" dir="ltr" data-base-lang="en">`],
+    [`<link rel="canonical" href="${SITE}${page.ar}" />`, `<link rel="canonical" href="${SITE}${page.en}" />`],
+    [`<meta property="og:url" content="${SITE}${page.ar}" />`, `<meta property="og:url" content="${SITE}${page.en}" />`],
+    [`<meta property="og:locale" content="ar_IQ" />`, `<meta property="og:locale" content="en_US" />`],
+    [`<meta property="og:locale:alternate" content="en_US" />`, `<meta property="og:locale:alternate" content="ar_IQ" />`],
+  ];
+  for (const [a, b] of head) {
+    if (!html.includes(a)) throw new Error(`head marker not found in ${page.src}: ${a}`);
+    html = html.replace(a, b);
   }
-  return a + "\n" + JSON.stringify(data, null, 1) + "\n" + b;
-});
+  html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${EN["doc.title"]}</title>`);
+  const meta = (sel, val) => {
+    const re = new RegExp(`(<meta ${sel} content=")[^"]*(")`);
+    if (!re.test(html)) throw new Error(`meta not found in ${page.src}: ${sel}`);
+    html = html.replace(re, `$1${val.replace(/\$/g, "$$$$")}$2`);
+  };
+  meta(`name="description"`, EN["doc.desc"]);
+  meta(`property="og:title"`, EN["doc.ogTitle"]);
+  meta(`property="og:description"`, EN["doc.ogDesc"]);
+  meta(`name="twitter:title"`, EN["doc.ogTitle"]);
+  meta(`name="twitter:description"`, EN["doc.ogDesc"]);
 
-mkdirSync(OUT_DIR, { recursive: true });
-writeFileSync(OUT, html, "utf8");
-console.log(`${OUT} written — ${(html.length / 1024).toFixed(1)} KB, ${Object.keys(EN).length} strings applied`);
+  /* relative asset paths would resolve under /en/ — make them root-absolute ─── */
+  html = html.replace(/"assets\//g, '"/assets/').replace(/\(assets\//g, "(/assets/");
+
+  /* links between the two documents must stay inside /en ───────────────────── */
+  // JS fixes these up at runtime, but a crawler that does not run JS follows the raw
+  // href — and an English page linking to the Arabic /grades is a hreflang own goal.
+  html = html.replace(CROSS_PAGE, ' href="/en/$1"');
+  html = html.replace(/ data-page="" href="\/"/g, ' data-page="" href="/en"');
+
+  /* the graph must describe THIS document, not the Arabic one ───────────────── */
+  // The FAQ matters most here: Google requires FAQ markup to match the text actually
+  // visible on the page, so leaving the Arabic questions on the English document
+  // would be a mismatch, not a translation gap.
+  html = html.replace(/(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/, (_, a, json, b) => {
+    const data = JSON.parse(json);
+    for (const node of data["@graph"]) {
+      if (node["@type"] === "WebPage") {
+        node["@id"] = `${SITE}${page.en}#webpage`;
+        node.url = `${SITE}${page.en}`;
+        node.name = EN["doc.title"];
+        node.inLanguage = "en";
+      }
+      if (node["@type"] === "FAQPage") {
+        node["@id"] = `${SITE}${page.en}#faq`;
+        node.isPartOf = { "@id": `${SITE}${page.en}#webpage` };
+        node.inLanguage = "en";
+        node.mainEntity = node.mainEntity.map((_q, i) => {
+          const q = EN[`faq.q${i + 1}`], ans = EN[`faq.a${i + 1}`];
+          if (!q || !ans) throw new Error(`missing English text for faq.q${i + 1}/faq.a${i + 1}`);
+          return { "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: ans } };
+        });
+      }
+      if (node["@type"] === "ItemList") node.inLanguage = "en";
+    }
+    return a + "\n" + JSON.stringify(data, null, 1) + "\n" + b;
+  });
+
+  mkdirSync(dirname(page.out), { recursive: true });
+  writeFileSync(page.out, html, "utf8");
+  console.log(`${page.out} written — ${(html.length / 1024).toFixed(1)} KB, ${Object.keys(EN).length} strings applied`);
+}
+
+for (const page of PAGES) build(page);

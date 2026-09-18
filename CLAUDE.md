@@ -37,14 +37,51 @@ You are a creative director + senior front-end engineer building **single-file, 
 
 > Decide the creative direction yourself from the product; don't ask the user to specify colors/fonts/story unless genuinely blocked.
 
-## This site: `/en` is generated, not a rewrite
-`en/index.html` is a **pre-rendered English copy** of `index.html` so that crawlers and
-link-preview scrapers that do not run JavaScript get a real English document (correct
-`lang`, `<title>`, Open Graph and a self-referencing canonical) instead of the Arabic one.
+## This site: two documents, and `/en` is generated
+The site has **two Arabic source pages**, and each has a pre-rendered English twin:
 
-**After ANY edit to `index.html`, regenerate the derived files:**
+| source | Arabic URL | English URL | what it is |
+|---|---|---|---|
+| `index.html` | `/` | `/en` | the **catalogue** — quality, packing, specification, product gallery, shipping, FAQ, RFQ form. Conventional, fast, no animation library. Uses the real supplier photographs in `assets/real/`. |
+| `experience.html` | `/experience` | `/en/experience` | the **cinematic journey** — the canvas frame-sequence film. This is the page the playbook in `memory/` describes; the whole motion stack lives here and nowhere else. |
+
+Keep the two from duplicating each other: commercial copy belongs to the catalogue,
+the poetic/cinematic beats to `/experience`. Duplicated text across two indexed URLs
+costs both of them.
+
+`en/*.html` are **pre-rendered English copies** so that crawlers and link-preview
+scrapers that do not run JavaScript get a real English document (correct `lang`,
+`<title>`, Open Graph and a self-referencing canonical) instead of the Arabic one.
+
+**After ANY edit to `index.html` or `experience.html`, regenerate the derived files:**
 ```
-node build-en.mjs        # the pre-rendered English document
-node build-sitemap.mjs   # sitemap.xml (URLs, hreflang, image entries, lastmod)
+node build-en.mjs        # the pre-rendered English documents (both pages)
+node build-sitemap.mjs   # sitemap.xml (4 URLs, hreflang, image entries, lastmod)
 ```
 Never add a Vercel rewrite for `/en` — it would shadow the generated file and serve Arabic.
+
+### The section slugs are load-bearing
+`/why /grades /packing /product /gallery /shipping /faq /quote` all rewrite to the
+catalogue, and `/film` and `/origin` 301 to `/experience`. These were indexed before the
+split, so moving a section between the two pages means updating `vercel.json`, the
+`ROUTES` map in that page's router, and `CROSS_PAGE` in `build-en.mjs` together.
+
+### Grades are stated, never pictured
+The client's decision: the page says **every grade is available and we answer for the
+quality**, and it does NOT break the grades down card-by-card or attach a photograph to
+any one grade. The gallery photographs are general evidence of the produce — their
+filenames are deliberately neutral (`dates-01…04.webp`, not `grade-a.webp`), because the
+image URL is public in the sitemap. Grades may still be *named* where a buyer asks for
+them: the FAQ answer and the quote form's dropdown. Do not reintroduce per-grade cards.
+
+### The nutrition table is a quotation
+The figures in `#product` are reproduced **exactly as printed on the company's own 10 kg
+carton label**, with a photograph of that label beside them. Two of them (protein 20 g,
+fibre 2.3 mg) look like printing errors on the carton, but the page is making a claim
+about what the label says, not an independent nutritional claim — so do not "correct"
+them here. They change when the carton is reprinted.
+
+These figures live in **exactly one place** — `#product` on the catalogue, plus the
+matching `additionalProperty` entries in its `Product` node. `/experience` carries only a
+qualitative spec and links to `/product`. Never add a second set of numbers anywhere: two
+pages quoting different figures for the same product is the failure this avoids.
