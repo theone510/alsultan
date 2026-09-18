@@ -66,6 +66,18 @@ catalogue, and `/film` and `/origin` 301 to `/experience`. These were indexed be
 split, so moving a section between the two pages means updating `vercel.json`, the
 `ROUTES` map in that page's router, and `CROSS_PAGE` in `build-en.mjs` together.
 
+### Clean URLs are OFF on this Vercel project
+Proved empirically: `/404.html` serves, `/404` does not. So a root-level `.html` file is
+**not** reachable at its extensionless path on its own — `/experience` needs an explicit
+`rewrite` to `/experience.html` in `vercel.json`. (`/en` works only because `en/` is a
+directory with an `index.html`.) Use a **rewrite, not a redirect**: the browser then stays
+on `/experience`, which keeps relative asset paths resolving against `/`.
+
+Any page reachable at a **nested** path (`/experience/film`) must use root-absolute asset
+paths (`/assets/…`), because the document base there is `/experience/`. `experience.html`
+does; `index.html` may stay relative only while every one of its routes is a single
+segment. `build-sitemap.mjs` accepts both spellings.
+
 ### Grades are stated, never pictured
 The client's decision: the page says **every grade is available and we answer for the
 quality**, and it does NOT break the grades down card-by-card or attach a photograph to

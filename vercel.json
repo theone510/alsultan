@@ -29,6 +29,14 @@
   ],
   "rewrites": [
     {
+      "source": "/en/experience",
+      "destination": "/en/experience.html"
+    },
+    {
+      "source": "/experience",
+      "destination": "/experience.html"
+    },
+    {
       "source": "/en/experience/(film|origin|product)",
       "destination": "/en/experience.html"
     },
