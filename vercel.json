@@ -28,6 +28,16 @@
       "permanent": true
     },
     {
+      "source": "/guide.html",
+      "destination": "/guide",
+      "permanent": true
+    },
+    {
+      "source": "/en/guide.html",
+      "destination": "/en/guide",
+      "permanent": true
+    },
+    {
       "source": "/(film|origin)",
       "destination": "/experience",
       "permanent": true
@@ -39,6 +49,14 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/en/guide",
+      "destination": "/en/guide.html"
+    },
+    {
+      "source": "/guide",
+      "destination": "/guide.html"
+    },
     {
       "source": "/en/experience",
       "destination": "/en/experience.html"

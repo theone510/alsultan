@@ -1,6 +1,6 @@
 // Generates sitemap.xml from what the pages actually reference.
 //
-// Run after ANY edit to index.html or experience.html:   node build-sitemap.mjs
+// Run after ANY edit to index.html, experience.html or guide.html:   node build-sitemap.mjs
 //
 // Three deliberate choices:
 //
@@ -25,6 +25,7 @@ const SITE = "https://www.alsultan-zahdi-dates.com";
 const PAGES = [
   { src: "index.html",      ar: "/",           en: "/en",            priority: ["1.0", "0.9"] },
   { src: "experience.html", ar: "/experience", en: "/en/experience", priority: ["0.7", "0.6"] },
+  { src: "guide.html",      ar: "/guide",      en: "/en/guide",      priority: ["0.8", "0.7"] },
 ];
 
 /* ── content date ──────────────────────────────────────────────────────────── */

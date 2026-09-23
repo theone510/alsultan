@@ -37,26 +37,27 @@ You are a creative director + senior front-end engineer building **single-file, 
 
 > Decide the creative direction yourself from the product; don't ask the user to specify colors/fonts/story unless genuinely blocked.
 
-## This site: two documents, and `/en` is generated
-The site has **two Arabic source pages**, and each has a pre-rendered English twin:
+## This site: three documents, and `/en` is generated
+The site has **three Arabic source pages**, and each has a pre-rendered English twin:
 
 | source | Arabic URL | English URL | what it is |
 |---|---|---|---|
 | `index.html` | `/` | `/en` | the **catalogue** — quality, packing, specification, product gallery, shipping, FAQ, RFQ form. Conventional, fast, no animation library. Uses the real supplier photographs in `assets/real/`. |
 | `experience.html` | `/experience` | `/en/experience` | the **cinematic journey** — the canvas frame-sequence film. This is the page the playbook in `memory/` describes; the whole motion stack lives here and nowhere else. |
+| `guide.html` | `/guide` | `/en/guide` | the **importer’s guide** to the Zahdi variety — an `Article` for informational searches (variety, harvest, uses, quality criteria, shipping). A plain reading page, no motion. It links to the catalogue for anything commercial and carries no nutrition figures and no per-grade breakdown. |
 
-Keep the two from duplicating each other: commercial copy belongs to the catalogue,
-the poetic/cinematic beats to `/experience`. Duplicated text across two indexed URLs
+Keep them from duplicating each other: commercial copy belongs to the catalogue,
+the poetic/cinematic beats to `/experience`, general knowledge about the variety to `/guide`. Duplicated text across two indexed URLs
 costs both of them.
 
 `en/*.html` are **pre-rendered English copies** so that crawlers and link-preview
 scrapers that do not run JavaScript get a real English document (correct `lang`,
 `<title>`, Open Graph and a self-referencing canonical) instead of the Arabic one.
 
-**After ANY edit to `index.html` or `experience.html`, regenerate the derived files:**
+**After ANY edit to `index.html`, `experience.html` or `guide.html`, regenerate the derived files:**
 ```
 node build-en.mjs        # the pre-rendered English documents (both pages)
-node build-sitemap.mjs   # sitemap.xml (4 URLs, hreflang, image entries, lastmod)
+node build-sitemap.mjs   # sitemap.xml (6 URLs, hreflang, image entries, lastmod)
 ```
 Never add a Vercel rewrite for `/en` — it would shadow the generated file and serve Arabic.
 
