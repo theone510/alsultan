@@ -1,5 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": false,
   "redirects": [
     {
       "source": "/en/",
@@ -14,6 +15,16 @@
     {
       "source": "/experience.html",
       "destination": "/experience",
+      "permanent": true
+    },
+    {
+      "source": "/en/index.html",
+      "destination": "/en",
+      "permanent": true
+    },
+    {
+      "source": "/en/experience.html",
+      "destination": "/en/experience",
       "permanent": true
     },
     {
