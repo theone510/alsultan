@@ -164,7 +164,15 @@ function build(page) {
         node["@id"] = `${SITE}${page.en}#webpage`;
         node.url = `${SITE}${page.en}`;
         node.name = EN["doc.title"];
+        node.description = EN["doc.desc"];
         node.inLanguage = "en";
+        if (node.breadcrumb) node.breadcrumb = { "@id": `${SITE}${page.en}#breadcrumb` };
+      }
+      if (node["@type"] === "BreadcrumbList") {
+        node["@id"] = `${SITE}${page.en}#breadcrumb`;
+        const names = ["Alsultan Dates", "The Journey"];
+        const urls = [`${SITE}/en`, `${SITE}${page.en}`];
+        node.itemListElement = node.itemListElement.map((it, i) => ({ ...it, name: names[i], item: urls[i] }));
       }
       if (node["@type"] === "FAQPage") {
         node["@id"] = `${SITE}${page.en}#faq`;
