@@ -9,7 +9,7 @@
 // The site has two documents now — the catalogue at "/" and the cinematic journey at
 // "/experience" — so this builds both. Each carries its own EN dictionary inline.
 //
-// Run after ANY edit to index.html or experience.html:   node build-en.mjs
+// Run after ANY edit to index.html, experience.html or guide.html:   node build-en.mjs
 //
 // No dependencies. Reads the Arabic page, applies the EN dictionary that already lives
 // in it, rewrites the head signals, and writes the English twin.
@@ -19,14 +19,16 @@ import { dirname } from "node:path";
 
 const SITE = "https://www.alsultan-zahdi-dates.com";
 
+// crumbs: the English breadcrumb names, home first
 const PAGES = [
   { src: "index.html",      out: "en/index.html",      ar: "/",           en: "/en" },
-  { src: "experience.html", out: "en/experience.html", ar: "/experience", en: "/en/experience" },
+  { src: "experience.html", out: "en/experience.html", ar: "/experience", en: "/en/experience", crumbs: ["Alsultan Dates", "The Journey"] },
+  { src: "guide.html",      out: "en/guide.html",      ar: "/guide",      en: "/en/guide",      crumbs: ["Alsultan Dates", "Zahdi Dates Guide"] },
 ];
 
 // section slugs that resolve to a page of their own; their links must gain the /en
 // prefix in the raw HTML too, or a crawler following them lands back on Arabic
-const CROSS_PAGE = /\shref="\/(experience|why|grades|packing|product|gallery|shipping|faq|quote)"/g;
+const CROSS_PAGE = /\shref="\/(experience|guide|why|grades|packing|product|gallery|shipping|faq|quote)"/g;
 
 /* ── 2. replace the inner HTML of every [data-i18n] element ─────────────────── */
 // Walks the opening tag, then tracks depth so nested same-name tags cannot fool it.
@@ -118,6 +120,7 @@ function build(page) {
   html = replaceInner(html, "data-i18n", k => EN[k]);
   html = replaceAttr(html, "data-i18n-alt", "alt", k => EN[k]);
   html = replaceAttr(html, "data-i18n-ph", "placeholder", k => EN[k]);
+  html = replaceAttr(html, "data-i18n-label", "aria-label", k => EN[k]);
   if (html === before) throw new Error("nothing was translated in " + page.src + " — check the markup");
 
   /* head signals, so a non-JS crawler sees an English page ──────────────────── */
@@ -170,7 +173,8 @@ function build(page) {
       }
       if (node["@type"] === "BreadcrumbList") {
         node["@id"] = `${SITE}${page.en}#breadcrumb`;
-        const names = ["Alsultan Dates", "The Journey"];
+        const names = page.crumbs;
+        if (!names) throw new Error(`${page.src} has a BreadcrumbList but no crumbs in PAGES`);
         const urls = [`${SITE}/en`, `${SITE}${page.en}`];
         node.itemListElement = node.itemListElement.map((it, i) => ({ ...it, name: names[i], item: urls[i] }));
       }
@@ -183,6 +187,13 @@ function build(page) {
           if (!q || !ans) throw new Error(`missing English text for faq.q${i + 1}/faq.a${i + 1}`);
           return { "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: ans } };
         });
+      }
+      if (node["@type"] === "Article") {
+        node["@id"] = `${SITE}${page.en}#article`;
+        node.headline = EN["article.headline"];
+        node.description = EN["doc.desc"];
+        node.inLanguage = "en";
+        node.mainEntityOfPage = { "@id": `${SITE}${page.en}#webpage` };
       }
       if (node["@type"] === "ItemList") node.inLanguage = "en";
     }
