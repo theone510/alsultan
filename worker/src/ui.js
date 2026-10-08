@@ -73,6 +73,12 @@ tr:hover td{background:rgba(217,164,65,.04)}
 .totbox .grand{border-top:1px solid var(--line);margin-top:8px;padding-top:12px;font-size:19px;color:var(--gold);font-weight:700}
 code.copy{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:7px 11px;font-size:13px;
   display:inline-block;word-break:break-all;max-width:100%}
+.docframe{display:block;width:100%;height:calc(100dvh - 190px);min-height:420px;border:1px solid var(--line);
+  border-radius:14px;background:#fff}
+/* صفحة عرض الملف: الإطار يملأ ما تبقّى من الشاشة تحت الترويسة، فلا يتداخل تمريران */
+body:has(.docframe){min-height:100dvh;display:flex;flex-direction:column}
+body:has(.docframe) .wrap{flex:1;width:100%;display:flex;flex-direction:column;padding-bottom:20px}
+body:has(.docframe) .docframe{flex:1;height:auto}
 `;
 
 export function layout({ title, body, authed = true, env = {}, active = "" }) {
@@ -80,6 +86,7 @@ export function layout({ title, body, authed = true, env = {}, active = "" }) {
     <nav>
       <a href="/admin" ${active === "requests" ? 'style="color:var(--gold-bright)"' : ""}>الطلبات</a>
       <a href="/admin/quotes" ${active === "quotes" ? 'style="color:var(--gold-bright)"' : ""}>عروض الأسعار</a>
+      <a href="/admin/docs" ${active === "docs" ? 'style="color:var(--gold-bright)"' : ""}>الملفات الخاصة</a>
       <a href="/admin/export.csv">تصدير Excel</a>
       <form method="post" action="/admin/logout" style="display:inline">
         <button class="btn ghost sm" type="submit">خروج</button>

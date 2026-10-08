@@ -69,6 +69,16 @@ CREATE TABLE IF NOT EXISTS rate_limit (
   window_start INTEGER NOT NULL
 );
 
+-- الملفات الخاصة: صفحات HTML تُرفع من اللوحة. تُحفظ هنا لا في المستودع، لأن المستودع علني.
+CREATE TABLE IF NOT EXISTS docs (
+  id         INTEGER PRIMARY KEY AUTOINCREMENT,
+  title      TEXT    NOT NULL,
+  html       TEXT    NOT NULL,
+  size       INTEGER NOT NULL DEFAULT 0,          -- بالبايت
+  created_at TEXT    NOT NULL,
+  updated_at TEXT    NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS settings (
   k TEXT PRIMARY KEY,
   v TEXT

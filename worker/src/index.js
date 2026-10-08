@@ -156,7 +156,23 @@ async function adminRoutes(req, env, db, url, path, method) {
   if (path === "/admin/quotes") return admin.quotesList(env, db);
   if (path === "/admin/export.csv") return admin.exportCSV(env, db);
 
+  if (path === "/admin/docs") {
+    if (method === "POST") return admin.uploadDoc(env, db, await req.formData());
+    return admin.docsList(env, db, {
+      deleted: url.searchParams.get("deleted"),
+      error: url.searchParams.get("error")
+    });
+  }
+
   let m;
+  if ((m = path.match(/^\/admin\/docs\/(\d+)$/))) {
+    return admin.docView(env, db, m[1], { added: url.searchParams.get("added") });
+  }
+
+  if ((m = path.match(/^\/admin\/docs\/(\d+)\/delete$/)) && method === "POST") {
+    return admin.deleteDoc(env, db, m[1]);
+  }
+
   if ((m = path.match(/^\/admin\/r\/(\d+)$/))) {
     if (method === "POST") return admin.updateRequest(env, db, m[1], await req.formData());
     return admin.requestDetail(env, db, m[1], { saved: url.searchParams.get("saved") });
