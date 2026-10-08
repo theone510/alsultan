@@ -7,6 +7,12 @@
       "runtimeArgs": ["-y", "serve", "-l", "8123", "."],
       "port": 8123,
       "autoPort": true
+    },
+    {
+      "name": "worker",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "worker", "run", "dev", "--", "--port", "8787"],
+      "port": 8787
     }
   ]
 }

@@ -536,6 +536,109 @@ export async function sendQuote(env, db, id, form) {
   return redirect(`/admin/q/${id}?sent=1${mail ? `&mail=${mail}` : ""}`);
 }
 
+/* ============================ الملفات الخاصة ============================ */
+
+const DOC_MAX_BYTES = 1500000; // صف D1 لا يتجاوز 2MB
+const DOC_ERRORS = {
+  empty: "اختر ملف HTML أولاً.",
+  type: "الملف يجب أن يكون صفحة HTML (‎.html).",
+  big: "الملف أكبر من الحد المسموح (1.5 ميغابايت)."
+};
+
+const fmtSize = n => n >= 1048576 ? `${(n / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round(n / 1024))} KB`;
+
+// يُحقن في الملف المعروض داخل الإطار المعزول:
+// ١) الروابط الخارجية تُفتح في تبويب جديد؛ روابط #الأقسام تبقى داخل الملف.
+// ٢) أزرار النسخ: إن رفض المتصفح navigator.clipboard داخل الإطار، يُستعمل execCommand بديلاً.
+const DOC_SHIM = `<script>(function(){
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href]");if(a&&a.getAttribute("href").charAt(0)!=="#"){a.target="_blank";a.rel="noopener"}},true);
+function legacy(t){return new Promise(function(ok,no){var a=document.createElement("textarea"),done=false;a.value=t;a.style.cssText="position:fixed;top:0;opacity:0";document.body.appendChild(a);a.select();try{done=document.execCommand("copy")}catch(e){}a.remove();done?ok():no(new Error("copy"))})}
+var c=navigator.clipboard,native=c&&c.writeText&&c.writeText.bind(c);
+function write(t){return native?native(t).catch(function(){return legacy(t)}):legacy(t)}
+try{if(c)c.writeText=write;else Object.defineProperty(navigator,"clipboard",{value:{writeText:write}})}catch(e){}
+})()</script>`;
+
+export async function docsList(env, db, { deleted, error } = {}) {
+  const { results = [] } = await db.prepare(
+    "SELECT id, title, size, created_at FROM docs ORDER BY created_at DESC"
+  ).all();
+  const body = `
+  <h1>الملفات الخاصة</h1>
+  <p class="sub">أدواتك ومستنداتك الداخلية — لا يراها إلا من يدخل بكلمة المرور، ولا تُنشر في الموقع.</p>
+  ${deleted ? `<div class="notice">تم حذف الملف.</div>` : ""}
+  ${DOC_ERRORS[error] ? `<div class="notice bad">${esc(DOC_ERRORS[error])}</div>` : ""}
+
+  <div class="card" style="padding:6px 8px">
+  ${results.length ? `<table>
+    <thead><tr><th>الملف</th><th>الحجم</th><th>أُضيف في</th><th></th></tr></thead>
+    <tbody>${results.map(d => `<tr>
+      <td><a href="/admin/docs/${d.id}"><b>${esc(d.title)}</b></a></td>
+      <td class="small muted">${esc(fmtSize(d.size))}</td>
+      <td class="small muted">${esc(fmtDate(d.created_at))}</td>
+      <td style="white-space:nowrap">
+        <div class="row">
+          <a class="btn ghost sm" href="/admin/docs/${d.id}">فتح</a>
+          <form method="post" action="/admin/docs/${d.id}/delete" onsubmit="return confirm('حذف هذا الملف نهائياً؟')">
+            <button class="btn danger sm" type="submit">حذف</button>
+          </form>
+        </div>
+      </td></tr>`).join("")}
+    </tbody></table>` : `<div class="empty">لا توجد ملفات بعد. ارفع أول ملف من النموذج أدناه.</div>`}
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0">إضافة ملف</h2>
+    <form method="post" action="/admin/docs" enctype="multipart/form-data">
+      <div class="grid g2">
+        <div><label for="df">ملف HTML</label><input id="df" name="file" type="file" accept=".html,.htm,text/html" required /></div>
+        <div><label for="dt">العنوان (اختياري — يؤخذ من الملف إن تُرك فارغاً)</label><input id="dt" name="title" maxlength="160" /></div>
+      </div>
+      <div style="margin-top:16px"><button class="btn" type="submit">رفع الملف</button></div>
+    </form>
+  </div>`;
+  return html(layout({ title: "الملفات الخاصة", body, env, active: "docs" }));
+}
+
+export async function uploadDoc(env, db, form) {
+  const file = form.get("file");
+  if (!file || typeof file === "string" || !file.size) return redirect("/admin/docs?error=empty");
+  if (!/\.html?$/i.test(file.name || "") && !/^text\/html/i.test(file.type || "")) return redirect("/admin/docs?error=type");
+  if (file.size > DOC_MAX_BYTES) return redirect("/admin/docs?error=big");
+
+  const content = await file.text();
+  const inFile = content.match(/<title[^>]*>([^<]*)<\/title>/i);
+  const title = (String(form.get("title") || "").trim() || (inFile && inFile[1].trim()) ||
+    String(file.name || "").replace(/\.html?$/i, "") || "ملف").slice(0, 160);
+  const now = nowISO();
+  const r = await db.prepare("INSERT INTO docs (title, html, size, created_at, updated_at) VALUES (?,?,?,?,?)")
+    .bind(title, content, file.size, now, now).run();
+  return redirect(`/admin/docs/${r.meta && r.meta.last_row_id}?added=1`);
+}
+
+export async function docView(env, db, id, { added } = {}) {
+  const d = await db.prepare("SELECT * FROM docs WHERE id = ?").bind(id).first();
+  if (!d) return html(layout({ title: "غير موجود", body: `<div class="empty">الملف غير موجود.</div>`, env, active: "docs" }), { status: 404 });
+
+  // الملف يُعرض في إطار معزول (sandbox بلا allow-same-origin): أنماطه لا تختلط بأنماط اللوحة،
+  // وسكربتاته لا تصل إلى جلسة الدخول ولا إلى مسارات /admin.
+  const head = d.html.match(/<head[^>]*>/i);
+  const src = head ? d.html.replace(head[0], () => head[0] + DOC_SHIM) : DOC_SHIM + d.html;
+
+  const body = `
+  <p class="small" style="margin:0 0 12px"><a href="/admin/docs">→ كل الملفات</a>
+    <span class="muted">· ${esc(d.title)} · أُضيف ${esc(fmtDate(d.created_at))} · ${esc(fmtSize(d.size))}</span></p>
+  ${added ? `<div class="notice">تم حفظ الملف في اللوحة.</div>` : ""}
+  <iframe class="docframe" title="${esc(d.title)}" allow="clipboard-write"
+    sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox allow-modals"
+    srcdoc="${esc(src)}"></iframe>`;
+  return html(layout({ title: d.title, body, env, active: "docs" }));
+}
+
+export async function deleteDoc(env, db, id) {
+  await db.prepare("DELETE FROM docs WHERE id = ?").bind(id).run();
+  return redirect("/admin/docs?deleted=1");
+}
+
 /* ============================ تصدير ============================ */
 
 export async function exportCSV(env, db) {
