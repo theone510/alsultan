@@ -37,27 +37,52 @@ You are a creative director + senior front-end engineer building **single-file, 
 
 > Decide the creative direction yourself from the product; don't ask the user to specify colors/fonts/story unless genuinely blocked.
 
-## This site: three documents, and `/en` is generated
-The site has **three Arabic source pages**, and each has a pre-rendered English twin:
+## This site: six documents, and `/en` is generated
+The site has **six Arabic source pages**, and each has a pre-rendered English twin:
 
 | source | Arabic URL | English URL | what it is |
 |---|---|---|---|
 | `index.html` | `/` | `/en` | the **catalogue** — quality, packing, specification, product gallery, shipping, FAQ, RFQ form. Conventional, fast, no animation library. Uses the real supplier photographs in `assets/real/`. |
 | `experience.html` | `/experience` | `/en/experience` | the **cinematic journey** — the canvas frame-sequence film. This is the page the playbook in `memory/` describes; the whole motion stack lives here and nowhere else. |
 | `guide.html` | `/guide` | `/en/guide` | the **importer’s guide** to the Zahdi variety — an `Article` for informational searches (variety, harvest, uses, quality criteria, shipping). A plain reading page, no motion. It links to the catalogue for anything commercial and carries no nutrition figures and no per-grade breakdown. |
+| `import-dates-from-iraq.html` | `/import-dates-from-iraq` | `/en/import-dates-from-iraq` | **article** — the deal from the buyer's side: the brief, Incoterms, documents, sample and inspection, payment, landed cost. |
+| `zahdi-dates-vs-other-varieties.html` | `/zahdi-dates-vs-other-varieties` | `/en/…` | **article** — Zahdi beside Medjool, Deglet Noor, Sayer and Mazafati, and when it is (and is not) the right buy. |
+| `industrial-dates.html` | `/industrial-dates` | `/en/industrial-dates` | **article** — Zahdi as raw material for paste, syrup and bakery lines: the specification, the yield, bulk packing. |
 
 Keep them from duplicating each other: commercial copy belongs to the catalogue,
-the poetic/cinematic beats to `/experience`, general knowledge about the variety to `/guide`. Duplicated text across two indexed URLs
-costs both of them.
+the poetic/cinematic beats to `/experience`, general knowledge about the variety to `/guide`,
+and a buyer's working knowledge of the trade to the articles. Duplicated text across two
+indexed URLs costs both of them.
+
+### The importer articles
+The three articles are reading pages built on the guide's stylesheet (copied into each file —
+the site stays single-file documents), and they sit under the guide in the breadcrumb. They
+exist for the searches an importer actually makes in English, so they are written for a
+buyer, not for a consumer. Rules that keep them honest:
+
+- **They explain the trade; the catalogue makes the commitments.** Anything specific to this
+  company — the terms it quotes on, payment, container loads, what it needs to quote — stays
+  in the catalogue's FAQ and the article links to `/faq`. Do not restate those answers.
+- **No prices, no nutrition figures, no per-grade breakdown**, and nothing the company has
+  not said elsewhere on the site (no certificates, capacities or services invented for effect).
+- **General claims must be checkable.** The ones that carry weight were verified when
+  written: HS subheading 0804.10; risk passing on board under FOB/CFR/CIF and CIF's minimum
+  cover (Institute Cargo Clauses C) under Incoterms 2020; the Codex dates standard
+  CXS 143-1985 excluding dates for industrial purposes.
+- **Only the company's own photographs**, cropped so no other brand's packaging is legible.
+
+A new article needs: the page itself, an entry in `PAGES` in both build scripts, its slug in
+`CROSS_PAGE` in `build-en.mjs`, its slug in the two rewrite and two redirect rules in
+`vercel.json`, and links to it from the guide's “further reading” block and the other articles.
 
 `en/*.html` are **pre-rendered English copies** so that crawlers and link-preview
 scrapers that do not run JavaScript get a real English document (correct `lang`,
 `<title>`, Open Graph and a self-referencing canonical) instead of the Arabic one.
 
-**After ANY edit to `index.html`, `experience.html` or `guide.html`, regenerate the derived files:**
+**After ANY edit to a source page, regenerate the derived files:**
 ```
-node build-en.mjs        # the pre-rendered English documents (both pages)
-node build-sitemap.mjs   # sitemap.xml (6 URLs, hreflang, image entries, lastmod)
+node build-en.mjs        # the pre-rendered English documents (every page)
+node build-sitemap.mjs   # sitemap.xml (12 URLs, hreflang, image entries, lastmod)
 ```
 Never add a Vercel rewrite for `/en` — it would shadow the generated file and serve Arabic.
 

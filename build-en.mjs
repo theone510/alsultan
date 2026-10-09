@@ -6,10 +6,11 @@
 // that does not run JS (WhatsApp, LinkedIn and Twitter link previews, several AI
 // crawlers, Google's pre-render pass) saw /en declaring itself a duplicate of "/".
 //
-// The site has two documents now — the catalogue at "/" and the cinematic journey at
-// "/experience" — so this builds both. Each carries its own EN dictionary inline.
+// The site is several documents now — the catalogue at "/", the cinematic journey at
+// "/experience", the guide and the importer articles — so this builds each of them.
+// Every page carries its own EN dictionary inline.
 //
-// Run after ANY edit to index.html, experience.html or guide.html:   node build-en.mjs
+// Run after ANY edit to a source page listed in PAGES below:   node build-en.mjs
 //
 // No dependencies. Reads the Arabic page, applies the EN dictionary that already lives
 // in it, rewrites the head signals, and writes the English twin.
@@ -19,16 +20,23 @@ import { dirname } from "node:path";
 
 const SITE = "https://www.alsultan-zahdi-dates.com";
 
-// crumbs: the English breadcrumb names, home first
+// crumbs: the English breadcrumb names, home first. A page sitting under the guide
+// has three, and the guide's own URL is the middle one.
+const GUIDE = ["Alsultan Dates", "Zahdi Dates Guide"];
+const article = (slug, name) =>
+  ({ src: slug + ".html", out: "en/" + slug + ".html", ar: "/" + slug, en: "/en/" + slug, crumbs: [...GUIDE, name], under: "/en/guide" });
 const PAGES = [
   { src: "index.html",      out: "en/index.html",      ar: "/",           en: "/en" },
   { src: "experience.html", out: "en/experience.html", ar: "/experience", en: "/en/experience", crumbs: ["Alsultan Dates", "The Journey"] },
-  { src: "guide.html",      out: "en/guide.html",      ar: "/guide",      en: "/en/guide",      crumbs: ["Alsultan Dates", "Zahdi Dates Guide"] },
+  { src: "guide.html",      out: "en/guide.html",      ar: "/guide",      en: "/en/guide",      crumbs: GUIDE },
+  article("import-dates-from-iraq", "Importing from Iraq"),
+  article("zahdi-dates-vs-other-varieties", "Varieties compared"),
+  article("industrial-dates", "Industrial dates"),
 ];
 
 // section slugs that resolve to a page of their own; their links must gain the /en
 // prefix in the raw HTML too, or a crawler following them lands back on Arabic
-const CROSS_PAGE = /\shref="\/(experience|guide|why|grades|packing|product|gallery|shipping|faq|quote)"/g;
+const CROSS_PAGE = /\shref="\/(experience|guide|import-dates-from-iraq|zahdi-dates-vs-other-varieties|industrial-dates|why|grades|packing|product|gallery|shipping|faq|quote)"/g;
 
 /* ── 2. replace the inner HTML of every [data-i18n] element ─────────────────── */
 // Walks the opening tag, then tracks depth so nested same-name tags cannot fool it.
@@ -175,7 +183,8 @@ function build(page) {
         node["@id"] = `${SITE}${page.en}#breadcrumb`;
         const names = page.crumbs;
         if (!names) throw new Error(`${page.src} has a BreadcrumbList but no crumbs in PAGES`);
-        const urls = [`${SITE}/en`, `${SITE}${page.en}`];
+        const urls = [`${SITE}/en`, ...(page.under ? [`${SITE}${page.under}`] : []), `${SITE}${page.en}`];
+        if (names.length !== node.itemListElement.length) throw new Error(`${page.src}: breadcrumb has ${node.itemListElement.length} items but PAGES names ${names.length}`);
         node.itemListElement = node.itemListElement.map((it, i) => ({ ...it, name: names[i], item: urls[i] }));
       }
       if (node["@type"] === "FAQPage") {
