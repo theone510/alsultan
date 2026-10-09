@@ -163,6 +163,11 @@
   #grades .more a{color:var(--gold-bright);text-decoration:none;border-bottom:1px solid var(--line-soft);
     padding-bottom:2px;transition:border-color .3s}
   #grades .more a:hover{border-color:var(--gold-bright)}
+  #grades .more .dot{margin:0 8px;opacity:.5}
+  #shipping .copy p.readmore{margin-top:26px;font-size:14px;text-align:start}
+  #shipping .readmore a{color:var(--gold-bright);text-decoration:none;border-bottom:1px solid var(--line);
+    padding-bottom:2px;transition:border-color .3s}
+  #shipping .readmore a:hover{border-color:var(--gold-bright)}
 
   /* 5 · PACKAGING */
   #packing{padding:16vh 0}
@@ -261,6 +266,23 @@
   #cta h2{font-size:clamp(32px,5.4vw,66px);margin:12px 0 16px}
   #cta p{color:var(--ivory-soft);max-width:54ch;margin-inline:auto;font-size:clamp(15px,1.7vw,18px)}
   #cta .btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:34px}
+
+  /* footer — these rules stayed behind on /experience when the page was split, which
+     left the catalogue's footer as a run of unstyled links */
+  footer{padding:9vh 0 5vh;text-align:center;border-top:1px solid var(--line-soft)}
+  footer .wm{font-family:"El Messiri",serif;font-size:38px;font-weight:700}
+  footer .lm{font-family:"Cormorant Garamond",serif;letter-spacing:.34em;font-size:12px;color:var(--gold);text-transform:uppercase;margin-top:6px}
+  footer .role{color:var(--ivory-soft);font-size:14px;margin-top:14px}
+  footer .links{margin:24px 0;display:flex;gap:14px 30px;justify-content:center;flex-wrap:wrap}
+  footer .links a{color:var(--ivory-soft);text-decoration:none;font-size:14px;transition:color .3s} footer .links a:hover{color:var(--gold-bright)}
+  footer .links.reads{margin-top:-6px;gap:10px 24px;align-items:baseline}
+  footer .links.reads .k{color:var(--ivory-faint);font-size:13px}
+  footer .cr{color:var(--ivory-faint);font-size:12px}
+  footer .social{display:flex;justify-content:center;gap:22px;margin:18px 0 14px;flex-wrap:wrap}
+  footer .social a{color:var(--gold-bright);text-decoration:none;font-size:13.5px;
+    border-bottom:1px solid transparent;transition:border-color .3s,color .3s;padding-bottom:2px}
+  footer .social a:hover{border-bottom-color:var(--gold)}
+  html[lang="en"] footer .links a{font-family:"Jost",sans-serif;font-size:13px;letter-spacing:.06em}
 
   /* FAQ - native <details>, so every answer sits in the DOM for crawlers and for
      keyboard users even with no JavaScript at all */
@@ -815,7 +837,7 @@
         <h2 class="gold-text reveal" data-i18n="grades.h2">جميع الدرجات متوفرة</h2>
         <p class="lead reveal" data-i18n="grades.lead">نوفّر تمر الزهدي بكامل درجاته — من المواصفة الأعلى لواجهات التجزئة، إلى المادة الخام لخطوط التصنيع. أخبرنا بسوقك واستخدامك والسعر المستهدف، ونحن نرشّح لك المواصفة الأنسب.</p>
         <p class="note reveal" data-i18n="grades.note">ونحن مسؤولون عن الجودة: تُعتمد <b>عينة مرجعية</b> قبل كل شحنة، وتُطابَق البضاعة عليها عند التحميل بتوثيق نشاركه معك.</p>
-        <p class="more reveal"><span data-i18n="grades.guidePre">جديد على هذا الصنف؟</span> <a data-page="guide" href="/guide" data-i18n="grades.guideLink">اقرأ دليل تمر الزهدي: الصنف والموسم والاستخدامات</a></p>
+        <p class="more reveal"><span data-i18n="grades.guidePre">جديد على هذا الصنف؟</span> <a data-page="guide" href="/guide" data-i18n="grades.guideLink">اقرأ دليل تمر الزهدي</a><span class="dot" aria-hidden="true">·</span><a data-page="zahdi-dates-vs-other-varieties" href="/zahdi-dates-vs-other-varieties" data-i18n="grades.cmpLink">قارنه بالأصناف الأخرى</a><span class="dot" aria-hidden="true">·</span><a data-page="industrial-dates" href="/industrial-dates" data-i18n="grades.indLink">الزهدي خامةً للتصنيع</a></p>
       </div>
     </div>
   </section>
@@ -961,6 +983,7 @@
           <div class="stat"><div class="n" data-i18n="shipping.n2">عالمي</div><div class="l" data-i18n="shipping.l2">جميع الوجهات حسب الكمية</div></div>
           <div class="stat"><div class="n" data-i18n="shipping.n3">بالطنّ</div><div class="l" data-i18n="shipping.l3">حد أدنى للطلب بالجملة</div></div>
         </div>
+        <p class="readmore"><a data-page="import-dates-from-iraq" href="/import-dates-from-iraq" data-i18n="shipping.more">كيف تستورد التمور من العراق: المستندات وشروط التسليم</a></p>
       </div>
     </div>
   </section>
@@ -1117,6 +1140,7 @@
     <div class="lm" data-i18n="footer.lm">Alsultan Dates · Karbala · Iraq</div>
     <p class="role" data-i18n="footer.role">الوسيط التجاري المباشر بين مورّد كربلاء والمستوردين حول العالم — جملة وتصدير حصراً.</p>
     <nav class="links"><a href="#grades" data-i18n="nav.grades">درجات الجودة</a><a href="#packing" data-i18n="nav.packing">التعبئة</a><a href="#product" data-i18n="nav.specs">المواصفات</a><a href="#shipping" data-i18n="nav.shipping">الشحن</a><a href="#faq" data-i18n="nav.faq">الأسئلة</a><a data-page="experience" href="/experience" data-i18n="nav.experience">الرحلة</a><a data-page="guide" href="/guide" data-i18n="nav.guide">دليل الزهدي</a><a href="#rfq" data-i18n="nav.quote">اطلب عرض سعر</a></nav>
+    <nav class="links reads"><span class="k" data-i18n="footer.reads">للمستورد:</span><a data-page="import-dates-from-iraq" href="/import-dates-from-iraq" data-i18n="nav.import">الاستيراد من العراق</a><a data-page="zahdi-dates-vs-other-varieties" href="/zahdi-dates-vs-other-varieties" data-i18n="nav.varieties">مقارنة الأصناف</a><a data-page="industrial-dates" href="/industrial-dates" data-i18n="nav.industrial">التمر الصناعي</a></nav>
     <nav class="social">
       <a href="https://www.instagram.com/alsultan_dates_export" rel="me noopener" target="_blank" data-i18n="footer.instagram">إنستغرام</a>
       <a href="https://wa.me/971565553328" rel="noopener" target="_blank" data-i18n="footer.whatsapp">واتساب</a>
@@ -1168,7 +1192,14 @@
     "grades.idx":"02 — Quality",
     "grades.h2":"Every grade is available",
     "grades.guidePre":"New to the variety?",
-    "grades.guideLink":"Read the Zahdi dates guide: variety, season and uses",
+    "grades.guideLink":"Read the Zahdi dates guide",
+    "grades.cmpLink":"Compare it with other varieties",
+    "grades.indLink":"Zahdi as a raw material",
+    "shipping.more":"How to import dates from Iraq: documents and delivery terms",
+    "footer.reads":"For importers:",
+    "nav.import":"Importing from Iraq",
+    "nav.varieties":"Varieties compared",
+    "nav.industrial":"Industrial dates",
     "grades.note":"And the quality is ours to answer for: a <b>reference sample</b> is approved before every shipment, and the goods are matched against it at loading, with documentation we share with you.",
     "packing.idx":"03 — Packing",
     "packing.h2":"Your packing… your way",

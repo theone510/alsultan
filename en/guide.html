@@ -138,6 +138,16 @@
   .btn-ghost{border:1px solid var(--gold);color:var(--gold-bright)}
   .btn:hover{transform:translateY(-3px)} .btn-ghost:hover{background:var(--gold);color:#140D06}
 
+  .related{margin-top:clamp(44px,7vh,70px);padding-top:clamp(36px,6vh,56px);border-top:1px solid var(--line-soft)}
+  .related ul{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+  .related li{margin:0;padding:0}
+  .related li::before{display:none}
+  .related a{display:block;height:100%;text-decoration:none;border:1px solid var(--line-soft);border-radius:8px;
+    padding:16px 18px;background:var(--surface);transition:border-color .3s}
+  .related a:hover{border-color:var(--gold)}
+  .related a b{display:block;color:var(--gold-bright);font-weight:500;font-size:16px;line-height:1.5}
+  .related a span{display:block;color:var(--ivory-faint);font-size:13.5px;line-height:1.7;margin-top:4px}
+
   footer{padding:8vh 0 5vh;text-align:center;border-top:1px solid var(--line-soft)}
   footer .wm{font-family:"El Messiri",serif;font-size:32px;font-weight:700}
   footer .links{margin:20px 0;display:flex;gap:26px;justify-content:center;flex-wrap:wrap}
@@ -336,6 +346,15 @@
         <ol data-i18n="steps.list"><li><b>Define the use and the market:</b> retail, repacking or processing — that is what decides the right grade.</li><li><b>Request a quotation</b> with the volume, the packing, the port of arrival and the delivery term.</li><li><b>Approve a reference sample</b> to serve as the benchmark at loading.</li><li><b>Fix the contract</b> in writing, with the specification and the payment terms.</li><li><b>Follow grading, packing and loading</b>, with inspection before shipment if you wish.</li><li><b>Receive the documents</b> and track the shipment to the port of arrival.</li></ol>
       </section>
 
+      <div class="related">
+        <h2 class="gold-text" data-i18n="rel.h2">Going deeper: articles for importers</h2>
+        <ul>
+          <li><a href="/en/import-dates-from-iraq"><b data-i18n="rel.import.t">Importing dates from Iraq</b><span data-i18n="rel.import.d">Documents, delivery terms, shipping and payment.</span></a></li>
+          <li><a href="/en/zahdi-dates-vs-other-varieties"><b data-i18n="rel.varieties.t">Zahdi against the other dates</b><span data-i18n="rel.varieties.d">Compared with Medjool, Deglet Noor and Sayer.</span></a></li>
+          <li><a href="/en/industrial-dates"><b data-i18n="rel.industrial.t">Industrial dates</b><span data-i18n="rel.industrial.d">Buying Zahdi as raw material for paste and syrup.</span></a></li>
+        </ul>
+      </div>
+
       <div class="cta">
         <h2 class="gold-text" data-i18n="cta.h2">Ready to request a quote?</h2>
         <p data-i18n="cta.p">Tell us the volume, the intended use and the destination, and we will send you a detailed offer for Iraqi Zahdi dates from Karbala.</p>
@@ -417,6 +436,13 @@
     "export.p2":"The practical detail — the estimated load per container, the documents and the payment terms — is gathered in the <a href=\"/faq\">buyer questions</a>, and you can follow the fruit from grove to port in <a href=\"/experience\">the journey</a>.",
     "steps.h2":"Your first order, step by step",
     "steps.list":"<li><b>Define the use and the market:</b> retail, repacking or processing — that is what decides the right grade.</li><li><b>Request a quotation</b> with the volume, the packing, the port of arrival and the delivery term.</li><li><b>Approve a reference sample</b> to serve as the benchmark at loading.</li><li><b>Fix the contract</b> in writing, with the specification and the payment terms.</li><li><b>Follow grading, packing and loading</b>, with inspection before shipment if you wish.</li><li><b>Receive the documents</b> and track the shipment to the port of arrival.</li>",
+    "rel.h2":"Going deeper: articles for importers",
+    "rel.import.t":"Importing dates from Iraq",
+    "rel.import.d":"Documents, delivery terms, shipping and payment.",
+    "rel.varieties.t":"Zahdi against the other dates",
+    "rel.varieties.d":"Compared with Medjool, Deglet Noor and Sayer.",
+    "rel.industrial.t":"Industrial dates",
+    "rel.industrial.d":"Buying Zahdi as raw material for paste and syrup.",
     "cta.h2":"Ready to request a quote?",
     "cta.p":"Tell us the volume, the intended use and the destination, and we will send you a detailed offer for Iraqi Zahdi dates from Karbala.",
     "cta.btn1":"Request a quote",
