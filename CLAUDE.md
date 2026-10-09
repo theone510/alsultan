@@ -94,7 +94,21 @@ fibre 2.3 mg) look like printing errors on the carton, but the page is making a 
 about what the label says, not an independent nutritional claim — so do not "correct"
 them here. They change when the carton is reprinted.
 
-These figures live in **exactly one place** — `#product` on the catalogue, plus the
-matching `additionalProperty` entries in its `Product` node. `/experience` carries only a
-qualitative spec and links to `/product`. Never add a second set of numbers anywhere: two
-pages quoting different figures for the same product is the failure this avoids.
+These figures live in **exactly one place** — `#product` on the catalogue. `/experience`
+carries only a qualitative spec and links to `/product`. Never add a second set of numbers
+anywhere (structured data included): two pages quoting different figures for the same
+product is the failure this avoids.
+
+### No `Product` node in the structured data
+The catalogue describes what is sold as a `Service` (`/#supply`, the thing
+`Organization.makesOffer` points at), **not** as a `Product`. Google only accepts a
+`Product` that carries a price, a review or a rating; this is a quote-only business with no
+public price and no reviews, so every `Product` node — with or without `offers` — sat in
+Search Console as a permanent critical error under *Product snippets* and *Merchant
+listings*. Do not reintroduce `Product`, and never add a placeholder price or an invented
+rating to make it validate: markup has to match what the page visibly says.
+
+### What Vercel publishes
+Vercel serves every file in the repo that `.vercelignore` does not list. Anything that is
+not part of the site (docs, `worker/`, `templates/`, `memory/`) belongs in that file, or it
+is a public, crawlable URL on the production domain.
