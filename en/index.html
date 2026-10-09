@@ -159,6 +159,10 @@
   #grades .note{text-align:center;max-width:58ch;margin:30px auto 0;padding-top:26px;
     border-top:1px solid var(--line-soft);color:var(--ivory-faint);font-size:14.5px}
   #grades .note b{color:var(--gold-bright);font-weight:500}
+  #grades .more{margin:18px auto 0;color:var(--ivory-faint);font-size:14.5px}
+  #grades .more a{color:var(--gold-bright);text-decoration:none;border-bottom:1px solid var(--line-soft);
+    padding-bottom:2px;transition:border-color .3s}
+  #grades .more a:hover{border-color:var(--gold-bright)}
 
   /* 5 · PACKAGING */
   #packing{padding:16vh 0}
@@ -490,7 +494,7 @@
    "makesOffer": {
     "@type": "Offer",
     "itemOffered": {
-     "@id": "https://www.alsultan-zahdi-dates.com/#product"
+     "@id": "https://www.alsultan-zahdi-dates.com/#supply"
     },
     "businessFunction": "http://purl.org/goodrelations/v1#Sell",
     "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business",
@@ -538,7 +542,7 @@
     "@id": "https://www.alsultan-zahdi-dates.com/#website"
    },
    "about": {
-    "@id": "https://www.alsultan-zahdi-dates.com/#product"
+    "@id": "https://www.alsultan-zahdi-dates.com/#supply"
    },
    "inLanguage": "en",
    "primaryImageOfPage": {
@@ -548,100 +552,31 @@
     "height": 630
    },
    "description": "Iraqi Zahdi dates from Karbala, wholesale for export only: every quality grade, 10 kg cartons or bulk bags, private label, shipped to any port.",
-   "dateModified": "2026-09-23"
+   "dateModified": "2026-10-09"
   },
   {
-   "@type": "Product",
-   "@id": "https://www.alsultan-zahdi-dates.com/#product",
-   "name": "Iraqi Zahdi Dates — تمر الزهدي العراقي",
+   "@type": "Service",
+   "@id": "https://www.alsultan-zahdi-dates.com/#supply",
+   "name": "Iraqi Zahdi dates — wholesale supply and export · توريد وتصدير تمر الزهدي العراقي بالجملة",
+   "serviceType": "Wholesale supply and export of Iraqi Zahdi dates",
+   "category": "Dates / Dried Fruit — Wholesale & Export",
+   "description": "Iraqi Zahdi dates from Karbala, supplied wholesale for export only. Available in every sorting grade, from premium retail specification through to raw material for processing; the grade and specification for each shipment are fixed by an approved reference sample before loading. Packed in 10 kg export cartons with a food-grade liner or in bulk food-grade bags, with private label available; supplied by the tonne and in full 20 ft and 40 ft containers.",
    "image": [
     "https://www.alsultan-zahdi-dates.com/assets/real/dates-01.webp",
     "https://www.alsultan-zahdi-dates.com/assets/real/dates-02.webp",
     "https://www.alsultan-zahdi-dates.com/assets/real/pack-carton.webp"
    ],
-   "description": "Iraqi Zahdi dates from Karbala, supplied wholesale for export only. Available in every sorting grade, from premium retail specification through to raw material for processing; the grade and specification for each shipment are fixed by an approved reference sample before loading.",
-   "brand": {
+   "url": "https://www.alsultan-zahdi-dates.com/",
+   "provider": {
     "@id": "https://www.alsultan-zahdi-dates.com/#organization"
    },
-   "manufacturer": {
-    "@id": "https://www.alsultan-zahdi-dates.com/#organization"
+   "areaServed": {
+    "@type": "Place",
+    "name": "Worldwide"
    },
-   "category": "Dates / Dried Fruit — Wholesale & Export",
-   "countryOfOrigin": {
-    "@type": "Country",
-    "name": "Iraq"
-   },
-   "material": "Zahdi date (Phoenix dactylifera)",
-   "additionalProperty": [
-    {
-     "@type": "PropertyValue",
-     "name": "Variety",
-     "value": "Zahdi"
-    },
-    {
-     "@type": "PropertyValue",
-     "name": "Origin",
-     "value": "Karbala Governorate, Iraq"
-    },
-    {
-     "@type": "PropertyValue",
-     "name": "Quality grades",
-     "value": "All sorting grades available; specification fixed by an approved reference sample before each shipment"
-    },
-    {
-     "@type": "PropertyValue",
-     "name": "Packing",
-     "value": "Export carton with food-grade liner (10 kg net) or bulk food-grade bags; private label available"
-    },
-    {
-     "@type": "PropertyValue",
-     "name": "Minimum order",
-     "value": "By the tonne / FCL 20ft and 40ft containers"
-    },
-    {
-     "@type": "PropertyValue",
-     "name": "Energy",
-     "value": "248 kcal per 100 g (as declared on the 10 kg carton label)"
-    },
-    {
-     "@type": "PropertyValue",
-     "name": "Inverted sugar",
-     "value": "63.9 g per 100 g (as declared on the 10 kg carton label)"
-    },
-    {
-     "@type": "PropertyValue",
-     "name": "Potassium",
-     "value": "648 mg per 100 g (as declared on the 10 kg carton label)"
-    },
-    {
-     "@type": "PropertyValue",
-     "name": "Additives",
-     "value": "No added sugar, no preservatives"
-    }
-   ],
    "audience": {
     "@type": "BusinessAudience",
     "name": "Importers, distributors and repackers"
-   },
-   "inProductGroupWithID": "zahdi-bulk",
-   "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/InStock",
-    "priceSpecification": {
-     "@type": "PriceSpecification",
-     "priceCurrency": "USD",
-     "valueAddedTaxIncluded": false
-    },
-    "eligibleQuantity": {
-     "@type": "QuantitativeValue",
-     "unitCode": "TNE",
-     "minValue": 1
-    },
-    "seller": {
-     "@id": "https://www.alsultan-zahdi-dates.com/#organization"
-    },
-    "businessFunction": "https://schema.org/Sell",
-    "url": "https://www.alsultan-zahdi-dates.com/quote"
    }
   },
   {
@@ -880,6 +815,7 @@
         <h2 class="gold-text reveal" data-i18n="grades.h2">Every grade is available</h2>
         <p class="lead reveal" data-i18n="grades.lead">We supply Zahdi dates in every sorting grade — from premium retail specification through to raw material for processing lines. Tell us your market, your intended use and your target price, and we will recommend the specification that fits.</p>
         <p class="note reveal" data-i18n="grades.note">And the quality is ours to answer for: a <b>reference sample</b> is approved before every shipment, and the goods are matched against it at loading, with documentation we share with you.</p>
+        <p class="more reveal"><span data-i18n="grades.guidePre">New to the variety?</span> <a data-page="guide" href="/en/guide" data-i18n="grades.guideLink">Read the Zahdi dates guide: variety, season and uses</a></p>
       </div>
     </div>
   </section>
@@ -1231,6 +1167,8 @@
     "product.v4":"No added sugar, no preservatives",
     "grades.idx":"02 — Quality",
     "grades.h2":"Every grade is available",
+    "grades.guidePre":"New to the variety?",
+    "grades.guideLink":"Read the Zahdi dates guide: variety, season and uses",
     "grades.note":"And the quality is ours to answer for: a <b>reference sample</b> is approved before every shipment, and the goods are matched against it at loading, with documentation we share with you.",
     "packing.idx":"03 — Packing",
     "packing.h2":"Your packing… your way",

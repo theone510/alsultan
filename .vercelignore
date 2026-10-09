@@ -1,0 +1,11 @@
+# Vercel publishes every file in the repo unless it is listed here. None of these are
+# part of the site, and each was reachable (and crawlable) on the production domain —
+# templates/index.skeleton.html is a whole indexable HTML page of placeholder copy.
+/.claude
+/CLAUDE.md
+/README.md
+/HIGGSFIELD-PROMPTS.md
+/skills-lock.json
+/memory
+/templates
+/worker
